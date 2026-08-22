@@ -28,121 +28,276 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
+            background: #f4f7fb;
             color: #1a1a2e;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
         }
         .container {
-            max-width: 900px;
-            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+        header {
             text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #eef2f7;
+            margin-bottom: 30px;
         }
         .logo {
             font-size: 48px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         h1 {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 700;
             color: #0a2540;
-            margin-bottom: 8px;
             letter-spacing: -0.5px;
         }
         .subtitle {
             font-size: 18px;
-            color: #4a5568;
-            margin-bottom: 30px;
+            color: #5a6b7c;
             font-weight: 300;
+            margin-top: 4px;
         }
         .badge {
             display: inline-block;
             background: #e8f0fe;
             color: #1a73e8;
-            padding: 6px 20px;
+            padding: 6px 24px;
             border-radius: 30px;
             font-size: 14px;
             font-weight: 500;
-            margin-bottom: 30px;
+            margin-top: 10px;
         }
-        .section {
+        h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: #0a2540;
+            margin: 30px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 20px;
-            margin: 30px 0 20px;
-            text-align: left;
+            margin-bottom: 10px;
         }
-        .section-item {
-            background: #f7f9fc;
-            padding: 18px 20px;
-            border-radius: 14px;
-            border-left: 4px solid #1a73e8;
+        .card {
+            background: #f8faff;
+            border-radius: 16px;
+            padding: 18px 20px 20px 20px;
+            border-left: 5px solid #1a73e8;
+            transition: 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
-        .section-item h3 {
-            font-size: 16px;
+        .card:hover {
+            background: #f0f5ff;
+            transform: translateY(-2px);
+        }
+        .card h3 {
+            font-size: 18px;
+            font-weight: 600;
             color: #0a2540;
             margin-bottom: 4px;
         }
-        .section-item p {
+        .card .type {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a73e8;
+            background: #e4edfb;
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin-bottom: 8px;
+        }
+        .card p {
             font-size: 14px;
-            color: #4a5568;
+            color: #3d4e62;
+            line-height: 1.5;
+            margin: 4px 0;
+        }
+        .card .meta {
+            font-size: 13px;
+            color: #5f7a9a;
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .card .meta span {
+            background: #edf2f9;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6a7b8c;
+            font-size: 16px;
         }
         .footer-text {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 14px;
-            color: #888;
+            color: #8a9aa8;
             border-top: 1px solid #e2e8f0;
             padding-top: 25px;
+            text-align: center;
         }
         .footer-text a {
             color: #1a73e8;
             text-decoration: none;
         }
         @media (max-width: 600px) {
-            h1 { font-size: 26px; }
-            .container { padding: 30px 20px; }
+            h1 { font-size: 28px; }
+            .container { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="logo">🏛️</div>
-        <h1>Candroha International University</h1>
-        <p class="subtitle">Excellence in Education, Research, and Innovation</p>
-        <div class="badge">🌍 Accredited · Global Campus</div>
-        
-        <div class="section">
-            <div class="section-item">
-                <h3>🎓 Degrees</h3>
-                <p>Bachelor, Master, and Doctoral Programs</p>
-            </div>
-            <div class="section-item">
-                <h3>📜 Diplomas</h3>
-                <p>Professional and Postgraduate Diplomas</p>
-            </div>
-            <div class="section-item">
-                <h3>🔬 Research</h3>
-                <p>Cutting-edge research across disciplines</p>
-            </div>
+        <header>
+            <div class="logo">🏛️</div>
+            <h1>Candroha International University</h1>
+            <p class="subtitle">Excellence in Education, Research, and Innovation</p>
+            <div class="badge">🌍 Accredited · Global Campus</div>
+        </header>
+
+        <h2>📘 Our Programs</h2>
+        <div id="programs-container">
+            <div class="loading">Loading programs from database...</div>
         </div>
-        
+
+        <h2>🔬 Research Areas</h2>
+        <div id="research-container">
+            <div class="loading">Loading research data...</div>
+        </div>
+
         <div class="footer-text">
             📍 <strong>Candroha International University</strong> &middot; 
             <a href="https://candroha.foo.ng" target="_blank">candroha.foo.ng</a> &middot; 
             <span id="year"></span>
         </div>
     </div>
-    
+
     <script>
+        // === CONFIGURATION ===
+        // Ye woh CSV link hai jo aap ne Google Sheets se publish kiya
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
+
+        // === FUNCTION: CSV parse karein ===
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim() !== '');
+            if (lines.length === 0) return [];
+            
+            // Pehli row: headers
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            // Baqi rows: data
+            const result = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim());
+                if (values.length === headers.length) {
+                    const entry = {};
+                    headers.forEach((h, idx) => {
+                        entry[h] = values[idx] || '';
+                    });
+                    result.push(entry);
+                }
+            }
+            return result;
+        }
+
+        // === FUNCTION: Data ko cards mein render karein ===
+        function renderData(data) {
+            const programsContainer = document.getElementById('programs-container');
+            const researchContainer = document.getElementById('research-container');
+            
+            // Filter: Degrees aur Diplomas
+            const programs = data.filter(item => 
+                item.Type && (item.Type.toLowerCase().includes('degree') || item.Type.toLowerCase().includes('diploma'))
+            );
+            
+            // Filter: Research
+            const research = data.filter(item => 
+                item.Type && item.Type.toLowerCase().includes('research')
+            );
+
+            // --- Programs Render ---
+            if (programs.length === 0) {
+                programsContainer.innerHTML = `<p style="color:#6a7b8c; padding:10px 0;">No programs found in the database.</p>`;
+            } else {
+                let html = '<div class="card-grid">';
+                programs.forEach(item => {
+                    html += `
+                        <div class="card">
+                            <div class="type">${item.Type || 'Program'}</div>
+                            <h3>${item.Title || 'Untitled'}</h3>
+                            <p>${item.Description || ''}</p>
+                            <div class="meta">
+                                <span>⏱ ${item.Duration || 'N/A'}</span>
+                                <span>💰 ${item.Fee || 'Free'}</span>
+                                <span>📂 ${item.Category || 'General'}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                programsContainer.innerHTML = html;
+            }
+
+            // --- Research Render ---
+            if (research.length === 0) {
+                researchContainer.innerHTML = `<p style="color:#6a7b8c; padding:10px 0;">No research entries found in the database.</p>`;
+            } else {
+                let html = '<div class="card-grid">';
+                research.forEach(item => {
+                    html += `
+                        <div class="card" style="border-left-color: #34a853;">
+                            <div class="type" style="background:#e6f4ea; color:#1e8e3e;">🔬 ${item.Type || 'Research'}</div>
+                            <h3>${item.Title || 'Untitled'}</h3>
+                            <p>${item.Description || ''}</p>
+                            <div class="meta">
+                                <span>⏱ ${item.Duration || 'Ongoing'}</span>
+                                <span>📂 ${item.Category || 'Research'}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                researchContainer.innerHTML = html;
+            }
+        }
+
+        // === MAIN: CSV fetch karein aur render karein ===
+        async function loadData() {
+            try {
+                const response = await fetch(CSV_URL);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                renderData(data);
+            } catch (error) {
+                console.error('Error loading CSV:', error);
+                document.getElementById('programs-container').innerHTML = 
+                    `<p style="color:#d93025; padding:20px;">⚠️ Unable to load data. Please check your Google Sheet link or try again later.</p>`;
+                document.getElementById('research-container').innerHTML = '';
+            }
+        }
+
+        // === Date footer update ===
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // === Load data when page loads ===
+        loadData();
     </script>
 </body>
 </html>
