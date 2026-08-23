@@ -142,11 +142,11 @@
         }
 
         /* ============================================
-                   HEADER WITH TRANSPARENT LOGO
-                   ============================================ */
+               HEADER WITH LARGE TRANSPARENT LOGO
+               ============================================ */
         .header {
             background: var(--navy);
-            padding: 12px 0;
+            padding: 10px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -162,53 +162,49 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
-        /* === TRANSPARENT LOGO CSS === */
+        /* === LARGE LOGO WITH TRANSPARENT BACKGROUND === */
         .logo img {
-            height: 50px;
+            height: 70px;
+            /* Bara logo */
             width: auto;
             display: block;
             background: transparent !important;
             padding: 0 !important;
             box-shadow: none !important;
-            mix-blend-mode: normal;
-            /* White background hatane ke liye filter use karein */
+            /* White background hatane ke liye filter */
             filter: brightness(0) invert(1);
-            /* Is se logo white ho jayega navy background par */
-        }
-        /* Agar logo mein white background hai toh yeh filter use karein */
-        .logo img[src*="logo.png"] {
-            background: transparent !important;
-            filter: brightness(0) invert(1);
+            /* Navy background par white logo */
+            transition: var(--transition);
         }
 
         .logo .logo-text {
             color: var(--white);
             font-weight: 700;
-            font-size: 20px;
+            font-size: 22px;
             line-height: 1.2;
         }
         .logo .logo-text .gold {
             color: var(--gold);
         }
         .logo .logo-sub {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 300;
-            opacity: 0.7;
+            opacity: 0.8;
             display: block;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .nav {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .nav a {
             color: rgba(255, 255, 255, 0.85);
-            padding: 8px 14px;
+            padding: 8px 12px;
             font-size: 14px;
             font-weight: 500;
             border-radius: 8px;
@@ -272,8 +268,8 @@
         }
 
         /* ============================================
-                   HERO SECTION WITH VIDEO
-                   ============================================ */
+               HERO SECTION WITH VIDEO
+               ============================================ */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
             padding: 80px 0 100px;
@@ -353,8 +349,8 @@
         }
 
         /* ============================================
-                   SECTION TITLES
-                   ============================================ */
+               SECTION TITLES
+               ============================================ */
         .section-title {
             text-align: center;
             margin-bottom: 48px;
@@ -375,8 +371,8 @@
         }
 
         /* ============================================
-                   QUICK LINKS
-                   ============================================ */
+               QUICK LINKS
+               ============================================ */
         .quick-links {
             padding: 60px 0;
             background: var(--off-white);
@@ -411,8 +407,8 @@
         }
 
         /* ============================================
-                   ABOUT INTRO
-                   ============================================ */
+               ABOUT INTRO
+               ============================================ */
         .about-intro {
             padding: 80px 0;
         }
@@ -435,8 +431,8 @@
         }
 
         /* ============================================
-                   PROGRAMS
-                   ============================================ */
+               PROGRAMS
+               ============================================ */
         .programs-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -496,8 +492,8 @@
         }
 
         /* ============================================
-                   FACULTIES
-                   ============================================ */
+               FACULTIES
+               ============================================ */
         .faculties-section {
             padding: 80px 0;
         }
@@ -530,8 +526,8 @@
         }
 
         /* ============================================
-                   RESEARCH
-                   ============================================ */
+               RESEARCH
+               ============================================ */
         .research-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -559,8 +555,8 @@
         }
 
         /* ============================================
-                   CREDENTIAL VERIFICATION
-                   ============================================ */
+               CREDENTIAL VERIFICATION
+               ============================================ */
         .verify-preview {
             padding: 80px 0;
             background: var(--navy);
@@ -605,8 +601,8 @@
         }
 
         /* ============================================
-                   NEWS
-                   ============================================ */
+               NEWS
+               ============================================ */
         .news-section {
             padding: 80px 0;
         }
@@ -645,8 +641,8 @@
         }
 
         /* ============================================
-                   WHY CIU
-                   ============================================ */
+               WHY CIU
+               ============================================ */
         .why-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -676,8 +672,8 @@
         }
 
         /* ============================================
-                   CONTACT
-                   ============================================ */
+               CONTACT
+               ============================================ */
         .contact-section {
             padding: 80px 0;
         }
@@ -735,8 +731,8 @@
         }
 
         /* ============================================
-                   FOOTER
-                   ============================================ */
+               FOOTER
+               ============================================ */
         .footer {
             background: var(--navy);
             color: rgba(255, 255, 255, 0.7);
@@ -783,8 +779,8 @@
         }
 
         /* ============================================
-                   RESPONSIVE
-                   ============================================ */
+               RESPONSIVE
+               ============================================ */
         @media (max-width: 992px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -841,7 +837,11 @@
                 width: 100%;
             }
             .logo img {
-                height: 36px;
+                height: 50px;
+                /* Mobile par bhi bara */
+            }
+            .logo .logo-text {
+                font-size: 18px;
             }
         }
 
@@ -855,18 +855,27 @@
             .faculty-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .logo img {
+                height: 40px;
+            }
+            .logo .logo-text {
+                font-size: 15px;
+            }
+            .logo .logo-sub {
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================
-    HEADER
+    HEADER WITH LARGE LOGO
     ============================================ -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <!-- LOGO: White background wala logo transparent dikhega -->
+                <!-- YOUR EXACT LOGO - Only background removed, design unchanged -->
                 <img src="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" alt="Candroha International University Logo" />
                 <div class="logo-text">
                     CIU
@@ -964,7 +973,7 @@
                 <div class="text">
                     <h2>About <span class="gold">Candroha</span> International University</h2>
                     <p><strong>Established in 1961</strong>, Candroha International University (CIU) has been a beacon of academic excellence, research, and innovation. Located in the United Kingdom, CIU is dedicated to fostering intellectual growth, interdisciplinary learning, and global knowledge exchange.</p>
-                    <p>Our university is committed to preparing future leaders through rigorous academic programs, cutting-edge research, and a vibrant campus community. We believe in the power of education to transform lives and shape a better world.</p>
+                    <p>Our university is committed to preparing future leaders through rigorous academic programs, cutting-edge research, and a vibrant campus community.</p>
                     <a href="#" class="btn btn-navy" style="margin-top:12px;">Learn More About CIU</a>
                 </div>
                 <div style="background:var(--off-white); border-radius:var(--radius); padding:40px; text-align:center; border:1px solid var(--gray-light);">
