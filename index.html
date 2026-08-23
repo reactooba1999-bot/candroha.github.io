@@ -213,6 +213,20 @@
         .nav .verify-btn:hover {
             background: var(--gold-light);
         }
+        /* ===== GALLERY NAV LINK ADDED ===== */
+        .nav .gallery-btn {
+            color: rgba(255, 255, 255, 0.85);
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .nav .gallery-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+        /* ===== GALLERY NAV LINK END ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -942,6 +956,95 @@
         }
 
         /* ============================================
+               GALLERY (ADDED)
+               ============================================ */
+        .gallery-section {
+            padding: 80px 0;
+            background: var(--off-white);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow-hover);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 37, 64, 0.8));
+            color: var(--white);
+            padding: 40px 16px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+        }
+
+        /* Lightbox (Full Screen View) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .lightbox .close-lightbox:hover {
+            color: var(--gold);
+        }
+
+        /* ============================================
                CONTACT
                ============================================ */
         .contact-section {
@@ -1271,6 +1374,7 @@
                 <a href="#admissions">Admissions</a>
                 <a href="#news">News</a>
                 <a href="#events">Events</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#alumni">Alumni</a>
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
@@ -1290,6 +1394,7 @@
                 <a href="#admissions">Admissions</a>
                 <a href="#news">News</a>
                 <a href="#events">Events</a>
+                <a href="#gallery">Gallery</a>
                 <a href="#alumni">Alumni</a>
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
@@ -1575,7 +1680,45 @@
         </div>
     </section>
 
-            <!-- ============================================
+    <!-- ============================================
+    GALLERY (ADDED)
+    ============================================ -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>University <span class="gold">Gallery</span></h2>
+                <p>Explore our campus, facilities, and student life through our photo gallery.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/gallery/campus-aerial.jfif" alt="Campus Aerial View" />
+                    <div class="gallery-caption">Campus Aerial View</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/library-interior.jfif" alt="Library Interior" />
+                    <div class="gallery-caption">Library Interior</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/lecture-hall.jfif" alt="Lecture Hall" />
+                    <div class="gallery-caption">Lecture Hall</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/research-lab.jfif" alt="Research Lab" />
+                    <div class="gallery-caption">Research Lab</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/student-life.jfif" alt="Student Life" />
+                    <div class="gallery-caption">Student Life</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/graduation.jfif" alt="Graduation Ceremony" />
+                    <div class="gallery-caption">Graduation Ceremony</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
     ALUMNI (INTERNATIONAL)
     ============================================ -->
     <section class="alumni-section" id="alumni">
@@ -1824,6 +1967,7 @@
                     <a href="#verify">Verify Credential</a>
                     <a href="#news">News</a>
                     <a href="#events">Events</a>
+                    <a href="#gallery">Gallery</a>
                     <a href="#alumni">Alumni</a>
                     <a href="#contact">Contact</a>
                 </div>
@@ -2043,12 +2187,12 @@
         // ALUMNI STORIES
         // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const story = this.closest('.alumni-card').querySelector('.story');
-        story.classList.toggle('show');
-        this.textContent = story.classList.contains('show') ? 'Hide Story' : 'Read Story';
-    });
-});
+            btn.addEventListener('click', function() {
+                const story = this.closest('.alumni-card').querySelector('.story');
+                story.classList.toggle('show');
+                this.textContent = story.classList.contains('show') ? 'Hide Story' : 'Read Story';
+            });
+        });
 
         // ============================================
         // CREDENTIAL VERIFICATION
@@ -2089,7 +2233,7 @@
                 );
 
                 if (found) {
-    verifyResult.innerHTML = `
+                    verifyResult.innerHTML = `
         <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); 
                     border-radius: 20px; 
                     padding: 0; 
@@ -2193,7 +2337,7 @@
             </div>
         </div>
     `;
-} else {
+                } else {
                     verifyResult.innerHTML = `
                             <div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
                                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
@@ -2273,6 +2417,46 @@
 
         document.getElementById('adminSyncBtn').addEventListener('click', function() {
             alert('Google Sheets sync initiated. Please check your sheet for updates.');
+        });
+
+        // ============================================
+        // GALLERY LIGHTBOX
+        // ============================================
+        // Create lightbox element
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+            <span class="close-lightbox">&times;</span>
+            <img src="" alt="Gallery Image" />
+        `;
+        document.body.appendChild(lightbox);
+
+        // Open lightbox on gallery item click
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const lightboxImg = lightbox.querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close lightbox
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('close-lightbox')) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // ============================================
