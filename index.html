@@ -2054,28 +2054,111 @@
                 );
 
                 if (found) {
-                    verifyResult.innerHTML = `
-                            <div style="background:#e6f4ea; padding:28px; border-radius:16px; text-align:left; color:var(--navy); border:2px solid #34a853;">
-                                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                                    <span style="font-size:28px;">✅</span>
-                                    <span style="font-size:20px; font-weight:700; color:#1e7e34;">CREDENTIAL VERIFIED</span>
-                                </div>
-                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:15px;">
-                                    <strong>Student Name:</strong> <span>${found['Student Name'] || 'N/A'}</span>
-                                    <strong>Credential Type:</strong> <span>${found['Type'] || 'N/A'}</span>
-                                    <strong>Program:</strong> <span>${found['Title'] || 'N/A'}</span>
-                                    <strong>Faculty:</strong> <span>${found['Faculty'] || 'N/A'}</span>
-                                    <strong>Registration Number:</strong> <span>${found['Registration Number'] || 'N/A'}</span>
-                                    <strong>Credential Number:</strong> <span>${found['Credential Number'] || 'N/A'}</span>
-                                    <strong>Completion Year:</strong> <span>${found['Completion Year'] || 'N/A'}</span>
-                                    <strong>Verification ID:</strong> <span>${found['Verification ID'] || 'N/A'}</span>
-                                </div>
-                                <div style="margin-top:16px; padding-top:12px; border-top:1px solid #c8e6c9; font-size:14px; color:#2e7d32;">
-                                    <i class="fas fa-check-circle"></i> Status: <strong>VERIFIED</strong> 
-                                </div>
-                            </div>
-                        `;
-                } else {
+    verifyResult.innerHTML = `
+        <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); 
+                    border-radius: 20px; 
+                    padding: 0; 
+                    overflow: hidden;
+                    box-shadow: 0 20px 60px rgba(10, 37, 64, 0.15);
+                    border: 1px solid rgba(201, 168, 76, 0.2);
+                    max-width: 750px;
+                    margin: 0 auto;
+                    text-align: left;">
+            
+            <!-- Header: Gold Gradient -->
+            <div style="background: linear-gradient(135deg, #c9a84c, #a8892e);
+                        padding: 24px 32px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <span style="font-size: 36px;">✅</span>
+                    <div>
+                        <div style="color: #0a2540; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">
+                            CREDENTIAL VERIFIED
+                        </div>
+                        <div style="color: rgba(10, 37, 64, 0.7); font-size: 13px; font-weight: 500;">
+                            Official Academic Record
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(10, 37, 64, 0.15);
+                            padding: 6px 16px;
+                            border-radius: 50px;
+                            font-size: 12px;
+                            font-weight: 600;
+                            color: #0a2540;
+                            letter-spacing: 0.5px;">
+                    <i class="fas fa-shield-alt"></i> SECURE VERIFICATION
+                </div>
+            </div>
+            
+            <!-- Body -->
+            <div style="padding: 28px 32px 20px;">
+                <!-- Student Name - Large -->
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #eef2f7; padding-bottom: 16px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0a2540, #1a3a5c); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700;">
+                        ${found['Student Name'] ? found['Student Name'].charAt(0) : 'S'}
+                    </div>
+                    <div>
+                        <div style="font-size: 13px; color: #6a7b8c; font-weight: 500; letter-spacing: 0.5px;">STUDENT NAME</div>
+                        <div style="font-size: 24px; font-weight: 700; color: #0a2540; line-height: 1.2;">${found['Student Name'] || 'N/A'}</div>
+                    </div>
+                </div>
+                
+                <!-- Info Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 20px;">
+                    <div>
+                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Credential Type</div>
+                        <div style="font-size: 16px; font-weight: 600; color: #0a2540; margin-top: 2px;">
+                            <span style="background: #e8f0fe; padding: 2px 12px; border-radius: 30px; font-size: 13px;">${found['Type'] || 'N/A'}</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Program</div>
+                        <div style="font-size: 16px; font-weight: 600; color: #0a2540; margin-top: 2px;">${found['Title'] || 'N/A'}</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Faculty</div>
+                        <div style="font-size: 14px; color: #1a3a5c; margin-top: 2px;">${found['Faculty'] || 'N/A'}</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Completion Year</div>
+                        <div style="font-size: 16px; font-weight: 600; color: #c9a84c; margin-top: 2px;">${found['Completion Year'] || 'N/A'}</div>
+                    </div>
+                </div>
+                
+                <!-- Analytics / Progress Section -->
+                <div style="background: #f4f7fb; border-radius: 14px; padding: 18px 24px; margin: 8px 0 10px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Registration Number'] || 'N/A'}</div>
+                            <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Registration #</div>
+                        </div>
+                        <div style="text-align: center; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0;">
+                            <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Credential Number'] || 'N/A'}</div>
+                            <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Credential #</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Verification ID'] || 'N/A'}</div>
+                            <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Verification ID</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Status Bar (Professional) -->
+                <div style="margin-top: 12px; display: flex; align-items: center; gap: 14px; background: #e6f4ea; padding: 12px 20px; border-radius: 12px; border-left: 4px solid #34a853;">
+                    <i class="fas fa-check-circle" style="color: #1e7e34; font-size: 18px;"></i>
+                    <span style="font-size: 15px; font-weight: 600; color: #1e7e34;">Status: VERIFIED</span>
+                    <span style="flex: 1;"></span>
+                    <span style="font-size: 11px; color: #2e7d32; background: rgba(52, 168, 83, 0.15); padding: 2px 14px; border-radius: 30px; font-weight: 500;">
+                        <i class="fas fa-check"></i> Active
+                    </span>
+                </div>
+            </div>
+        </div>
+    `;
+} else {
                     verifyResult.innerHTML = `
                             <div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
                                 <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
