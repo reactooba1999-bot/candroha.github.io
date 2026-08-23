@@ -142,7 +142,7 @@
         }
 
         /* ============================================
-               HEADER WITH FULL NAME & LARGE LOGO
+               HEADER - ONLY LOGO (Full Name Inside)
                ============================================ */
         .header {
             background: var(--navy);
@@ -162,40 +162,27 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 16px;
         }
 
-        /* === LARGE LOGO - TRANSPARENT BACKGROUND === */
+        /* === PROFESSIONAL LOGO - Navy + Gold, Transparent Background === */
         .logo img {
-            height: 70px;
+            height: 80px;
             /* Bara logo */
             width: auto;
             display: block;
             background: transparent !important;
             padding: 0 !important;
             box-shadow: none !important;
-            /* White background hatane ke liye filter */
-            filter: brightness(0) invert(1);
+            /* Navy background par professional look */
+            filter: brightness(1.1) saturate(1.2);
             transition: var(--transition);
         }
 
-        .logo .logo-text {
-            color: var(--white);
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 1.2;
+        .logo img:hover {
+            transform: scale(1.02);
         }
-        .logo .logo-text .gold {
-            color: var(--gold);
-        }
-        .logo .logo-sub {
-            font-size: 13px;
-            font-weight: 300;
-            opacity: 0.85;
-            display: block;
-            letter-spacing: 1.2px;
-            color: var(--white);
-        }
+
+        /* No text beside logo - all text is inside logo image */
 
         .nav {
             display: flex;
@@ -837,13 +824,7 @@
                 width: 100%;
             }
             .logo img {
-                height: 50px;
-            }
-            .logo .logo-text {
-                font-size: 16px;
-            }
-            .logo .logo-sub {
-                font-size: 11px;
+                height: 60px;
             }
         }
 
@@ -858,13 +839,7 @@
                 grid-template-columns: 1fr 1fr;
             }
             .logo img {
-                height: 40px;
-            }
-            .logo .logo-text {
-                font-size: 14px;
-            }
-            .logo .logo-sub {
-                font-size: 10px;
+                height: 50px;
             }
         }
     </style>
@@ -872,16 +847,12 @@
 <body>
 
     <!-- ============================================
-    HEADER WITH FULL NAME
+    HEADER - ONLY LOGO (Name inside logo image)
     ============================================ -->
     <header class="header">
         <div class="container">
             <div class="logo">
                 <img src="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" alt="Candroha International University Logo" />
-                <div class="logo-text">
-                    CIU
-                    <span class="logo-sub">Candroha International University</span>
-                </div>
             </div>
 
             <nav class="nav">
