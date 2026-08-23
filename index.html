@@ -142,7 +142,7 @@
         }
 
         /* ============================================
-               HEADER WITH LARGE TRANSPARENT LOGO
+               HEADER WITH FULL NAME & LARGE LOGO
                ============================================ */
         .header {
             background: var(--navy);
@@ -165,7 +165,7 @@
             gap: 16px;
         }
 
-        /* === LARGE LOGO WITH TRANSPARENT BACKGROUND === */
+        /* === LARGE LOGO - TRANSPARENT BACKGROUND === */
         .logo img {
             height: 70px;
             /* Bara logo */
@@ -176,25 +176,25 @@
             box-shadow: none !important;
             /* White background hatane ke liye filter */
             filter: brightness(0) invert(1);
-            /* Navy background par white logo */
             transition: var(--transition);
         }
 
         .logo .logo-text {
             color: var(--white);
             font-weight: 700;
-            font-size: 22px;
+            font-size: 20px;
             line-height: 1.2;
         }
         .logo .logo-text .gold {
             color: var(--gold);
         }
         .logo .logo-sub {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 300;
-            opacity: 0.8;
+            opacity: 0.85;
             display: block;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.2px;
+            color: var(--white);
         }
 
         .nav {
@@ -838,10 +838,12 @@
             }
             .logo img {
                 height: 50px;
-                /* Mobile par bhi bara */
             }
             .logo .logo-text {
-                font-size: 18px;
+                font-size: 16px;
+            }
+            .logo .logo-sub {
+                font-size: 11px;
             }
         }
 
@@ -859,7 +861,7 @@
                 height: 40px;
             }
             .logo .logo-text {
-                font-size: 15px;
+                font-size: 14px;
             }
             .logo .logo-sub {
                 font-size: 10px;
@@ -870,16 +872,15 @@
 <body>
 
     <!-- ============================================
-    HEADER WITH LARGE LOGO
+    HEADER WITH FULL NAME
     ============================================ -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <!-- YOUR EXACT LOGO - Only background removed, design unchanged -->
                 <img src="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" alt="Candroha International University Logo" />
                 <div class="logo-text">
                     CIU
-                    <span class="logo-sub">Candroha International</span>
+                    <span class="logo-sub">Candroha International University</span>
                 </div>
             </div>
 
@@ -915,7 +916,7 @@
     </header>
 
     <!-- ============================================
-    HERO SECTION WITH DRONE VIDEO
+    HERO SECTION
     ============================================ -->
     <section class="hero" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline>
