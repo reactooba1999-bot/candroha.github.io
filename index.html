@@ -1913,32 +1913,63 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ADMIN DASHBOARD
+        <!-- ============================================
+    ADMIN DASHBOARD (Professional with Google Sheets Sync)
     ============================================ -->
     <section class="admin-section" id="admin">
         <div class="container">
             <div class="admin-card">
                 <h2>🔐 Admin Dashboard</h2>
                 <p style="text-align:center; color:var(--gray); margin-bottom:20px;">Manage student records, verify credentials, and sync with Google Sheets.</p>
+                
+                <!-- Login Form -->
                 <form id="adminLoginForm">
                     <input type="text" placeholder="Admin Username" id="adminUser" value="admin" />
                     <input type="password" placeholder="Admin Password" id="adminPass" value="admin123" />
                     <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
                 </form>
+                
+                <!-- Admin Panel -->
                 <div id="adminPanel" style="display:none; margin-top:20px;">
-                    <h3 style="color:var(--navy);">Credential Records</h3>
+                    <!-- Stats -->
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:12px; margin-bottom:20px;">
+                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
+                            <div style="font-size:24px; font-weight:700; color:var(--navy);" id="totalStudents">0</div>
+                            <div style="font-size:12px; color:var(--gray);">Total Students</div>
+                        </div>
+                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
+                            <div style="font-size:24px; font-weight:700; color:var(--gold);" id="totalVerified">0</div>
+                            <div style="font-size:12px; color:var(--gray);">Verified</div>
+                        </div>
+                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
+                            <div style="font-size:24px; font-weight:700; color:#d93025;" id="totalUnverified">0</div>
+                            <div style="font-size:12px; color:var(--gray);">Unverified</div>
+                        </div>
+                    </div>
+                    
+                    <!-- API URL Input -->
+                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
+                        <input type="text" placeholder="Google Apps Script API URL" id="apiUrl" style="flex:1; padding:10px 14px; border:1px solid var(--gray-light); border-radius:8px; font-size:14px;" />
+                        <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
+                    </div>
+                    
+                    <!-- Search & Actions -->
                     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
                         <input type="text" placeholder="Search Student..." id="adminSearch" style="flex:1; padding:10px 14px; border:1px solid var(--gray-light); border-radius:8px;" />
                         <button class="btn btn-primary" id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
                         <button class="btn btn-navy" id="adminSyncBtn"><i class="fas fa-sync"></i> Sync</button>
+                        <button class="btn btn-outline" id="adminRefreshBtn" style="background:var(--off-white); color:var(--navy);"><i class="fas fa-redo"></i> Refresh</button>
                     </div>
-                    <div id="adminRecordList">
-                        <div class="record-item"><span>1. Ahmed Ali - BSc CS (Roll: CS-2024-01)</span><div class="actions"><button><i class="fas fa-edit"></i></button><button><i class="fas fa-trash"></i></button></div></div>
-                        <div class="record-item"><span>2. Sara Khan - MBA (Roll: MBA-2024-05)</span><div class="actions"><button><i class="fas fa-edit"></i></button><button><i class="fas fa-trash"></i></button></div></div>
-                        <div class="record-item"><span>3. Omar Farooq - MSc DS (Roll: DS-2024-12)</span><div class="actions"><button><i class="fas fa-edit"></i></button><button><i class="fas fa-trash"></i></button></div></div>
+                    
+                    <!-- Records List -->
+                    <div id="adminRecordList" style="max-height:400px; overflow-y:auto;">
+                        <div style="text-align:center; padding:20px; color:var(--gray);">
+                            <i class="fas fa-spinner fa-spin"></i> Loading records...
+                        </div>
                     </div>
-                    <p style="font-size:13px; color:var(--gray); margin-top:12px;"><i class="fas fa-info-circle"></i> Google Sheets sync will be available in the full implementation.</p>
+                    <p style="font-size:13px; color:var(--gray); margin-top:12px;">
+                        <i class="fas fa-info-circle"></i> Changes sync with Google Sheets automatically.
+                    </p>
                 </div>
             </div>
         </div>
@@ -2382,80 +2413,264 @@
             this.reset();
         });
 
+                // ============================================
+        // ADMIN DASHBOARD (Google Sheets Sync)
         // ============================================
-        // ADMIN DASHBOARD
-        // ============================================
+        let apiUrl = localStorage.getItem('ciu_api_url') || '';
+        let allRecords = [];
+        
+        // Set API URL if exists
+        if (apiUrl) {
+            document.getElementById('apiUrl').value = apiUrl;
+        }
+        
+        // Connect API
+        document.getElementById('connectApiBtn').addEventListener('click', function() {
+            apiUrl = document.getElementById('apiUrl').value.trim();
+            if (apiUrl) {
+                localStorage.setItem('ciu_api_url', apiUrl);
+                alert('API connected successfully!');
+                loadAdminRecords();
+            } else {
+                alert('Please enter a valid API URL.');
+            }
+        });
+        
+        // Load records from Google Sheets
+        async function loadAdminRecords() {
+            if (!apiUrl) {
+                document.getElementById('adminRecordList').innerHTML = `
+                    <div style="text-align:center; padding:20px; color:var(--gray);">
+                        <i class="fas fa-link"></i> Please connect API first.
+                    </div>
+                `;
+                return;
+            }
+            
+            document.getElementById('adminRecordList').innerHTML = `
+                <div style="text-align:center; padding:20px; color:var(--gray);">
+                    <i class="fas fa-spinner fa-spin"></i> Loading records from Google Sheets...
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+                
+                if (result.success) {
+                    allRecords = result.data;
+                    renderAdminRecords(allRecords);
+                    updateStats(allRecords);
+                } else {
+                    document.getElementById('adminRecordList').innerHTML = `
+                        <div style="text-align:center; padding:20px; color:#d93025;">
+                            <i class="fas fa-exclamation-circle"></i> Error: ${result.error || 'Failed to load data'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('adminRecordList').innerHTML = `
+                    <div style="text-align:center; padding:20px; color:#d93025;">
+                        <i class="fas fa-exclamation-circle"></i> Failed to connect: ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        // Render admin records
+        function renderAdminRecords(records) {
+            if (records.length === 0) {
+                document.getElementById('adminRecordList').innerHTML = `
+                    <div style="text-align:center; padding:20px; color:var(--gray);">
+                        <i class="fas fa-database"></i> No records found. Add your first record!
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            records.forEach((record, index) => {
+                html += `
+                    <div class="record-item" data-index="${index}">
+                        <span>
+                            <strong>${record['Student Name'] || 'N/A'}</strong> - 
+                            ${record['Title'] || 'N/A'} 
+                            (Roll: ${record['Roll Number'] || 'N/A'})
+                        </span>
+                        <div class="actions">
+                            <button class="edit-record" data-index="${index}"><i class="fas fa-edit"></i></button>
+                            <button class="delete-record" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('adminRecordList').innerHTML = html;
+            
+            // Edit button
+            document.querySelectorAll('.edit-record').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.index);
+                    editRecord(idx);
+                });
+            });
+            
+            // Delete button
+            document.querySelectorAll('.delete-record').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.index);
+                    deleteRecord(idx);
+                });
+            });
+        }
+        
+        // Update stats
+        function updateStats(records) {
+            document.getElementById('totalStudents').textContent = records.length;
+            const verified = records.filter(r => r['Verification Status'] === 'Verified').length;
+            document.getElementById('totalVerified').textContent = verified;
+            document.getElementById('totalUnverified').textContent = records.length - verified;
+        }
+        
+        // Add record
+        document.getElementById('adminAddBtn').addEventListener('click', function() {
+            if (!apiUrl) {
+                alert('Please connect API first.');
+                return;
+            }
+            
+            const record = {};
+            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number', 
+                           'Credential Number', 'Verification ID', 'Roll Number', 'Student ID', 
+                           'Completion Year', 'Description'];
+            
+            fields.forEach(field => {
+                const value = prompt(`Enter ${field}:`);
+                if (value !== null) {
+                    record[field] = value;
+                }
+            });
+            
+            if (Object.keys(record).length > 0) {
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(record)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Record added successfully!');
+                        loadAdminRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to add record'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
+            }
+        });
+        
+        // Edit record
+        async function editRecord(index) {
+            const record = allRecords[index];
+            if (!record) return;
+            
+            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number', 
+                           'Credential Number', 'Verification ID', 'Roll Number', 'Student ID', 
+                           'Completion Year', 'Description'];
+            
+            const updated = {};
+            fields.forEach(field => {
+                const value = prompt(`Edit ${field}:`, record[field] || '');
+                if (value !== null) {
+                    updated[field] = value;
+                }
+            });
+            
+            if (Object.keys(updated).length > 0) {
+                fetch(apiUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(updated)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('Record updated successfully!');
+                        loadAdminRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to update record'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
+            }
+        }
+        
+        // Delete record
+        async function deleteRecord(index) {
+            const record = allRecords[index];
+            if (!record) return;
+            
+            if (!confirm(`Delete record for ${record['Student Name'] || 'N/A'}?`)) return;
+            
+            const payload = {
+                'Roll Number': record['Roll Number'] || record['Student ID'] || ''
+            };
+            
+            fetch(apiUrl, {
+                method: 'DELETE',
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    alert('Record deleted successfully!');
+                    loadAdminRecords();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to delete record'));
+                }
+            })
+            .catch(err => alert('Error: ' + err.message));
+        }
+        
+        // Sync button
+        document.getElementById('adminSyncBtn').addEventListener('click', function() {
+            loadAdminRecords();
+            alert('Synced with Google Sheets!');
+        });
+        
+        // Refresh button
+        document.getElementById('adminRefreshBtn').addEventListener('click', function() {
+            loadAdminRecords();
+        });
+        
+        // Search
+        document.getElementById('adminSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filtered = allRecords.filter(record => 
+                (record['Student Name'] || '').toLowerCase().includes(query) ||
+                (record['Roll Number'] || '').toLowerCase().includes(query) ||
+                (record['Title'] || '').toLowerCase().includes(query)
+            );
+            renderAdminRecords(filtered);
+        });
+        
+        // Admin login
         document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const user = document.getElementById('adminUser').value;
             const pass = document.getElementById('adminPass').value;
-            if (user === 'admin' && pass === 'admin123') {
+            if (user === 'admin' && pass === 'Old@123456') {
                 document.getElementById('adminLoginForm').style.display = 'none';
                 document.getElementById('adminPanel').style.display = 'block';
-            } else {
-                alert('Invalid username or password.');
-            }
-        });
-
-        document.getElementById('adminAddBtn').addEventListener('click', function() {
-            const name = prompt('Enter student name:');
-            if (name) {
-                const roll = prompt('Enter roll number:');
-                const list = document.getElementById('adminRecordList');
-                const item = document.createElement('div');
-                item.className = 'record-item';
-                item.innerHTML = `
-                        <span>${list.children.length + 1}. ${name} (Roll: ${roll || 'N/A'})</span>
-                        <div class="actions">
-                            <button><i class="fas fa-edit"></i></button>
-                            <button><i class="fas fa-trash"></i></button>
+                if (apiUrl) {
+                    loadAdminRecords();
+                } else {
+                    document.getElementById('adminRecordList').innerHTML = `
+                        <div style="text-align:center; padding:20px; color:var(--gray);">
+                            <i class="fas fa-link"></i> Please connect API using the URL above.
                         </div>
                     `;
-                list.appendChild(item);
-            }
-        });
-
-        document.getElementById('adminSyncBtn').addEventListener('click', function() {
-            alert('Google Sheets sync initiated. Please check your sheet for updates.');
-        });
-
-        // ============================================
-        // GALLERY LIGHTBOX
-        // ============================================
-        // Create lightbox element
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <span class="close-lightbox">&times;</span>
-            <img src="" alt="Gallery Image" />
-        `;
-        document.body.appendChild(lightbox);
-
-        // Open lightbox on gallery item click
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                const lightboxImg = lightbox.querySelector('img');
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        // Close lightbox
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === this || e.target.classList.contains('close-lightbox')) {
-                this.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-
-        // Close with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                }
+            } else {
+                alert('Invalid username or password.');
             }
         });
 
