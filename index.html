@@ -142,7 +142,7 @@
         }
 
         /* ============================================
-               HEADER - SIRF LOGO (KOI TEXT NAHI)
+               HEADER - PROFESSIONAL WHITE LOGO
                ============================================ */
         .header {
             background: var(--navy);
@@ -164,7 +164,7 @@
             align-items: center;
         }
 
-        /* === SIRF LOGO - BARA, TRANSPARENT, PROFESSIONAL === */
+        /* === PROFESSIONAL WHITE LOGO === */
         .logo img {
             height: 80px;
             width: auto;
@@ -172,17 +172,14 @@
             background: transparent !important;
             padding: 0 !important;
             box-shadow: none !important;
+            /* Blue logo ko white mein convert */
+            filter: brightness(0) invert(1);
             transition: var(--transition);
         }
 
         .logo img:hover {
-            transform: scale(1.02);
-        }
-
-        /* === KOI TEXT NAHI === */
-        .logo-text,
-        .logo-sub {
-            display: none !important;
+            transform: scale(1.03);
+            filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
         }
 
         .nav {
@@ -848,7 +845,7 @@
 <body>
 
     <!-- ============================================
-    HEADER - SIRF LOGO (KOI TEXT NAHI)
+    HEADER - PROFESSIONAL WHITE LOGO
     ============================================ -->
     <header class="header">
         <div class="container">
