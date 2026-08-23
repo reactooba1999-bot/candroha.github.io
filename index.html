@@ -3,31 +3,53 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="xaS1sbSE58YzeHrqv2CH9-px-LbkBMnX6lacGVdnjB4" />
-    
+
     <title>Candroha International University</title>
     <meta name="description" content="Candroha International University - Academic Excellence, Research, Innovation, and Global Learning." />
-    
+
+    <!-- Google / Search Engine Meta Tags -->
+    <meta itemprop="name" content="Candroha International University">
+    <meta itemprop="description" content="Candroha International University - Academic Excellence, Research, Innovation, and Global Learning.">
+    <meta itemprop="image" content="https://candroha.foo.ng/logo.png">
+
+    <!-- Facebook / Open Graph Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://candroha.foo.ng/">
+    <meta property="og:title" content="Candroha International University">
+    <meta property="og:description" content="Academic Excellence, Research, Innovation, and Global Learning.">
+    <meta property="og:image" content="https://candroha.foo.ng/logo.png">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Candroha International University">
+    <meta name="twitter:description" content="Academic Excellence, Research, Innovation, and Global Learning.">
+    <meta name="twitter:image" content="https://candroha.foo.ng/logo.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://candroha.foo.ng/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://candroha.foo.ng/apple-touch-icon.png">
+
     <!-- Google Site Name Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Candroha International University",
-      "alternateName": "CIU",
-      "url": "https://candroha.foo.ng"
-    }
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Candroha International University",
+            "alternateName": "CIU",
+            "url": "https://candroha.foo.ng"
+        }
     </script>
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    
+
     <style>
         /* ============================================
-                   ROOT VARIABLES (Color Scheme)
-                   ============================================ */
+               ROOT VARIABLES (Color Scheme)
+               ============================================ */
         :root {
             --navy: #0a2540;
             --navy-light: #1a3a5c;
@@ -47,8 +69,8 @@
         }
 
         /* ============================================
-                   RESET & BASE
-                   ============================================ */
+               RESET & BASE
+               ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -85,8 +107,8 @@
         }
 
         /* ============================================
-                   BUTTONS
-                   ============================================ */
+               BUTTONS
+               ============================================ */
         .btn {
             display: inline-block;
             padding: 12px 32px;
@@ -139,11 +161,11 @@
         }
 
         /* ============================================
-                   HEADER / NAVIGATION
-                   ============================================ */
+               HEADER / NAVIGATION
+               ============================================ */
         .header {
             background: var(--navy);
-            padding: 16px 0;
+            padding: 12px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -159,19 +181,28 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+        }
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+        }
+        .logo .logo-text {
             color: var(--white);
             font-weight: 700;
-            font-size: 22px;
+            font-size: 20px;
+            line-height: 1.2;
         }
-        .logo .logo-icon {
-            font-size: 28px;
+        .logo .logo-text .gold {
+            color: var(--gold);
         }
         .logo .logo-sub {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 300;
-            opacity: 0.8;
+            opacity: 0.7;
             display: block;
+            letter-spacing: 1px;
         }
 
         .nav {
@@ -246,25 +277,32 @@
         }
 
         /* ============================================
-                   HERO SECTION
-                   ============================================ */
+               HERO SECTION
+               ============================================ */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
             padding: 80px 0 100px;
             color: var(--white);
             position: relative;
             overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
         }
-        .hero::after {
-            content: '';
+
+        /* Video Background (replace with actual video later) */
+        .hero-video-bg {
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.25;
+            z-index: 1;
+            pointer-events: none;
         }
+
         .hero .container {
             position: relative;
             z-index: 2;
@@ -321,8 +359,8 @@
         }
 
         /* ============================================
-                   SECTION TITLES
-                   ============================================ */
+               SECTION TITLES
+               ============================================ */
         .section-title {
             text-align: center;
             margin-bottom: 48px;
@@ -343,8 +381,8 @@
         }
 
         /* ============================================
-                   SECTION: QUICK LINKS / FEATURES
-                   ============================================ */
+               SECTION: QUICK LINKS / FEATURES
+               ============================================ */
         .quick-links {
             padding: 60px 0;
             background: var(--off-white);
@@ -379,8 +417,8 @@
         }
 
         /* ============================================
-                   SECTION: ABOUT INTRO
-                   ============================================ */
+               SECTION: ABOUT INTRO
+               ============================================ */
         .about-intro {
             padding: 80px 0;
         }
@@ -403,8 +441,8 @@
         }
 
         /* ============================================
-                   SECTION: PROGRAMS (Cards)
-                   ============================================ */
+               SECTION: PROGRAMS (Cards)
+               ============================================ */
         .programs-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -464,8 +502,8 @@
         }
 
         /* ============================================
-                   SECTION: FACULTIES
-                   ============================================ */
+               SECTION: FACULTIES
+               ============================================ */
         .faculties-section {
             padding: 80px 0;
         }
@@ -498,8 +536,8 @@
         }
 
         /* ============================================
-                   SECTION: RESEARCH
-                   ============================================ */
+               SECTION: RESEARCH
+               ============================================ */
         .research-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -527,8 +565,8 @@
         }
 
         /* ============================================
-                   SECTION: CREDENTIAL VERIFICATION (Preview)
-                   ============================================ */
+               SECTION: CREDENTIAL VERIFICATION (Preview)
+               ============================================ */
         .verify-preview {
             padding: 80px 0;
             background: var(--navy);
@@ -573,8 +611,8 @@
         }
 
         /* ============================================
-                   SECTION: NEWS / EVENTS
-                   ============================================ */
+               SECTION: NEWS / EVENTS
+               ============================================ */
         .news-section {
             padding: 80px 0;
         }
@@ -613,8 +651,8 @@
         }
 
         /* ============================================
-                   SECTION: WHY CIU
-                   ============================================ */
+               SECTION: WHY CIU
+               ============================================ */
         .why-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -644,8 +682,8 @@
         }
 
         /* ============================================
-                   CONTACT SECTION
-                   ============================================ */
+               CONTACT SECTION
+               ============================================ */
         .contact-section {
             padding: 80px 0;
         }
@@ -703,8 +741,8 @@
         }
 
         /* ============================================
-                   FOOTER
-                   ============================================ */
+               FOOTER
+               ============================================ */
         .footer {
             background: var(--navy);
             color: rgba(255, 255, 255, 0.7);
@@ -751,8 +789,8 @@
         }
 
         /* ============================================
-                   RESPONSIVE
-                   ============================================ */
+               RESPONSIVE
+               ============================================ */
         @media (max-width: 992px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -808,6 +846,9 @@
             .verify-box input {
                 width: 100%;
             }
+            .logo img {
+                height: 36px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -831,9 +872,10 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🏛️</span>
-                <div>
-                    <span>CIU</span>
+                <!-- LOGO: Replace src with your actual logo PNG -->
+                <img src="https://candroha.foo.ng/logo.png" alt="Candroha International University Logo" onerror="this.style.display='none'" />
+                <div class="logo-text">
+                    CIU
                     <span class="logo-sub">Candroha International</span>
                 </div>
             </div>
@@ -873,9 +915,14 @@
     </header>
 
     <!-- ============================================
-    HERO
+    HERO SECTION WITH VIDEO PLACEHOLDER
     ============================================ -->
     <section class="hero" id="home">
+        <!-- VIDEO BACKGROUND: Replace src with your actual drone video -->
+        <video class="hero-video-bg" autoplay muted loop playsinline>
+            <source src="https://candroha.foo.ng/drone.mp4" type="video/mp4">
+            <!-- Fallback: gradient will show if video fails -->
+        </video>
         <div class="container">
             <div class="hero-content">
                 <h1>Shaping Knowledge.<br /><span class="gold">Advancing Research.</span><br />Empowering Futures.</h1>
@@ -971,7 +1018,6 @@
                 <p>Explore our diverse range of undergraduate, postgraduate, and diploma programs across multiple faculties.</p>
             </div>
             <div class="program-grid" id="programGrid">
-                <!-- Programs loaded from Google Sheets via JavaScript -->
                 <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
                     <i class="fas fa-spinner fa-spin" style="font-size:28px;"></i>
                     <p style="margin-top:10px;">Loading programs from database...</p>
@@ -1099,7 +1145,6 @@
                 <input type="text" placeholder="Enter Roll / Registration / ID" id="verifyInput" />
                 <button class="btn btn-primary" id="verifyBtn"><i class="fas fa-check-circle"></i> Verify</button>
             </div>
-            <!-- Result will appear here -->
             <div id="verifyResult" style="margin-top:30px;"></div>
         </div>
     </section>
@@ -1268,7 +1313,6 @@
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
 
-                // Filter for Degree, Diploma, Certificate
                 const programs = data.filter(item =>
                     item.Type && (item.Type.toLowerCase().includes('degree') ||
                         item.Type.toLowerCase().includes('diploma') ||
@@ -1277,41 +1321,41 @@
 
                 if (programs.length === 0) {
                     grid.innerHTML = `
-                        <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
-                            <i class="fas fa-database" style="font-size:32px;"></i>
-                            <p style="margin-top:10px;">No programs found in the database.</p>
-                            <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
-                        </div>
-                    `;
+                            <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
+                                <i class="fas fa-database" style="font-size:32px;"></i>
+                                <p style="margin-top:10px;">No programs found in the database.</p>
+                                <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
+                            </div>
+                        `;
                     return;
                 }
 
                 let html = '';
                 programs.slice(0, 6).forEach(item => {
                     html += `
-                        <div class="program-card">
-                            <div class="level">${item.Type || 'Program'}</div>
-                            <h3>${item.Title || 'Untitled'}</h3>
-                            <div class="faculty">${item.Faculty || 'CIU'}</div>
-                            <p>${item.Description || 'No description available.'}</p>
-                            <button class="btn-small">View Program →</button>
-                        </div>
-                    `;
+                            <div class="program-card">
+                                <div class="level">${item.Type || 'Program'}</div>
+                                <h3>${item.Title || 'Untitled'}</h3>
+                                <div class="faculty">${item.Faculty || 'CIU'}</div>
+                                <p>${item.Description || 'No description available.'}</p>
+                                <button class="btn-small">View Program →</button>
+                            </div>
+                        `;
                 });
                 grid.innerHTML = html;
             } catch (error) {
                 console.error('Error loading programs:', error);
                 grid.innerHTML = `
-                    <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
-                        <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
-                        <p style="margin-top:10px;">Unable to load programs. Please check your Google Sheet link.</p>
-                    </div>
-                `;
+                        <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
+                            <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
+                            <p style="margin-top:10px;">Unable to load programs. Please check your Google Sheet link.</p>
+                        </div>
+                    `;
             }
         }
 
         // ============================================
-        // CREDENTIAL VERIFICATION (SIMULATED)
+        // CREDENTIAL VERIFICATION
         // ============================================
         const verifyBtn = document.getElementById('verifyBtn');
         const verifyInput = document.getElementById('verifyInput');
@@ -1321,27 +1365,25 @@
             const query = verifyInput.value.trim();
             if (!query) {
                 verifyResult.innerHTML = `
-                    <div style="background:#fef3e0; padding:20px; border-radius:12px; color:#8a6d3b;">
-                        <i class="fas fa-exclamation-triangle"></i> Please enter a Roll Number, Registration Number, or Verification ID.
-                    </div>
-                `;
+                        <div style="background:#fef3e0; padding:20px; border-radius:12px; color:#8a6d3b;">
+                            <i class="fas fa-exclamation-triangle"></i> Please enter a Roll Number, Registration Number, or Verification ID.
+                        </div>
+                    `;
                 return;
             }
 
             verifyResult.innerHTML = `
-                <div style="color:var(--white);">
-                    <i class="fas fa-spinner fa-spin"></i> Verifying credential...
-                </div>
-            `;
+                    <div style="color:var(--white);">
+                        <i class="fas fa-spinner fa-spin"></i> Verifying credential...
+                    </div>
+                `;
 
             try {
-                // Fetch the CSV data
                 const response = await fetch(CSV_URL);
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
 
-                // Search for the query in relevant fields
                 const found = data.find(item =>
                     (item['Roll Number'] && item['Roll Number'].toLowerCase() === query.toLowerCase()) ||
                     (item['Registration Number'] && item['Registration Number'].toLowerCase() === query.toLowerCase()) ||
@@ -1352,48 +1394,47 @@
 
                 if (found) {
                     verifyResult.innerHTML = `
-                        <div style="background:#e6f4ea; padding:28px; border-radius:16px; text-align:left; color:var(--navy); border:2px solid #34a853;">
-                            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-                                <span style="font-size:28px;">✅</span>
-                                <span style="font-size:20px; font-weight:700; color:#1e7e34;">CREDENTIAL VERIFIED</span>
+                            <div style="background:#e6f4ea; padding:28px; border-radius:16px; text-align:left; color:var(--navy); border:2px solid #34a853;">
+                                <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+                                    <span style="font-size:28px;">✅</span>
+                                    <span style="font-size:20px; font-weight:700; color:#1e7e34;">CREDENTIAL VERIFIED</span>
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:15px;">
+                                    <strong>Student Name:</strong> <span>${found['Student Name'] || 'N/A'}</span>
+                                    <strong>Credential Type:</strong> <span>${found['Type'] || 'N/A'}</span>
+                                    <strong>Program:</strong> <span>${found['Title'] || 'N/A'}</span>
+                                    <strong>Faculty:</strong> <span>${found['Faculty'] || 'N/A'}</span>
+                                    <strong>Registration Number:</strong> <span>${found['Registration Number'] || 'N/A'}</span>
+                                    <strong>Credential Number:</strong> <span>${found['Credential Number'] || 'N/A'}</span>
+                                    <strong>Completion Year:</strong> <span>${found['Completion Year'] || 'N/A'}</span>
+                                    <strong>Verification ID:</strong> <span>${found['Verification ID'] || 'N/A'}</span>
+                                </div>
+                                <div style="margin-top:16px; padding-top:12px; border-top:1px solid #c8e6c9; font-size:14px; color:#2e7d32;">
+                                    <i class="fas fa-check-circle"></i> Status: <strong>VERIFIED</strong> · ${new Date().toLocaleString()}
+                                </div>
                             </div>
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:15px;">
-                                <strong>Student Name:</strong> <span>${found['Student Name'] || 'N/A'}</span>
-                                <strong>Credential Type:</strong> <span>${found['Type'] || 'N/A'}</span>
-                                <strong>Program:</strong> <span>${found['Title'] || 'N/A'}</span>
-                                <strong>Faculty:</strong> <span>${found['Faculty'] || 'N/A'}</span>
-                                <strong>Registration Number:</strong> <span>${found['Registration Number'] || 'N/A'}</span>
-                                <strong>Credential Number:</strong> <span>${found['Credential Number'] || 'N/A'}</span>
-                                <strong>Completion Year:</strong> <span>${found['Completion Year'] || 'N/A'}</span>
-                                <strong>Verification ID:</strong> <span>${found['Verification ID'] || 'N/A'}</span>
-                            </div>
-                            <div style="margin-top:16px; padding-top:12px; border-top:1px solid #c8e6c9; font-size:14px; color:#2e7d32;">
-                                <i class="fas fa-check-circle"></i> Status: <strong>VERIFIED</strong> · ${new Date().toLocaleString()}
-                            </div>
-                        </div>
-                    `;
+                        `;
                 } else {
                     verifyResult.innerHTML = `
-                        <div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
-                            <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-                                <span style="font-size:28px;">❌</span>
-                                <span style="font-size:20px; font-weight:700;">NO MATCHING RECORD FOUND</span>
+                            <div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
+                                <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+                                    <span style="font-size:28px;">❌</span>
+                                    <span style="font-size:20px; font-weight:700;">NO MATCHING RECORD FOUND</span>
+                                </div>
+                                <p>The information entered could not be matched with a credential record. Please verify the Roll Number, Registration Number, or Verification ID and try again.</p>
                             </div>
-                            <p>The information entered could not be matched with a credential record. Please verify the Roll Number, Registration Number, or Verification ID and try again.</p>
-                        </div>
-                    `;
+                        `;
                 }
             } catch (error) {
                 console.error('Verification error:', error);
                 verifyResult.innerHTML = `
-                    <div style="background:#fce8e6; padding:20px; border-radius:12px; color:#b31412;">
-                        <i class="fas fa-exclamation-circle"></i> Unable to verify at this moment. Please try again later.
-                    </div>
-                `;
+                        <div style="background:#fce8e6; padding:20px; border-radius:12px; color:#b31412;">
+                            <i class="fas fa-exclamation-circle"></i> Unable to verify at this moment. Please try again later.
+                        </div>
+                    `;
             }
         });
 
-        // Allow Enter key to trigger verification
         verifyInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 verifyBtn.click();
