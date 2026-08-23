@@ -142,7 +142,7 @@
         }
 
         /* ============================================
-               HEADER - ONLY LOGO (Full Name Inside)
+               HEADER - SIRF LOGO (KOI TEXT NAHI)
                ============================================ */
         .header {
             background: var(--navy);
@@ -164,17 +164,14 @@
             align-items: center;
         }
 
-        /* === PROFESSIONAL LOGO - Navy + Gold, Transparent Background === */
+        /* === SIRF LOGO - BARA, TRANSPARENT, PROFESSIONAL === */
         .logo img {
             height: 80px;
-            /* Bara logo */
             width: auto;
             display: block;
             background: transparent !important;
             padding: 0 !important;
             box-shadow: none !important;
-            /* Navy background par professional look */
-            filter: brightness(1.1) saturate(1.2);
             transition: var(--transition);
         }
 
@@ -182,7 +179,11 @@
             transform: scale(1.02);
         }
 
-        /* No text beside logo - all text is inside logo image */
+        /* === KOI TEXT NAHI === */
+        .logo-text,
+        .logo-sub {
+            display: none !important;
+        }
 
         .nav {
             display: flex;
@@ -847,7 +848,7 @@
 <body>
 
     <!-- ============================================
-    HEADER - ONLY LOGO (Name inside logo image)
+    HEADER - SIRF LOGO (KOI TEXT NAHI)
     ============================================ -->
     <header class="header">
         <div class="container">
