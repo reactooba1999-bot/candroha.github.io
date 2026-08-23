@@ -1575,8 +1575,8 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ALUMNI
+        <!-- ============================================
+    ALUMNI (INTERNATIONAL)
     ============================================ -->
     <section class="alumni-section" id="alumni">
         <div class="container">
@@ -1585,29 +1585,64 @@
                 <p>Our alumni are making a difference around the world.</p>
             </div>
             <div class="alumni-grid" id="alumniGrid">
+                <!-- 1. Dr. Elena Rodriguez (Spain) -->
                 <div class="alumni-card">
-                    <div class="avatar">👩‍🎓</div>
-                    <h4>Sarah Ahmed</h4>
-                    <div class="year">Class of 2020</div>
-                    <div class="program">BSc Computer Science</div>
-                    <p class="story">Sarah is now a Senior Software Engineer at a leading tech company, working on AI-driven solutions.</p>
-                    <button class="btn-small show-story">Read Story</button>
+                    <div class="avatar">
+                        <img src="images/alumni/elena-rodriguez.jfif" alt="Dr. Elena Rodriguez" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
+                    </div>
+                    <h4>Dr. Elena Rodriguez</h4>
+                    <div class="year">Class of 2018 · Spain</div>
+                    <div class="program">PhD in Artificial Intelligence</div>
+                    <p class="story">Dr. Rodriguez is the Head of AI Ethics at the European Commission, leading a team of 50 researchers developing responsible AI guidelines for the EU. Her work directly shapes policy for over 400 million citizens.</p>
+                    <button class="btn-small show-story" data-index="0">Read Story</button>
                 </div>
+
+                <!-- 2. Prof. Kenji Tanaka (Japan) -->
                 <div class="alumni-card">
-                    <div class="avatar">👨‍🎓</div>
-                    <h4>Omar Khan</h4>
-                    <div class="year">Class of 2018</div>
+                    <div class="avatar">
+                        <img src="images/alumni/kenji-tanaka.jfif" alt="Prof. Kenji Tanaka" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
+                    </div>
+                    <h4>Prof. Kenji Tanaka</h4>
+                    <div class="year">Class of 2015 · Japan</div>
+                    <div class="program">MSc in Sustainable Engineering</div>
+                    <p class="story">Prof. Tanaka is a leading researcher at the University of Tokyo and the recipient of the prestigious Japan Academy Medal for his groundbreaking work in renewable energy storage systems. He holds 12 international patents.</p>
+                    <button class="btn-small show-story" data-index="1">Read Story</button>
+                </div>
+
+                <!-- 3. Dr. Amara Okafor (Nigeria) -->
+                <div class="alumni-card">
+                    <div class="avatar">
+                        <img src="images/alumni/amara-okafor.jfif" alt="Dr. Amara Okafor" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
+                    </div>
+                    <h4>Dr. Amara Okafor</h4>
+                    <div class="year">Class of 2017 · Nigeria</div>
                     <div class="program">MBA</div>
-                    <p class="story">Omar founded a successful startup focused on sustainable energy solutions in the Middle East.</p>
-                    <button class="btn-small show-story">Read Story</button>
+                    <p class="story">Dr. Okafor is the founder of a pan-African fintech startup that provides micro-loans to over 200,000 women entrepreneurs in rural communities. She was named one of Forbes Africa's "30 Under 30" in 2022.</p>
+                    <button class="btn-small show-story" data-index="2">Read Story</button>
                 </div>
+
+                <!-- 4. Prof. Liam O'Brien (Ireland) -->
                 <div class="alumni-card">
-                    <div class="avatar">👩‍🎓</div>
-                    <h4>Fatima Noor</h4>
-                    <div class="year">Class of 2021</div>
-                    <div class="program">MSc Data Science</div>
-                    <p class="story">Fatima is a Data Scientist at a global health organization, using analytics to improve public health.</p>
-                    <button class="btn-small show-story">Read Story</button>
+                    <div class="avatar">
+                        <img src="images/alumni/liam-obrien.jfif" alt="Prof. Liam O'Brien" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
+                    </div>
+                    <h4>Prof. Liam O'Brien</h4>
+                    <div class="year">Class of 2016 · Ireland</div>
+                    <div class="program">MA in Literature</div>
+                    <p class="story">Prof. O'Brien is a celebrated poet and the current Writer-in-Residence at Trinity College Dublin. His most recent collection was shortlisted for the T.S. Eliot Prize, one of the most prestigious awards in poetry.</p>
+                    <button class="btn-small show-story" data-index="3">Read Story</button>
+                </div>
+
+                <!-- 5. Dr. Sofia Chen (Singapore) -->
+                <div class="alumni-card">
+                    <div class="avatar">
+                        <img src="images/alumni/sofia-chen.jfif" alt="Dr. Sofia Chen" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
+                    </div>
+                    <h4>Dr. Sofia Chen</h4>
+                    <div class="year">Class of 2019 · Singapore</div>
+                    <div class="program">PhD in Data Science</div>
+                    <p class="story">Dr. Chen is the Chief Data Scientist at a global e-commerce giant, where she developed the algorithms that power personalized recommendations for over 1 billion users worldwide. She is a frequent keynote speaker at international tech conferences.</p>
+                    <button class="btn-small show-story" data-index="4">Read Story</button>
                 </div>
             </div>
         </div>
@@ -2008,12 +2043,12 @@
         // ALUMNI STORIES
         // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const story = this.closest('.alumni-card').querySelector('.story');
-                story.classList.toggle('show');
-                this.textContent = story.classList.contains('show') ? 'Hide Story' : 'Read Story';
-            });
-        });
+    btn.addEventListener('click', function() {
+        const story = this.closest('.alumni-card').querySelector('.story');
+        story.classList.toggle('show');
+        this.textContent = story.classList.contains('show') ? 'Hide Story' : 'Read Story';
+    });
+});
 
         // ============================================
         // CREDENTIAL VERIFICATION
