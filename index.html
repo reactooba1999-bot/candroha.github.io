@@ -2654,25 +2654,26 @@
         
         // Admin login
         document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('adminUser').value;
-            const pass = document.getElementById('adminPass').value;
-            if (user === 'admin' && pass === 'Old@123456') {
-                document.getElementById('adminLoginForm').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                if (apiUrl) {
-                    loadAdminRecords();
-                } else {
-                    document.getElementById('adminRecordList').innerHTML = `
-                        <div style="text-align:center; padding:20px; color:var(--gray);">
-                            <i class="fas fa-link"></i> Please connect API using the URL above.
-                        </div>
-                    `;
-                }
-            } else {
-                alert('Invalid username or password.');
-            }
-        });
+    e.preventDefault();
+    const user = document.getElementById('adminUser').value;
+    const pass = document.getElementById('adminPass').value;
+    if (user === 'admin' && pass === 'admin123') {
+        document.getElementById('adminLoginForm').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        // ✅ FIX: Login ke baad automatically API se data load karein
+        if (apiUrl) {
+            loadAdminRecords(); // <-- YE LINE ZAROORI HAI
+        } else {
+            document.getElementById('adminRecordList').innerHTML = `
+                <div style="text-align:center; padding:20px; color:var(--gray);">
+                    <i class="fas fa-link"></i> Please connect API using the URL above.
+                </div>
+            `;
+        }
+    } else {
+        alert('Invalid username or password.');
+    }
+});
 
         // ============================================
         // LOAD INITIAL DATA
