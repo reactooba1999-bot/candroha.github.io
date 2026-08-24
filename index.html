@@ -202,19 +202,7 @@
         .nav .verify-btn:hover {
             background: var(--gold-light);
         }
-        /* === ADMIN BUTTON ADDED === */
-        .nav .admin-btn {
-            background: #c9a84c;
-            color: #0a2540;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: 0.3s ease;
-        }
-        .nav .admin-btn:hover {
-            background: #e8d5a3;
-            transform: scale(1.05);
-        }
+        /* ===== ADMIN BUTTON REMOVED FROM HEADER ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -254,14 +242,6 @@
             color: var(--navy);
             font-weight: 600;
             text-align: center;
-        }
-        .nav-mobile .admin-btn-mobile {
-            background: #c9a84c;
-            color: #0a2540;
-            font-weight: 600;
-            text-align: center;
-            padding: 10px 16px;
-            border-radius: 8px;
         }
 
         .hero {
@@ -1091,6 +1071,19 @@
             text-align: center;
             font-size: 14px;
         }
+        /* ===== ADMIN LOGIN LINK IN FOOTER (HIDDEN IN PLAIN SIGHT) ===== */
+        .footer .admin-login-link {
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 11px;
+            text-decoration: none;
+            transition: 0.3s ease;
+            display: block;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+        .footer .admin-login-link:hover {
+            color: var(--gold);
+        }
 
         .legal-section {
             padding: 80px 0;
@@ -1238,7 +1231,6 @@
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
                 <a href="#verify" class="verify-btn"><i class="fas fa-check-circle"></i> Verify</a>
-                <a href="admin.html" target="_blank" class="admin-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -1259,7 +1251,6 @@
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
                 <a href="#verify" class="verify-btn-mobile"><i class="fas fa-check-circle"></i> Verify Credential</a>
-                <a href="admin.html" target="_blank" class="admin-btn-mobile"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </div>
     </header>
@@ -1758,6 +1749,8 @@
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#privacy">Terms & Conditions</a>
                     <a href="#privacy">Cookie Policy</a>
+                    <!-- 🔐 HIDDEN ADMIN LOGIN LINK - SIRF AAP KE LIYE -->
+                    <a href="admin.html" target="_blank" class="admin-login-link"><i class="fas fa-lock"></i> Login</a>
                 </div>
             </div>
         </div>
@@ -2137,6 +2130,5 @@
         loadPrograms();
         renderFaculty();
     </script>
-
 </body>
 </html>
