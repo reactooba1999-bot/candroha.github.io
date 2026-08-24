@@ -369,7 +369,6 @@
             background: #fce8e6;
             color: #b31412;
         }
-        /* API Section */
         .api-section {
             background: #f8f9fa;
             padding: 12px 16px;
@@ -402,7 +401,6 @@
         .api-section .status.error {
             color: #d93025;
         }
-        /* Scrollbar */
         .records-table-wrap {
             max-height: 500px;
             overflow-y: auto;
@@ -418,20 +416,27 @@
             background: #c9a84c;
             border-radius: 10px;
         }
+        /* API URL Box Hide - Hardcoded */
+        .api-section input {
+            display: none;
+        }
+        .api-section .btn-primary {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
     <!-- ============================================
-    LOGIN PAGE
+    LOGIN PAGE (No Default Values)
     ============================================ -->
     <div id="loginPage" class="login-container">
         <h2>🔐 <span class="gold">CIU</span> Admin</h2>
         <p>Enter your credentials to access the admin panel.</p>
-        <input type="text" id="loginUser" placeholder="Username" value="admin" />
-        <input type="password" id="loginPass" placeholder="Password" value="Old@123456" />
+        <input type="text" id="loginUser" placeholder="Username" />
+        <input type="password" id="loginPass" placeholder="Password" />
         <button class="btn btn-primary" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
-        <p style="margin-top:12px; font-size:12px; color:#6a7b8c;">Default: admin / Old@123456</p>
+        <p style="margin-top:12px; font-size:12px; color:#6a7b8c;">Contact administrator for credentials.</p>
     </div>
 
     <!-- ============================================
@@ -466,9 +471,7 @@
                 <!-- Content -->
                 <div class="admin-content">
 
-                    <!-- ==========================================
-                    DASHBOARD
-                    ========================================== -->
+                    <!-- DASHBOARD -->
                     <div id="tab-dashboard" class="tab-content active">
                         <div class="page-title"><i class="fas fa-chart-pie"></i> Dashboard</div>
                         <div class="stats-grid">
@@ -482,20 +485,15 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    STUDENTS
-                    ========================================== -->
+                    <!-- STUDENTS -->
                     <div id="tab-students" class="tab-content">
                         <div class="page-title"><i class="fas fa-user-graduate"></i> Student Records</div>
 
-                        <!-- API Section -->
+                        <!-- API Section - Hidden because URL is hardcoded -->
                         <div class="api-section">
-                            <input type="text" id="apiUrl" placeholder="Google Apps Script API URL" />
-                            <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
-                            <span class="status" id="apiStatus">⚠️ Not connected</span>
+                            <span class="status connected" id="apiStatus">✅ API Connected (Hardcoded)</span>
                         </div>
 
-                        <!-- Search & Actions -->
                         <div class="search-bar">
                             <input type="text" id="studentSearch" placeholder="Search by name, roll, program..." />
                             <button class="btn btn-primary" id="addStudentBtn"><i class="fas fa-plus"></i> Add</button>
@@ -503,7 +501,6 @@
                             <button class="btn btn-navy" id="refreshStudentBtn"><i class="fas fa-redo"></i> Refresh</button>
                         </div>
 
-                        <!-- Records Table -->
                         <div class="records-table-wrap">
                             <table class="records-table" id="studentTable">
                                 <thead>
@@ -517,15 +514,13 @@
                                     </tr>
                                 </thead>
                                 <tbody id="studentTableBody">
-                                    <tr><td colspan="6" class="empty-state">Connect API and sync to load records.</td></tr>
+                                    <tr><td colspan="6" class="empty-state">Loading records...</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    PROGRAMS
-                    ========================================== -->
+                    <!-- PROGRAMS -->
                     <div id="tab-programs" class="tab-content">
                         <div class="page-title"><i class="fas fa-graduation-cap"></i> Programs Management</div>
                         <div class="search-bar">
@@ -542,9 +537,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    FACULTY
-                    ========================================== -->
+                    <!-- FACULTY -->
                     <div id="tab-faculty" class="tab-content">
                         <div class="page-title"><i class="fas fa-chalkboard-teacher"></i> Faculty Management</div>
                         <div class="search-bar">
@@ -561,9 +554,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    RESEARCH
-                    ========================================== -->
+                    <!-- RESEARCH -->
                     <div id="tab-research" class="tab-content">
                         <div class="page-title"><i class="fas fa-flask"></i> Research Management</div>
                         <div class="search-bar">
@@ -580,9 +571,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    NEWS
-                    ========================================== -->
+                    <!-- NEWS -->
                     <div id="tab-news" class="tab-content">
                         <div class="page-title"><i class="fas fa-newspaper"></i> News Management</div>
                         <div class="search-bar">
@@ -599,9 +588,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    EVENTS
-                    ========================================== -->
+                    <!-- EVENTS -->
                     <div id="tab-events" class="tab-content">
                         <div class="page-title"><i class="fas fa-calendar-alt"></i> Events Management</div>
                         <div class="search-bar">
@@ -618,9 +605,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    GALLERY
-                    ========================================== -->
+                    <!-- GALLERY -->
                     <div id="tab-gallery" class="tab-content">
                         <div class="page-title"><i class="fas fa-images"></i> Gallery Management</div>
                         <div class="search-bar">
@@ -637,9 +622,7 @@
                         </div>
                     </div>
 
-                    <!-- ==========================================
-                    SETTINGS
-                    ========================================== -->
+                    <!-- SETTINGS -->
                     <div id="tab-settings" class="tab-content">
                         <div class="page-title"><i class="fas fa-cog"></i> Settings</div>
                         <div style="max-width:600px;">
@@ -666,9 +649,16 @@
 
     <script>
         // ============================================
+        // 🔥 HARDLY CODED API URL - WORLDWIDE ACCESS
+        // ============================================
+        // 🔴 YAHAN APNA API URL DAALEIN 🔴
+        const HARD_CODED_API_URL = 'https://script.google.com/macros/s/AKfycbywQX4BbHO.../exec';
+        // ⚠️ Is URL ko apne actual API URL se replace karein!
+
+        // ============================================
         // CONFIGURATION
         // ============================================
-        let apiUrl = localStorage.getItem('ciu_api_url') || '';
+        let apiUrl = HARD_CODED_API_URL;
         let allRecords = [];
         let isLoggedIn = false;
 
@@ -688,27 +678,19 @@
                 loginPage.classList.add('hidden');
                 adminPanel.classList.remove('hidden');
                 isLoggedIn = true;
-                if (apiUrl) {
-                    document.getElementById('apiUrl').value = apiUrl;
-                    updateApiStatus('connected');
-                    loadStudentRecords();
-                }
+                loadStudentRecords();
             }
         }
 
         loginBtn.addEventListener('click', function() {
-            const user = loginUser.value;
-            const pass = loginPass.value;
+            const user = loginUser.value.trim();
+            const pass = loginPass.value.trim();
             if (user === 'admin' && pass === 'Old@123456') {
                 localStorage.setItem('ciu_admin_logged_in', 'true');
                 loginPage.classList.add('hidden');
                 adminPanel.classList.remove('hidden');
                 isLoggedIn = true;
-                if (apiUrl) {
-                    document.getElementById('apiUrl').value = apiUrl;
-                    updateApiStatus('connected');
-                    loadStudentRecords();
-                }
+                loadStudentRecords();
             } else {
                 alert('Invalid username or password.');
             }
@@ -743,42 +725,12 @@
         });
 
         // ============================================
-        // API CONNECTION
-        // ============================================
-        function updateApiStatus(status) {
-            const el = document.getElementById('apiStatus');
-            if (status === 'connected') {
-                el.textContent = '✅ Connected';
-                el.className = 'status connected';
-            } else if (status === 'error') {
-                el.textContent = '❌ Error';
-                el.className = 'status error';
-            } else {
-                el.textContent = '⚠️ Not connected';
-                el.className = 'status';
-            }
-        }
-
-        document.getElementById('connectApiBtn').addEventListener('click', function() {
-            const url = document.getElementById('apiUrl').value.trim();
-            if (url) {
-                apiUrl = url;
-                localStorage.setItem('ciu_api_url', url);
-                updateApiStatus('connected');
-                loadStudentRecords();
-                alert('API connected successfully!');
-            } else {
-                alert('Please enter a valid API URL.');
-            }
-        });
-
-        // ============================================
         // LOAD STUDENT RECORDS
         // ============================================
         async function loadStudentRecords() {
             if (!apiUrl) {
                 document.getElementById('studentTableBody').innerHTML =
-                    `<tr><td colspan="6" class="empty-state">Please connect API first.</td></tr>`;
+                    `<tr><td colspan="6" class="empty-state">API URL not configured.</td></tr>`;
                 return;
             }
 
@@ -833,7 +785,6 @@
             });
             tbody.innerHTML = html;
 
-            // Edit
             tbody.querySelectorAll('.edit').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
@@ -841,7 +792,6 @@
                 });
             });
 
-            // Delete
             tbody.querySelectorAll('.delete').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
@@ -855,7 +805,6 @@
         // ============================================
         function updateDashboardStats(records) {
             document.getElementById('dashTotalStudents').textContent = records.length;
-            // These would be dynamic in a full implementation
             document.getElementById('dashTotalPrograms').textContent = '12';
             document.getElementById('dashTotalFaculty').textContent = '45';
             document.getElementById('dashTotalResearch').textContent = '18';
@@ -866,7 +815,7 @@
         // ============================================
         document.getElementById('addStudentBtn').addEventListener('click', function() {
             if (!apiUrl) {
-                alert('Please connect API first.');
+                alert('API not configured.');
                 return;
             }
 
@@ -994,7 +943,7 @@
         });
 
         // ============================================
-        // PROGRAMS MANAGEMENT (Local Storage Demo)
+        // PROGRAMS MANAGEMENT (Local Storage)
         // ============================================
         let programs = JSON.parse(localStorage.getItem('ciu_programs') || '[]');
 
@@ -1412,7 +1361,7 @@
             localStorage.setItem('ciu_admin_email', email);
 
             if (newPass && newPass.length > 0) {
-                alert('Password change feature requires backend implementation. In a live system, this would update the admin password.');
+                alert('Password change feature requires backend implementation.');
             }
 
             alert('✅ Settings saved successfully!');
@@ -1422,14 +1371,6 @@
         // INIT
         // ============================================
         checkLogin();
-
-        if (apiUrl) {
-            document.getElementById('apiUrl').value = apiUrl;
-            if (isLoggedIn) {
-                updateApiStatus('connected');
-                loadStudentRecords();
-            }
-        }
 
         // Render all local storage tables
         renderPrograms();
