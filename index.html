@@ -213,20 +213,6 @@
         .nav .verify-btn:hover {
             background: var(--gold-light);
         }
-        /* ===== GALLERY NAV LINK ADDED ===== */
-        .nav .gallery-btn {
-            color: rgba(255, 255, 255, 0.85);
-            padding: 8px 12px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        .nav .gallery-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
-        /* ===== GALLERY NAV LINK END ===== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -1913,8 +1899,8 @@
         </div>
     </section>
 
-        <!-- ============================================
-    ADMIN DASHBOARD (Professional with Google Sheets Sync)
+    <!-- ============================================
+    ADMIN DASHBOARD
     ============================================ -->
     <section class="admin-section" id="admin">
         <div class="container">
@@ -1925,7 +1911,7 @@
                 <!-- Login Form -->
                 <form id="adminLoginForm">
                     <input type="text" placeholder="Admin Username" id="adminUser" value="admin" />
-                    <input type="password" placeholder="Admin Password" id="adminPass" value="admin123" />
+                    <input type="password" placeholder="Admin Password" id="adminPass" value="Old@123456" />
                     <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
                 </form>
                 
@@ -2413,7 +2399,7 @@
             this.reset();
         });
 
-                // ============================================
+        // ============================================
         // ADMIN DASHBOARD (Google Sheets Sync)
         // ============================================
         let apiUrl = localStorage.getItem('ciu_api_url') || '';
@@ -2654,26 +2640,25 @@
         
         // Admin login
         document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const user = document.getElementById('adminUser').value;
-    const pass = document.getElementById('adminPass').value;
-    if (user === 'admin' && pass === 'Old@123456') {
-        document.getElementById('adminLoginForm').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-        // ✅ FIX: Login ke baad automatically API se data load karein
-        if (apiUrl) {
-            loadAdminRecords(); // <-- YE LINE ZAROORI HAI
-        } else {
-            document.getElementById('adminRecordList').innerHTML = `
-                <div style="text-align:center; padding:20px; color:var(--gray);">
-                    <i class="fas fa-link"></i> Please connect API using the URL above.
-                </div>
-            `;
-        }
-    } else {
-        alert('Invalid username or password.');
-    }
-});
+            e.preventDefault();
+            const user = document.getElementById('adminUser').value;
+            const pass = document.getElementById('adminPass').value;
+            if (user === 'admin' && pass === 'Old@123456') {
+                document.getElementById('adminLoginForm').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                if (apiUrl) {
+                    loadAdminRecords();
+                } else {
+                    document.getElementById('adminRecordList').innerHTML = `
+                        <div style="text-align:center; padding:20px; color:var(--gray);">
+                            <i class="fas fa-link"></i> Please connect API using the URL above.
+                        </div>
+                    `;
+                }
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
 
         // ============================================
         // LOAD INITIAL DATA
@@ -2681,6 +2666,5 @@
         loadPrograms();
         renderFaculty();
     </script>
-
 </body>
 </html>
