@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIU Admin Panel</title>
+    <link rel="icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .admin-wrapper {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #eef2f7;
+        }
+        .admin-header h1 {
+            font-size: 28px;
+            color: #0a2540;
+        }
+        .admin-header h1 .gold {
+            color: #c9a84c;
+        }
+        .admin-header a {
+            color: #6a7b8c;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .admin-header a:hover {
+            color: #0a2540;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0a2540;
+        }
+        .stat-card .number.gold {
+            color: #c9a84c;
+        }
+        .stat-card .number.red {
+            color: #d93025;
+        }
+        .stat-card .label {
+            font-size: 13px;
+            color: #6a7b8c;
+        }
+        .api-section {
+            background: #f8f9fa;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .api-section input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .api-section input:focus {
+            outline: none;
+            border-color: #c9a84c;
+        }
+        .api-section .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #c9a84c;
+            color: #0a2540;
+        }
+        .btn-primary:hover {
+            background: #a8892e;
+        }
+        .btn-navy {
+            background: #0a2540;
+            color: white;
+        }
+        .btn-navy:hover {
+            background: #1a3a5c;
+        }
+        .btn-outline {
+            background: transparent;
+            color: #0a2540;
+            border: 1px solid #e2e8f0;
+        }
+        .btn-outline:hover {
+            background: #f0f2f5;
+        }
+        .btn-danger {
+            background: #d93025;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #b71c1c;
+        }
+        .btn-sm {
+            padding: 6px 14px;
+            font-size: 13px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .btn-sm i {
+            margin-right: 4px;
+        }
+        .search-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .search-actions input {
+            flex: 1;
+            min-width: 180px;
+            padding: 10px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .search-actions input:focus {
+            outline: none;
+            border-color: #c9a84c;
+        }
+        .records-list {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #eef2f7;
+            border-radius: 12px;
+        }
+        .record-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eef2f7;
+            transition: 0.2s ease;
+        }
+        .record-item:hover {
+            background: #f8f9fa;
+        }
+        .record-item:last-child {
+            border-bottom: none;
+        }
+        .record-item .info {
+            font-size: 14px;
+            color: #1a1a2e;
+        }
+        .record-item .info strong {
+            color: #0a2540;
+        }
+        .record-item .actions {
+            display: flex;
+            gap: 6px;
+        }
+        .record-item .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6a7b8c;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: 0.2s ease;
+        }
+        .record-item .actions button:hover {
+            background: #eef2f7;
+            color: #0a2540;
+        }
+        .record-item .actions button.edit:hover {
+            color: #c9a84c;
+        }
+        .record-item .actions button.delete:hover {
+            color: #d93025;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6a7b8c;
+        }
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .login-form input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+        .login-form input:focus {
+            outline: none;
+            border-color: #c9a84c;
+        }
+        .login-form .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: #6a7b8c;
+            font-size: 13px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .flex {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 600px) {
+            .admin-wrapper { padding: 20px; }
+            .admin-header h1 { font-size: 22px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .api-section { flex-direction: column; }
+            .api-section input { width: 100%; }
+            .search-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrapper" id="app">
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>🔐 <span class="gold">CIU</span> Admin</h1>
+            <a href="https://candroha.foo.ng" target="_blank"><i class="fas fa-external-link-alt"></i> View Website</a>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm">
+            <div class="login-form">
+                <h2 style="text-align:center; color:#0a2540; margin-bottom:20px;">Admin Login</h2>
+                <input type="text" id="adminUser" placeholder="Username" value="admin" />
+                <input type="password" id="adminPass" placeholder="Password" value="admin123" />
+                <button class="btn btn-primary" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <p class="text-center text-muted mt-16">Default: admin / admin123</p>
+            </div>
+        </div>
+
+        <!-- Admin Panel (Hidden until login) -->
+        <div id="adminPanel" style="display:none;">
+            <!-- API Connection -->
+            <div class="api-section">
+                <input type="text" id="apiUrl" placeholder="Google Apps Script API URL" />
+                <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
+                <button class="btn btn-outline" id="syncBtn"><i class="fas fa-sync"></i> Sync</button>
+                <span id="apiStatus" style="font-size:13px; color:#6a7b8c;"></span>
+            </div>
+
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number" id="totalStudents">0</div>
+                    <div class="label">Total Students</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number gold" id="totalVerified">0</div>
+                    <div class="label">Verified</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number red" id="totalUnverified">0</div>
+                    <div class="label">Unverified</div>
+                </div>
+            </div>
+
+            <!-- Search & Actions -->
+            <div class="search-actions">
+                <input type="text" id="adminSearch" placeholder="Search by name, roll, program..." />
+                <button class="btn btn-primary" id="addBtn"><i class="fas fa-plus"></i> Add</button>
+                <button class="btn btn-navy" id="refreshBtn"><i class="fas fa-redo"></i> Refresh</button>
+            </div>
+
+            <!-- Records List -->
+            <div class="records-list" id="recordsList">
+                <div class="empty-state">
+                    <i class="fas fa-database"></i>
+                    <p>Connect API and sync to load records.</p>
+                </div>
+            </div>
+            <p class="text-muted mt-16"><i class="fas fa-info-circle"></i> Changes sync with Google Sheets automatically.</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        let apiUrl = localStorage.getItem('ciu_api_url') || '';
+        let allRecords = [];
+
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginBtn = document.getElementById('loginBtn');
+        const adminUser = document.getElementById('adminUser');
+        const adminPass = document.getElementById('adminPass');
+        const apiUrlInput = document.getElementById('apiUrl');
+        const connectApiBtn = document.getElementById('connectApiBtn');
+        const syncBtn = document.getElementById('syncBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const addBtn = document.getElementById('addBtn');
+        const adminSearch = document.getElementById('adminSearch');
+        const recordsList = document.getElementById('recordsList');
+        const totalStudents = document.getElementById('totalStudents');
+        const totalVerified = document.getElementById('totalVerified');
+        const totalUnverified = document.getElementById('totalUnverified');
+        const apiStatus = document.getElementById('apiStatus');
+
+        // ============================================
+        // INIT - Check if already logged in
+        // ============================================
+        if (localStorage.getItem('ciu_logged_in') === 'true') {
+            loginForm.style.display = 'none';
+            adminPanel.style.display = 'block';
+            if (apiUrl) {
+                apiUrlInput.value = apiUrl;
+                apiStatus.textContent = '✅ Connected';
+                loadRecords();
+            } else {
+                apiStatus.textContent = '⚠️ Please connect API';
+            }
+        }
+
+        // ============================================
+        // LOGIN
+        // ============================================
+        loginBtn.addEventListener('click', function() {
+            const user = adminUser.value;
+            const pass = adminPass.value;
+            if (user === 'admin' && pass === 'admin123') {
+                localStorage.setItem('ciu_logged_in', 'true');
+                loginForm.style.display = 'none';
+                adminPanel.style.display = 'block';
+                if (apiUrl) {
+                    apiUrlInput.value = apiUrl;
+                    apiStatus.textContent = '✅ Connected';
+                    loadRecords();
+                } else {
+                    apiStatus.textContent = '⚠️ Please connect API';
+                }
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+
+        // ============================================
+        // API CONNECT
+        // ============================================
+        connectApiBtn.addEventListener('click', function() {
+            const url = apiUrlInput.value.trim();
+            if (url) {
+                apiUrl = url;
+                localStorage.setItem('ciu_api_url', url);
+                apiStatus.textContent = '✅ Connected';
+                loadRecords();
+            } else {
+                alert('Please enter a valid API URL.');
+            }
+        });
+
+        // ============================================
+        // LOAD RECORDS
+        // ============================================
+        async function loadRecords() {
+            if (!apiUrl) {
+                recordsList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-link"></i>
+                        <p>Please connect API first.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            recordsList.innerHTML = `
+                <div class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading records from Google Sheets...</p>
+                </div>
+            `;
+
+            try {
+                const response = await fetch(apiUrl);
+                const result = await response.json();
+
+                if (result.success) {
+                    allRecords = result.data;
+                    renderRecords(allRecords);
+                    updateStats(allRecords);
+                } else {
+                    recordsList.innerHTML = `
+                        <div class="empty-state" style="color:#d93025;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Error: ${result.error || 'Failed to load data'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                recordsList.innerHTML = `
+                    <div class="empty-state" style="color:#d93025;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Failed to connect: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // ============================================
+        // RENDER RECORDS
+        // ============================================
+        function renderRecords(records) {
+            if (records.length === 0) {
+                recordsList.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-database"></i>
+                        <p>No records found. Add your first record!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            records.forEach((record, index) => {
+                html += `
+                    <div class="record-item" data-index="${index}">
+                        <div class="info">
+                            <strong>${record['Student Name'] || 'N/A'}</strong> - 
+                            ${record['Title'] || 'N/A'} 
+                            <span style="color:#6a7b8c; font-size:13px;">(Roll: ${record['Roll Number'] || 'N/A'})</span>
+                        </div>
+                        <div class="actions">
+                            <button class="edit" data-index="${index}"><i class="fas fa-edit"></i></button>
+                            <button class="delete" data-index="${index}"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+            });
+            recordsList.innerHTML = html;
+
+            // Edit
+            document.querySelectorAll('.edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.index);
+                    editRecord(idx);
+                });
+            });
+
+            // Delete
+            document.querySelectorAll('.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const idx = parseInt(this.dataset.index);
+                    deleteRecord(idx);
+                });
+            });
+        }
+
+        // ============================================
+        // UPDATE STATS
+        // ============================================
+        function updateStats(records) {
+            totalStudents.textContent = records.length;
+            const verified = records.filter(r => r['Verification Status'] === 'Verified').length;
+            totalVerified.textContent = verified;
+            totalUnverified.textContent = records.length - verified;
+        }
+
+        // ============================================
+        // ADD RECORD
+        // ============================================
+        addBtn.addEventListener('click', function() {
+            if (!apiUrl) {
+                alert('Please connect API first.');
+                return;
+            }
+
+            const record = {};
+            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number',
+                'Credential Number', 'Verification ID', 'Roll Number', 'Student ID',
+                'Completion Year', 'Description'
+            ];
+
+            fields.forEach(field => {
+                const value = prompt(`Enter ${field}:`);
+                if (value !== null) {
+                    record[field] = value;
+                }
+            });
+
+            if (Object.keys(record).length > 0) {
+                fetch(apiUrl, {
+                    method: 'POST',
+                    body: JSON.stringify(record)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('✅ Record added successfully!');
+                        loadRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to add record'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
+            }
+        });
+
+        // ============================================
+        // EDIT RECORD
+        // ============================================
+        async function editRecord(index) {
+            const record = allRecords[index];
+            if (!record) return;
+
+            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number',
+                'Credential Number', 'Verification ID', 'Roll Number', 'Student ID',
+                'Completion Year', 'Description'
+            ];
+
+            const updated = {};
+            fields.forEach(field => {
+                const value = prompt(`Edit ${field}:`, record[field] || '');
+                if (value !== null) {
+                    updated[field] = value;
+                }
+            });
+
+            if (Object.keys(updated).length > 0) {
+                fetch(apiUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(updated)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('✅ Record updated successfully!');
+                        loadRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to update record'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
+            }
+        }
+
+        // ============================================
+        // DELETE RECORD
+        // ============================================
+        async function deleteRecord(index) {
+            const record = allRecords[index];
+            if (!record) return;
+
+            if (!confirm(`Delete record for ${record['Student Name'] || 'N/A'}?`)) return;
+
+            const payload = {
+                'Roll Number': record['Roll Number'] || record['Student ID'] || ''
+            };
+
+            fetch(apiUrl, {
+                method: 'DELETE',
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    alert('✅ Record deleted successfully!');
+                    loadRecords();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to delete record'));
+                }
+            })
+            .catch(err => alert('Error: ' + err.message));
+        }
+
+        // ============================================
+        // SYNC & REFRESH
+        // ============================================
+        syncBtn.addEventListener('click', function() {
+            loadRecords();
+            apiStatus.textContent = '✅ Synced';
+            setTimeout(() => {
+                apiStatus.textContent = '✅ Connected';
+            }, 2000);
+        });
+
+        refreshBtn.addEventListener('click', function() {
+            loadRecords();
+        });
+
+        // ============================================
+        // SEARCH
+        // ============================================
+        adminSearch.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const filtered = allRecords.filter(record =>
+                (record['Student Name'] || '').toLowerCase().includes(query) ||
+                (record['Roll Number'] || '').toLowerCase().includes(query) ||
+                (record['Title'] || '').toLowerCase().includes(query)
+            );
+            renderRecords(filtered);
+        });
+
+        // ============================================
+        // Enter key to login
+        // ============================================
+        adminPass.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+        adminUser.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+
+        // ============================================
+        // INIT - Load API URL if exists
+        // ============================================
+        if (apiUrl) {
+            apiUrlInput.value = apiUrl;
+        }
+    </script>
+</body>
+</html>
