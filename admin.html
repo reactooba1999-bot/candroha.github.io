@@ -7,420 +7,95 @@
     <link rel="icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f2f5;
-            min-height: 100vh;
-        }
-        .admin-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .admin-header {
-            background: #0a2540;
-            padding: 16px 24px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 20px rgba(10, 37, 64, 0.15);
-        }
-        .admin-header .logo {
-            color: white;
-            font-size: 22px;
-            font-weight: 700;
-        }
-        .admin-header .logo .gold {
-            color: #c9a84c;
-        }
-        .admin-header .user-info {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .admin-header .user-info .logout-btn {
-            background: #c9a84c;
-            color: #0a2540;
-            padding: 6px 18px;
-            border-radius: 30px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        .admin-header .user-info .logout-btn:hover {
-            background: #a8892e;
-        }
-        .admin-body {
-            display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 24px;
-        }
-        .admin-sidebar {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            height: fit-content;
-        }
-        .admin-sidebar .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            color: #1a1a2e;
-            font-size: 14px;
-            font-weight: 500;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-        }
-        .admin-sidebar .menu-item:hover {
-            background: #f0f2f5;
-        }
-        .admin-sidebar .menu-item.active {
-            background: #0a2540;
-            color: white;
-        }
-        .admin-sidebar .menu-item i {
-            width: 20px;
-            font-size: 16px;
-        }
-        .admin-content {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-        }
-        .admin-content .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0a2540;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #eef2f7;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .stat-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 14px;
-            text-align: center;
-            border-left: 4px solid #c9a84c;
-        }
-        .stat-card .number {
-            font-size: 32px;
-            font-weight: 700;
-            color: #0a2540;
-        }
-        .stat-card .label {
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; min-height: 100vh; }
+        .admin-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .admin-header { background: #0a2540; padding: 16px 24px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(10,37,64,0.15); }
+        .admin-header .logo { color: white; font-size: 22px; font-weight: 700; }
+        .admin-header .logo .gold { color: #c9a84c; }
+        .admin-header .user-info { color: rgba(255,255,255,0.7); font-size: 14px; display: flex; align-items: center; gap: 16px; }
+        .admin-header .user-info .logout-btn { background: #c9a84c; color: #0a2540; padding: 6px 18px; border-radius: 30px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s ease; }
+        .admin-header .user-info .logout-btn:hover { background: #a8892e; }
+        .admin-body { display: grid; grid-template-columns: 240px 1fr; gap: 24px; }
+        .admin-sidebar { background: white; border-radius: 16px; padding: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); height: fit-content; }
+        .admin-sidebar .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; cursor: pointer; transition: 0.3s ease; color: #1a1a2e; font-size: 14px; font-weight: 500; border: none; background: none; width: 100%; text-align: left; }
+        .admin-sidebar .menu-item:hover { background: #f0f2f5; }
+        .admin-sidebar .menu-item.active { background: #0a2540; color: white; }
+        .admin-sidebar .menu-item i { width: 20px; font-size: 16px; }
+        .admin-content { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .admin-content .page-title { font-size: 24px; font-weight: 700; color: #0a2540; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #eef2f7; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: #f8f9fa; padding: 20px; border-radius: 14px; text-align: center; border-left: 4px solid #c9a84c; }
+        .stat-card .number { font-size: 32px; font-weight: 700; color: #0a2540; }
+        .stat-card .label { font-size: 13px; color: #6a7b8c; }
+        .search-bar { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+        .search-bar input { flex: 1; padding: 10px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; min-width: 180px; }
+        .search-bar input:focus { outline: none; border-color: #c9a84c; }
+        .search-bar .btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s ease; font-size: 14px; }
+        .btn-primary { background: #c9a84c; color: #0a2540; }
+        .btn-primary:hover { background: #a8892e; }
+        .btn-navy { background: #0a2540; color: white; }
+        .btn-navy:hover { background: #1a3a5c; }
+        .records-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .records-table th { background: #f8f9fa; padding: 10px 12px; text-align: left; color: #0a2540; font-weight: 600; border-bottom: 2px solid #eef2f7; }
+        .records-table td { padding: 10px 12px; border-bottom: 1px solid #eef2f7; color: #1a1a2e; }
+        .records-table tr:hover td { background: #f8f9fa; }
+        .records-table .actions { display: flex; gap: 6px; }
+        .records-table .actions button { background: none; border: none; cursor: pointer; color: #6a7b8c; padding: 4px 8px; border-radius: 4px; transition: 0.2s ease; }
+        .records-table .actions button:hover { background: #eef2f7; }
+        .records-table .actions .edit:hover { color: #c9a84c; }
+        .records-table .actions .delete:hover { color: #d93025; }
+        .login-container { max-width: 420px; margin: 80px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+        .login-container h2 { text-align: center; color: #0a2540; margin-bottom: 8px; }
+        .login-container h2 .gold { color: #c9a84c; }
+        .login-container p { text-align: center; color: #6a7b8c; margin-bottom: 24px; font-size: 14px; }
+        .login-container input { width: 100%; padding: 14px 18px; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 15px; margin-bottom: 14px; }
+        .login-container input:focus { outline: none; border-color: #c9a84c; }
+        .login-container .btn { width: 100%; padding: 14px; border: none; border-radius: 10px; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.3s ease; }
+        .hidden { display: none !important; }
+        .empty-state { text-align: center; padding: 40px; color: #6a7b8c; }
+        .empty-state i { font-size: 48px; margin-bottom: 12px; opacity: 0.5; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #0a2540; margin-bottom: 4px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #c9a84c; }
+        .form-group textarea { min-height: 80px; resize: vertical; }
+        .records-table-wrap { max-height: 500px; overflow-y: auto; }
+        .records-table-wrap::-webkit-scrollbar { width: 6px; }
+        .records-table-wrap::-webkit-scrollbar-track { background: #f0f2f5; border-radius: 10px; }
+        .records-table-wrap::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
+        /* API Status - Small indicator only */
+        .api-status-indicator {
             font-size: 13px;
-            color: #6a7b8c;
+            padding: 6px 14px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-left: 12px;
         }
-        .search-bar {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-        }
-        .search-bar input {
-            flex: 1;
-            padding: 10px 16px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            min-width: 180px;
-        }
-        .search-bar input:focus {
-            outline: none;
-            border-color: #c9a84c;
-        }
-        .search-bar .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s ease;
-            font-size: 14px;
-        }
-        .btn-primary {
-            background: #c9a84c;
-            color: #0a2540;
-        }
-        .btn-primary:hover {
-            background: #a8892e;
-        }
-        .btn-navy {
-            background: #0a2540;
-            color: white;
-        }
-        .btn-navy:hover {
-            background: #1a3a5c;
-        }
-        .btn-danger {
-            background: #d93025;
-            color: white;
-        }
-        .btn-danger:hover {
-            background: #b71c1c;
-        }
-        .btn-sm {
-            padding: 4px 10px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: 0.3s ease;
-            font-size: 12px;
-        }
-        .records-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        .records-table th {
-            background: #f8f9fa;
-            padding: 10px 12px;
-            text-align: left;
-            color: #0a2540;
-            font-weight: 600;
-            border-bottom: 2px solid #eef2f7;
-        }
-        .records-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #eef2f7;
-            color: #1a1a2e;
-        }
-        .records-table tr:hover td {
-            background: #f8f9fa;
-        }
-        .records-table .actions {
-            display: flex;
-            gap: 6px;
-        }
-        .records-table .actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #6a7b8c;
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: 0.2s ease;
-        }
-        .records-table .actions button:hover {
-            background: #eef2f7;
-        }
-        .records-table .actions .edit:hover {
-            color: #c9a84c;
-        }
-        .records-table .actions .delete:hover {
-            color: #d93025;
-        }
-        .login-container {
-            max-width: 420px;
-            margin: 80px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-        .login-container h2 {
-            text-align: center;
-            color: #0a2540;
-            margin-bottom: 8px;
-        }
-        .login-container h2 .gold {
-            color: #c9a84c;
-        }
-        .login-container p {
-            text-align: center;
-            color: #6a7b8c;
-            margin-bottom: 24px;
-            font-size: 14px;
-        }
-        .login-container input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 15px;
-            margin-bottom: 14px;
-        }
-        .login-container input:focus {
-            outline: none;
-            border-color: #c9a84c;
-        }
-        .login-container .btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #6a7b8c;
-        }
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 12px;
-            opacity: 0.5;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 16px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #0a2540;
-            margin-bottom: 4px;
-        }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-            font-family: inherit;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #c9a84c;
-        }
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        @media (max-width: 768px) {
-            .admin-body {
-                grid-template-columns: 1fr;
-            }
-            .admin-sidebar {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 4px;
-            }
-            .admin-sidebar .menu-item {
-                padding: 8px 12px;
-                font-size: 13px;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .records-table {
-                font-size: 12px;
-            }
-            .records-table th,
-            .records-table td {
-                padding: 6px 8px;
-            }
-        }
-        .alert {
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-        }
-        .alert-success {
+        .api-status-indicator.connected {
             background: #e6f4ea;
             color: #1e7e34;
         }
-        .alert-danger {
+        .api-status-indicator.error {
             background: #fce8e6;
             color: #b31412;
         }
-        .api-section {
-            background: #f8f9fa;
-            padding: 12px 16px;
-            border-radius: 10px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-        .api-section input {
-            flex: 1;
-            min-width: 200px;
-            padding: 8px 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-        .api-section input:focus {
-            outline: none;
-            border-color: #c9a84c;
-        }
-        .api-section .status {
-            font-size: 13px;
-            color: #6a7b8c;
-        }
-        .api-section .status.connected {
-            color: #1e7e34;
-        }
-        .api-section .status.error {
-            color: #d93025;
-        }
-        .records-table-wrap {
-            max-height: 500px;
-            overflow-y: auto;
-        }
-        .records-table-wrap::-webkit-scrollbar {
-            width: 6px;
-        }
-        .records-table-wrap::-webkit-scrollbar-track {
-            background: #f0f2f5;
-            border-radius: 10px;
-        }
-        .records-table-wrap::-webkit-scrollbar-thumb {
-            background: #c9a84c;
-            border-radius: 10px;
+        @media (max-width: 768px) {
+            .admin-body { grid-template-columns: 1fr; }
+            .admin-sidebar { display: flex; flex-wrap: wrap; gap: 4px; }
+            .admin-sidebar .menu-item { padding: 8px 12px; font-size: 13px; }
+            .records-table { font-size: 12px; }
+            .records-table th, .records-table td { padding: 6px 8px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN PAGE -->
+    <!-- ============================================
+    LOGIN PAGE
+    ============================================ -->
     <div id="loginPage" class="login-container">
         <h2>🔐 <span class="gold">CIU</span> Admin</h2>
         <p>Enter your credentials to access the admin panel.</p>
@@ -430,13 +105,16 @@
         <p style="margin-top:12px; font-size:12px; color:#6a7b8c;">Contact administrator for credentials.</p>
     </div>
 
-    <!-- ADMIN PANEL -->
+    <!-- ============================================
+    ADMIN PANEL
+    ============================================ -->
     <div id="adminPanel" class="hidden">
         <div class="admin-wrapper">
             <div class="admin-header">
                 <div class="logo">🏛️ <span class="gold">CIU</span> Admin</div>
                 <div class="user-info">
                     <span><i class="fas fa-user"></i> <span id="adminName">admin</span></span>
+                    <span id="apiStatusIndicator" class="api-status-indicator connected">✅ API Connected</span>
                     <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
             </div>
@@ -472,11 +150,7 @@
                     <!-- STUDENTS -->
                     <div id="tab-students" class="tab-content">
                         <div class="page-title"><i class="fas fa-user-graduate"></i> Student Records</div>
-                        <div class="api-section">
-                            <input type="text" id="apiUrl" placeholder="Google Apps Script API URL" />
-                            <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
-                            <span class="status" id="apiStatus">⚠️ Not connected</span>
-                        </div>
+
                         <div class="search-bar">
                             <input type="text" id="studentSearch" placeholder="Search by name, roll, program..." />
                             <button class="btn btn-primary" id="addStudentBtn"><i class="fas fa-plus"></i> Add</button>
@@ -486,7 +160,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="studentTable">
                                 <thead><tr><th>Student Name</th><th>Type</th><th>Program</th><th>Roll Number</th><th>Year</th><th>Actions</th></tr></thead>
-                                <tbody id="studentTableBody"><tr><td colspan="6" class="empty-state">Connect API to load records.</td></tr></tbody>
+                                <tbody id="studentTableBody"><tr><td colspan="6" class="empty-state">Loading records...</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -608,9 +282,14 @@
 
     <script>
         // ============================================
-        // HARDCODED API URL
+        // 🔥 HARDCODED API URL - WORLDWIDE ACCESS
+        // 🔴 YAHAN APNA API URL DAALEIN 🔴
         // ============================================
         const HARD_CODED_API_URL = 'https://script.google.com/macros/s/AKfycbywQX4BbHO.../exec';
+
+        // ============================================
+        // CONFIGURATION
+        // ============================================
         let apiUrl = HARD_CODED_API_URL;
         let allRecords = [];
 
@@ -623,6 +302,7 @@
         const loginUser = document.getElementById('loginUser');
         const loginPass = document.getElementById('loginPass');
         const logoutBtn = document.getElementById('logoutBtn');
+        const apiStatusIndicator = document.getElementById('apiStatusIndicator');
 
         // ============================================
         // CHECK LOGIN STATUS
@@ -630,6 +310,8 @@
         if (localStorage.getItem('ciu_admin_logged_in') === 'true') {
             loginPage.classList.add('hidden');
             adminPanel.classList.remove('hidden');
+            apiStatusIndicator.textContent = '✅ API Connected';
+            apiStatusIndicator.className = 'api-status-indicator connected';
             loadStudentRecords();
         }
 
@@ -644,6 +326,8 @@
                 localStorage.setItem('ciu_admin_logged_in', 'true');
                 loginPage.classList.add('hidden');
                 adminPanel.classList.remove('hidden');
+                apiStatusIndicator.textContent = '✅ API Connected';
+                apiStatusIndicator.className = 'api-status-indicator connected';
                 loadStudentRecords();
             } else {
                 alert('Invalid username or password.');
@@ -668,24 +352,11 @@
         });
 
         // ============================================
-        // SIDEBAR NAVIGATION
-        // ============================================
-        document.querySelectorAll('.menu-item').forEach(item => {
-            item.addEventListener('click', function() {
-                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-                this.classList.add('active');
-                const tab = this.dataset.tab;
-                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-                document.getElementById('tab-' + tab).classList.add('active');
-            });
-        });
-
-        // ============================================
         // LOAD STUDENT RECORDS
         // ============================================
         async function loadStudentRecords() {
             const tbody = document.getElementById('studentTableBody');
-            tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading records...</td></tr>';
 
             try {
                 const response = await fetch(apiUrl);
@@ -695,18 +366,24 @@
                     allRecords = result.data;
                     renderStudentTable(allRecords);
                     updateDashboardStats(allRecords);
+                    apiStatusIndicator.textContent = '✅ API Connected';
+                    apiStatusIndicator.className = 'api-status-indicator connected';
                 } else {
-                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error loading data.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error loading data. Please check API.</td></tr>';
+                    apiStatusIndicator.textContent = '❌ API Error';
+                    apiStatusIndicator.className = 'api-status-indicator error';
                 }
             } catch (error) {
                 tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Failed to connect: ' + error.message + '</td></tr>';
+                apiStatusIndicator.textContent = '❌ API Error';
+                apiStatusIndicator.className = 'api-status-indicator error';
             }
         }
 
         function renderStudentTable(records) {
             const tbody = document.getElementById('studentTableBody');
             if (records.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No records found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No records found. Add your first record!</td></tr>';
                 return;
             }
 
@@ -769,10 +446,10 @@
                     .then(res => res.json())
                     .then(result => {
                         if (result.success) {
-                            alert('✅ Record added!');
+                            alert('✅ Record added successfully!');
                             loadStudentRecords();
                         } else {
-                            alert('Error: ' + (result.error || 'Failed'));
+                            alert('Error: ' + (result.error || 'Failed to add record'));
                         }
                     })
                     .catch(err => alert('Error: ' + err.message));
@@ -802,10 +479,10 @@
                     .then(res => res.json())
                     .then(result => {
                         if (result.success) {
-                            alert('✅ Record updated!');
+                            alert('✅ Record updated successfully!');
                             loadStudentRecords();
                         } else {
-                            alert('Error: ' + (result.error || 'Failed'));
+                            alert('Error: ' + (result.error || 'Failed to update record'));
                         }
                     })
                     .catch(err => alert('Error: ' + err.message));
@@ -826,10 +503,10 @@
                 .then(res => res.json())
                 .then(result => {
                     if (result.success) {
-                        alert('✅ Record deleted!');
+                        alert('✅ Record deleted successfully!');
                         loadStudentRecords();
                     } else {
-                        alert('Error: ' + (result.error || 'Failed'));
+                        alert('Error: ' + (result.error || 'Failed to delete record'));
                     }
                 })
                 .catch(err => alert('Error: ' + err.message));
@@ -867,7 +544,7 @@
         function renderPrograms() {
             const tbody = document.getElementById('programTableBody');
             if (programs.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No programs added.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No programs added yet.</td></tr>';
                 return;
             }
             let html = '';
@@ -939,7 +616,7 @@
         function renderFaculty() {
             const tbody = document.getElementById('facultyTableBody');
             if (faculty.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No faculty added.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No faculty added yet.</td></tr>';
                 return;
             }
             let html = '';
@@ -1011,7 +688,7 @@
         function renderResearch() {
             const tbody = document.getElementById('researchTableBody');
             if (research.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No research added.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No research added yet.</td></tr>';
                 return;
             }
             let html = '';
@@ -1083,7 +760,7 @@
         function renderNews() {
             const tbody = document.getElementById('newsTableBody');
             if (news.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No news added.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No news added yet.</td></tr>';
                 return;
             }
             let html = '';
@@ -1152,7 +829,7 @@
         function renderEvents() {
             const tbody = document.getElementById('eventTableBody');
             if (events.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No events added.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No events added yet.</td></tr>';
                 return;
             }
             let html = '';
