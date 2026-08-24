@@ -47,9 +47,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* ============================================
-               ROOT VARIABLES
-               ============================================ */
         :root {
             --navy: #0a2540;
             --navy-light: #1a3a5c;
@@ -68,9 +65,6 @@
             --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        /* ============================================
-               RESET & BASE
-               ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -103,9 +97,6 @@
             padding: 0 20px;
         }
 
-        /* ============================================
-               BUTTONS
-               ============================================ */
         .btn {
             display: inline-block;
             padding: 12px 32px;
@@ -158,9 +149,6 @@
             color: var(--navy);
         }
 
-        /* ============================================
-               HEADER
-               ============================================ */
         .header {
             background: var(--navy);
             padding: 10px 0;
@@ -190,6 +178,7 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            flex-wrap: wrap;
         }
         .nav a {
             color: rgba(255, 255, 255, 0.85);
@@ -212,6 +201,19 @@
         }
         .nav .verify-btn:hover {
             background: var(--gold-light);
+        }
+        /* === ADMIN BUTTON ADDED === */
+        .nav .admin-btn {
+            background: #c9a84c;
+            color: #0a2540;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+        .nav .admin-btn:hover {
+            background: #e8d5a3;
+            transform: scale(1.05);
         }
         .hamburger {
             display: none;
@@ -253,10 +255,15 @@
             font-weight: 600;
             text-align: center;
         }
+        .nav-mobile .admin-btn-mobile {
+            background: #c9a84c;
+            color: #0a2540;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
 
-        /* ============================================
-               HERO
-               ============================================ */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
             padding: 80px 0 100px;
@@ -331,9 +338,6 @@
             margin-top: 4px;
         }
 
-        /* ============================================
-               SECTION TITLES
-               ============================================ */
         .section-title {
             text-align: center;
             margin-bottom: 48px;
@@ -353,9 +357,6 @@
             font-size: 17px;
         }
 
-        /* ============================================
-               QUICK LINKS
-               ============================================ */
         .quick-links {
             padding: 60px 0;
             background: var(--off-white);
@@ -389,9 +390,6 @@
             color: var(--navy);
         }
 
-        /* ============================================
-               ABOUT
-               ============================================ */
         .about-intro {
             padding: 80px 0;
         }
@@ -413,9 +411,6 @@
             margin-bottom: 16px;
         }
 
-        /* ============================================
-               PROGRAMS
-               ============================================ */
         .programs-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -460,9 +455,6 @@
             line-height: 1.6;
         }
 
-        /* ============================================
-               PROGRAM DETAIL (Modal / Page)
-               ============================================ */
         .program-detail {
             display: none;
             position: fixed;
@@ -527,9 +519,6 @@
             color: var(--gray);
         }
 
-        /* ============================================
-               FACULTIES
-               ============================================ */
         .faculties-section {
             padding: 80px 0;
         }
@@ -561,9 +550,6 @@
             color: var(--navy);
         }
 
-        /* ============================================
-               RESEARCH
-               ============================================ */
         .research-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -590,9 +576,6 @@
             margin: 6px 0 0;
         }
 
-        /* ============================================
-               WHY CIU
-               ============================================ */
         .why-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -621,9 +604,6 @@
             margin-top: 4px;
         }
 
-        /* ============================================
-               ADMISSIONS
-               ============================================ */
         .admissions-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -696,9 +676,6 @@
             resize: vertical;
         }
 
-        /* ============================================
-               FACULTY DIRECTORY
-               ============================================ */
         .faculty-directory {
             padding: 80px 0;
         }
@@ -770,9 +747,6 @@
             margin-top: 10px;
         }
 
-        /* ============================================
-               EVENTS
-               ============================================ */
         .events-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -809,9 +783,6 @@
             margin-top: 8px;
         }
 
-        /* ============================================
-               ALUMNI
-               ============================================ */
         .alumni-section {
             padding: 80px 0;
         }
@@ -855,9 +826,6 @@
             display: block;
         }
 
-        /* ============================================
-               CREDENTIAL VERIFICATION
-               ============================================ */
         .verify-preview {
             padding: 80px 0;
             background: var(--navy);
@@ -901,9 +869,6 @@
             padding: 14px 36px;
         }
 
-        /* ============================================
-               NEWS
-               ============================================ */
         .news-section {
             padding: 80px 0;
         }
@@ -941,9 +906,6 @@
             color: var(--gray);
         }
 
-        /* ============================================
-               GALLERY (ADDED)
-               ============================================ */
         .gallery-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -993,7 +955,6 @@
             opacity: 1;
         }
 
-        /* Lightbox (Full Screen View) */
         .lightbox {
             display: none;
             position: fixed;
@@ -1030,9 +991,6 @@
             color: var(--gold);
         }
 
-        /* ============================================
-               CONTACT
-               ============================================ */
         .contact-section {
             padding: 80px 0;
         }
@@ -1089,9 +1047,6 @@
             resize: vertical;
         }
 
-        /* ============================================
-               FOOTER
-               ============================================ */
         .footer {
             background: var(--navy);
             color: rgba(255, 255, 255, 0.7);
@@ -1137,9 +1092,6 @@
             font-size: 14px;
         }
 
-        /* ============================================
-               PRIVACY / TERMS / COOKIES
-               ============================================ */
         .legal-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -1176,80 +1128,6 @@
             margin-bottom: 6px;
         }
 
-        /* ============================================
-               ADMIN DASHBOARD
-               ============================================ */
-        .admin-section {
-            padding: 80px 0;
-            background: var(--off-white);
-        }
-        .admin-section .admin-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .admin-section .admin-card h2 {
-            color: var(--navy);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .admin-section .admin-card input,
-        .admin-section .admin-card textarea,
-        .admin-section .admin-card select {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid var(--gray-light);
-            border-radius: 10px;
-            font-size: 15px;
-            margin-bottom: 14px;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        .admin-section .admin-card input:focus,
-        .admin-section .admin-card textarea:focus,
-        .admin-section .admin-card select:focus {
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
-        }
-        .admin-section .admin-card textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .admin-section .admin-card .record-list {
-            margin-top: 20px;
-        }
-        .admin-section .admin-card .record-item {
-            background: var(--off-white);
-            padding: 12px 16px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .admin-section .admin-card .record-item span {
-            font-size: 14px;
-            color: var(--dark);
-        }
-        .admin-section .admin-card .record-item .actions button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--gray);
-            margin-left: 8px;
-            transition: var(--transition);
-        }
-        .admin-section .admin-card .record-item .actions button:hover {
-            color: var(--gold);
-        }
-
-        /* ============================================
-               RESPONSIVE
-               ============================================ */
         @media (max-width: 992px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -1335,17 +1213,12 @@
             .logo img {
                 height: 50px;
             }
-            .admin-section .admin-card {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-    HEADER
-    ============================================ -->
+    <!-- HEADER -->
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -1365,6 +1238,7 @@
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
                 <a href="#verify" class="verify-btn"><i class="fas fa-check-circle"></i> Verify</a>
+                <a href="admin.html" target="_blank" class="admin-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
             <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
@@ -1385,13 +1259,12 @@
                 <a href="#faculty-directory">Faculty</a>
                 <a href="#contact">Contact</a>
                 <a href="#verify" class="verify-btn-mobile"><i class="fas fa-check-circle"></i> Verify Credential</a>
+                <a href="admin.html" target="_blank" class="admin-btn-mobile"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </div>
     </header>
 
-    <!-- ============================================
-    HERO
-    ============================================ -->
+    <!-- HERO -->
     <section class="hero" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline>
             <source src="https://reactooba1999-bot.github.io/candroha.github.io/drone.mp4" type="video/mp4">
@@ -1414,9 +1287,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    QUICK LINKS
-    ============================================ -->
+    <!-- QUICK LINKS -->
     <section class="quick-links">
         <div class="container">
             <div class="quick-grid">
@@ -1430,9 +1301,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ABOUT
-    ============================================ -->
+    <!-- ABOUT -->
     <section class="about-intro" id="about">
         <div class="container">
             <div class="grid">
@@ -1454,9 +1323,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    PROGRAMS
-    ============================================ -->
+    <!-- PROGRAMS -->
     <section class="programs-section" id="programs">
         <div class="container">
             <div class="section-title">
@@ -1472,9 +1339,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    PROGRAM DETAIL (MODAL)
-    ============================================ -->
+    <!-- PROGRAM DETAIL -->
     <div class="program-detail" id="programDetail">
         <div class="modal">
             <span class="close" id="closeDetail">&times;</span>
@@ -1501,9 +1366,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-    FACULTIES
-    ============================================ -->
+    <!-- FACULTIES -->
     <section class="faculties-section" id="faculties">
         <div class="container">
             <div class="section-title">
@@ -1527,9 +1390,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    RESEARCH
-    ============================================ -->
+    <!-- RESEARCH -->
     <section class="research-section" id="research">
         <div class="container">
             <div class="section-title">
@@ -1547,9 +1408,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    WHY CIU
-    ============================================ -->
+    <!-- WHY CIU -->
     <section class="why-section">
         <div class="container">
             <div class="section-title">
@@ -1567,9 +1426,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ADMISSIONS
-    ============================================ -->
+    <!-- ADMISSIONS -->
     <section class="admissions-section" id="admissions">
         <div class="container">
             <div class="section-title">
@@ -1611,9 +1468,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    FACULTY DIRECTORY
-    ============================================ -->
+    <!-- FACULTY DIRECTORY -->
     <section class="faculty-directory" id="faculty-directory">
         <div class="container">
             <div class="section-title">
@@ -1625,7 +1480,6 @@
                 <button class="btn btn-primary" id="facultySearchBtn"><i class="fas fa-search"></i> Search</button>
             </div>
             <div class="faculty-grid-dir" id="facultyGrid">
-                <!-- Faculty will be loaded dynamically -->
                 <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
                     <i class="fas fa-spinner fa-spin" style="font-size:28px;"></i>
                     <p style="margin-top:10px;">Loading faculty directory...</p>
@@ -1634,9 +1488,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    EVENTS
-    ============================================ -->
+    <!-- EVENTS -->
     <section class="events-section" id="events">
         <div class="container">
             <div class="section-title">
@@ -1666,9 +1518,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    GALLERY (ADDED)
-    ============================================ -->
+    <!-- GALLERY -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-title">
@@ -1704,9 +1554,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ALUMNI (INTERNATIONAL)
-    ============================================ -->
+    <!-- ALUMNI -->
     <section class="alumni-section" id="alumni">
         <div class="container">
             <div class="section-title">
@@ -1714,7 +1562,6 @@
                 <p>Our alumni are making a difference around the world.</p>
             </div>
             <div class="alumni-grid" id="alumniGrid">
-                <!-- 1. Dr. Elena Rodriguez (Spain) -->
                 <div class="alumni-card">
                     <div class="avatar">
                         <img src="images/alumni/Elena Rodriguez.jfif" alt="Dr. Elena Rodriguez" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
@@ -1722,11 +1569,9 @@
                     <h4>Dr. Elena Rodriguez</h4>
                     <div class="year">Class of 2018 · Spain</div>
                     <div class="program">PhD in Artificial Intelligence</div>
-                    <p class="story">Dr. Rodriguez is the Head of AI Ethics at the European Commission, leading a team of 50 researchers developing responsible AI guidelines for the EU. Her work directly shapes policy for over 400 million citizens.</p>
+                    <p class="story">Dr. Rodriguez is the Head of AI Ethics at the European Commission, leading a team of 50 researchers developing responsible AI guidelines for the EU.</p>
                     <button class="btn-small show-story" data-index="0">Read Story</button>
                 </div>
-
-                <!-- 2. Prof. Kenji Tanaka (Japan) -->
                 <div class="alumni-card">
                     <div class="avatar">
                         <img src="images/alumni/Kenji Tanaka.jfif" alt="Prof. Kenji Tanaka" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
@@ -1734,11 +1579,9 @@
                     <h4>Prof. Kenji Tanaka</h4>
                     <div class="year">Class of 2015 · Japan</div>
                     <div class="program">MSc in Sustainable Engineering</div>
-                    <p class="story">Prof. Tanaka is a leading researcher at the University of Tokyo and the recipient of the prestigious Japan Academy Medal for his groundbreaking work in renewable energy storage systems. He holds 12 international patents.</p>
+                    <p class="story">Prof. Tanaka is a leading researcher at the University of Tokyo and the recipient of the prestigious Japan Academy Medal.</p>
                     <button class="btn-small show-story" data-index="1">Read Story</button>
                 </div>
-
-                <!-- 3. Dr. Amara Okafor (Nigeria) -->
                 <div class="alumni-card">
                     <div class="avatar">
                         <img src="images/alumni/Amara Okafor.jfif" alt="Dr. Amara Okafor" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
@@ -1746,11 +1589,9 @@
                     <h4>Dr. Amara Okafor</h4>
                     <div class="year">Class of 2017 · Nigeria</div>
                     <div class="program">MBA</div>
-                    <p class="story">Dr. Okafor is the founder of a pan-African fintech startup that provides micro-loans to over 200,000 women entrepreneurs in rural communities. She was named one of Forbes Africa's "30 Under 30" in 2022.</p>
+                    <p class="story">Dr. Okafor is the founder of a pan-African fintech startup that provides micro-loans to over 200,000 women entrepreneurs.</p>
                     <button class="btn-small show-story" data-index="2">Read Story</button>
                 </div>
-
-                <!-- 4. Prof. Liam O'Brien (Ireland) -->
                 <div class="alumni-card">
                     <div class="avatar">
                         <img src="images/alumni/Liam O'Brien.jfif" alt="Prof. Liam O'Brien" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
@@ -1758,11 +1599,9 @@
                     <h4>Prof. Liam O'Brien</h4>
                     <div class="year">Class of 2016 · Ireland</div>
                     <div class="program">MA in Literature</div>
-                    <p class="story">Prof. O'Brien is a celebrated poet and the current Writer-in-Residence at Trinity College Dublin. His most recent collection was shortlisted for the T.S. Eliot Prize, one of the most prestigious awards in poetry.</p>
+                    <p class="story">Prof. O'Brien is a celebrated poet and the current Writer-in-Residence at Trinity College Dublin.</p>
                     <button class="btn-small show-story" data-index="3">Read Story</button>
                 </div>
-
-                <!-- 5. Dr. Sofia Chen (Singapore) -->
                 <div class="alumni-card">
                     <div class="avatar">
                         <img src="images/alumni/Sofia Chen.jfif" alt="Dr. Sofia Chen" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
@@ -1770,16 +1609,14 @@
                     <h4>Dr. Sofia Chen</h4>
                     <div class="year">Class of 2019 · Singapore</div>
                     <div class="program">PhD in Data Science</div>
-                    <p class="story">Dr. Chen is the Chief Data Scientist at a global e-commerce giant, where she developed the algorithms that power personalized recommendations for over 1 billion users worldwide. She is a frequent keynote speaker at international tech conferences.</p>
+                    <p class="story">Dr. Chen is the Chief Data Scientist at a global e-commerce giant, developing algorithms that power recommendations for over 1 billion users.</p>
                     <button class="btn-small show-story" data-index="4">Read Story</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    CREDENTIAL VERIFICATION
-    ============================================ -->
+    <!-- CREDENTIAL VERIFICATION -->
     <section class="verify-preview" id="verify">
         <div class="container">
             <h2>Verify an <span class="gold">Academic Credential</span></h2>
@@ -1792,9 +1629,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    NEWS
-    ============================================ -->
+    <!-- NEWS -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-title">
@@ -1827,9 +1662,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    CONTACT
-    ============================================ -->
+    <!-- CONTACT -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-title">
@@ -1856,9 +1689,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    LEGAL (Privacy, Terms, Cookies)
-    ============================================ -->
+    <!-- LEGAL -->
     <section class="legal-section" id="privacy">
         <div class="container">
             <div class="content">
@@ -1878,7 +1709,6 @@
                 </ul>
                 <h3>Data Security</h3>
                 <p>We implement appropriate technical and organizational measures to protect your data from unauthorized access.</p>
-
                 <h2 style="margin-top:40px;">Terms & Conditions</h2>
                 <p>By using our website and services, you agree to the following terms and conditions.</p>
                 <ul>
@@ -1886,7 +1716,6 @@
                     <li>Users may not misuse the verification system or attempt to access unauthorized data.</li>
                     <li>Candroha International University reserves the right to update these terms at any time.</li>
                 </ul>
-
                 <h2 style="margin-top:40px;">Cookie Policy</h2>
                 <p>We use cookies to enhance your experience on our website. Cookies are small text files stored on your device.</p>
                 <ul>
@@ -1899,71 +1728,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ADMIN DASHBOARD
-    ============================================ -->
-    <section class="admin-section" id="admin">
-        <div class="container">
-            <div class="admin-card">
-                <h2>🔐 Admin Dashboard</h2>
-                <p style="text-align:center; color:var(--gray); margin-bottom:20px;">Manage student records, verify credentials, and sync with Google Sheets.</p>
-                
-                <!-- Login Form -->
-                <form id="adminLoginForm">
-                    <input type="text" placeholder="Admin Username" id="adminUser" value="admin" />
-                    <input type="password" placeholder="Admin Password" id="adminPass" value="Old@123456" />
-                    <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
-                </form>
-                
-                <!-- Admin Panel -->
-                <div id="adminPanel" style="display:none; margin-top:20px;">
-                    <!-- Stats -->
-                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:12px; margin-bottom:20px;">
-                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
-                            <div style="font-size:24px; font-weight:700; color:var(--navy);" id="totalStudents">0</div>
-                            <div style="font-size:12px; color:var(--gray);">Total Students</div>
-                        </div>
-                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
-                            <div style="font-size:24px; font-weight:700; color:var(--gold);" id="totalVerified">0</div>
-                            <div style="font-size:12px; color:var(--gray);">Verified</div>
-                        </div>
-                        <div style="background:var(--off-white); padding:16px; border-radius:12px; text-align:center;">
-                            <div style="font-size:24px; font-weight:700; color:#d93025;" id="totalUnverified">0</div>
-                            <div style="font-size:12px; color:var(--gray);">Unverified</div>
-                        </div>
-                    </div>
-                    
-                    <!-- API URL Input -->
-                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-                        <input type="text" placeholder="Google Apps Script API URL" id="apiUrl" style="flex:1; padding:10px 14px; border:1px solid var(--gray-light); border-radius:8px; font-size:14px;" />
-                        <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
-                    </div>
-                    
-                    <!-- Search & Actions -->
-                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;">
-                        <input type="text" placeholder="Search Student..." id="adminSearch" style="flex:1; padding:10px 14px; border:1px solid var(--gray-light); border-radius:8px;" />
-                        <button class="btn btn-primary" id="adminAddBtn"><i class="fas fa-plus"></i> Add</button>
-                        <button class="btn btn-navy" id="adminSyncBtn"><i class="fas fa-sync"></i> Sync</button>
-                        <button class="btn btn-outline" id="adminRefreshBtn" style="background:var(--off-white); color:var(--navy);"><i class="fas fa-redo"></i> Refresh</button>
-                    </div>
-                    
-                    <!-- Records List -->
-                    <div id="adminRecordList" style="max-height:400px; overflow-y:auto;">
-                        <div style="text-align:center; padding:20px; color:var(--gray);">
-                            <i class="fas fa-spinner fa-spin"></i> Loading records...
-                        </div>
-                    </div>
-                    <p style="font-size:13px; color:var(--gray); margin-top:12px;">
-                        <i class="fas fa-info-circle"></i> Changes sync with Google Sheets automatically.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-    FOOTER
-    ============================================ -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1998,27 +1763,16 @@
         </div>
     </footer>
 
-    <!-- ============================================
-    JAVASCRIPT
-    ============================================ -->
+    <!-- JAVASCRIPT -->
     <script>
-        // ============================================
-        // CONFIGURATION
-        // ============================================
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
 
-        // ============================================
-        // MOBILE NAV TOGGLE
-        // ============================================
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('navMobile');
         hamburger.addEventListener('click', () => {
             navMobile.classList.toggle('open');
         });
 
-        // ============================================
-        // PARSE CSV
-        // ============================================
         function parseCSV(csvText) {
             const lines = csvText.split('\n').filter(line => line.trim() !== '');
             if (lines.length === 0) return [];
@@ -2037,9 +1791,6 @@
             return result;
         }
 
-        // ============================================
-        // LOAD PROGRAMS
-        // ============================================
         async function loadPrograms() {
             const grid = document.getElementById('programGrid');
             try {
@@ -2047,13 +1798,11 @@
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
-
                 const programs = data.filter(item =>
                     item.Type && (item.Type.toLowerCase().includes('degree') ||
                         item.Type.toLowerCase().includes('diploma') ||
                         item.Type.toLowerCase().includes('certificate'))
                 );
-
                 if (programs.length === 0) {
                     grid.innerHTML = `
                             <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
@@ -2064,7 +1813,6 @@
                         `;
                     return;
                 }
-
                 let html = '';
                 programs.forEach((item, index) => {
                     html += `
@@ -2078,8 +1826,6 @@
                         `;
                 });
                 grid.innerHTML = html;
-
-                // Program detail view
                 document.querySelectorAll('.view-program').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const idx = parseInt(this.dataset.index);
@@ -2087,10 +1833,7 @@
                         showProgramDetail(program);
                     });
                 });
-
-                // Store programs for detail view
                 window._programsData = programs;
-
             } catch (error) {
                 console.error('Error loading programs:', error);
                 grid.innerHTML = `
@@ -2102,9 +1845,6 @@
             }
         }
 
-        // ============================================
-        // PROGRAM DETAIL
-        // ============================================
         function showProgramDetail(program) {
             document.getElementById('detailTitle').textContent = program.Title || 'Program Name';
             document.getElementById('detailLevel').textContent = program.Type || 'N/A';
@@ -2112,32 +1852,24 @@
             document.getElementById('detailDuration').textContent = program.Duration || 'N/A';
             document.getElementById('detailMode').textContent = program.Mode || 'On-Campus';
             document.getElementById('detailDescription').textContent = program.Description || 'No description available.';
-
             const curriculum = program.Curriculum ? program.Curriculum.split(',').map(c => c.trim()) : ['Core Module 1', 'Core Module 2', 'Elective Module 1'];
             const career = program.Career ? program.Career.split(',').map(c => c.trim()) : ['Career Option 1', 'Career Option 2'];
-
             const currList = document.getElementById('detailCurriculum');
             currList.innerHTML = curriculum.map(c => `<li>${c}</li>`).join('');
-
             const careerList = document.getElementById('detailCareer');
             careerList.innerHTML = career.map(c => `<li>${c}</li>`).join('');
-
             document.getElementById('programDetail').classList.add('active');
         }
 
         document.getElementById('closeDetail').addEventListener('click', () => {
             document.getElementById('programDetail').classList.remove('active');
         });
-
         document.getElementById('programDetail').addEventListener('click', function(e) {
             if (e.target === this) {
                 this.classList.remove('active');
             }
         });
 
-        // ============================================
-        // FACULTY DIRECTORY
-        // ============================================
         const facultyData = [
             { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals.' },
             { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems.' },
@@ -2153,7 +1885,6 @@
                 f.dept.toLowerCase().includes(filter.toLowerCase()) ||
                 f.discipline.toLowerCase().includes(filter.toLowerCase())
             );
-
             if (filtered.length === 0) {
                 grid.innerHTML = `
                         <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
@@ -2163,7 +1894,6 @@
                     `;
                 return;
             }
-
             let html = '';
             filtered.forEach((f, idx) => {
                 html += `
@@ -2178,7 +1908,6 @@
                     `;
             });
             grid.innerHTML = html;
-
             document.querySelectorAll('.show-bio').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
@@ -2193,16 +1922,12 @@
             const query = document.getElementById('facultySearch').value;
             renderFaculty(query);
         });
-
         document.getElementById('facultySearch').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 renderFaculty(this.value);
             }
         });
 
-        // ============================================
-        // ALUMNI STORIES
-        // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
             btn.addEventListener('click', function() {
                 const story = this.closest('.alumni-card').querySelector('.story');
@@ -2211,9 +1936,6 @@
             });
         });
 
-        // ============================================
-        // CREDENTIAL VERIFICATION
-        // ============================================
         const verifyBtn = document.getElementById('verifyBtn');
         const verifyInput = document.getElementById('verifyInput');
         const verifyResult = document.getElementById('verifyResult');
@@ -2228,19 +1950,16 @@
                     `;
                 return;
             }
-
             verifyResult.innerHTML = `
                     <div style="color:var(--white);">
                         <i class="fas fa-spinner fa-spin"></i> Verifying credential...
                     </div>
                 `;
-
             try {
                 const response = await fetch(CSV_URL);
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
-
                 const found = data.find(item =>
                     (item['Roll Number'] && item['Roll Number'].toLowerCase() === query.toLowerCase()) ||
                     (item['Registration Number'] && item['Registration Number'].toLowerCase() === query.toLowerCase()) ||
@@ -2248,7 +1967,6 @@
                     (item['Student ID'] && item['Student ID'].toLowerCase() === query.toLowerCase()) ||
                     (item['Credential Number'] && item['Credential Number'].toLowerCase() === query.toLowerCase())
                 );
-
                 if (found) {
                     verifyResult.innerHTML = `
         <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); 
@@ -2260,8 +1978,6 @@
                     max-width: 750px;
                     margin: 0 auto;
                     text-align: left;">
-            
-            <!-- Header: Gold Gradient -->
             <div style="background: linear-gradient(135deg, #c9a84c, #a8892e);
                         padding: 24px 32px;
                         display: flex;
@@ -2288,10 +2004,7 @@
                     <i class="fas fa-shield-alt"></i> SECURE VERIFICATION
                 </div>
             </div>
-            
-            <!-- Body -->
             <div style="padding: 28px 32px 20px;">
-                <!-- Student Name - Large -->
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #eef2f7; padding-bottom: 16px;">
                     <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0a2540, #1a3a5c); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700;">
                         ${found['Student Name'] ? found['Student Name'].charAt(0) : 'S'}
@@ -2301,8 +2014,6 @@
                         <div style="font-size: 24px; font-weight: 700; color: #0a2540; line-height: 1.2;">${found['Student Name'] || 'N/A'}</div>
                     </div>
                 </div>
-                
-                <!-- Info Grid -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 20px;">
                     <div>
                         <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Credential Type</div>
@@ -2323,8 +2034,6 @@
                         <div style="font-size: 16px; font-weight: 600; color: #c9a84c; margin-top: 2px;">${found['Completion Year'] || 'N/A'}</div>
                     </div>
                 </div>
-                
-                <!-- Analytics / Progress Section -->
                 <div style="background: #f4f7fb; border-radius: 14px; padding: 18px 24px; margin: 8px 0 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
                         <div style="text-align: center;">
@@ -2341,8 +2050,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Status Bar (Professional) -->
                 <div style="margin-top: 12px; display: flex; align-items: center; gap: 14px; background: #e6f4ea; padding: 12px 20px; border-radius: 12px; border-left: 4px solid #34a853;">
                     <i class="fas fa-check-circle" style="color: #1e7e34; font-size: 18px;"></i>
                     <span style="font-size: 15px; font-weight: 600; color: #1e7e34;">Status: VERIFIED</span>
@@ -2381,290 +2088,55 @@
             }
         });
 
-        // ============================================
-        // CONTACT FORM
-        // ============================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for contacting Candroha International University. We will get back to you soon.');
             this.reset();
         });
 
-        // ============================================
-        // ADMISSIONS FORM
-        // ============================================
         document.getElementById('admissionsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Your application has been submitted successfully! We will review it and get back to you.');
             this.reset();
         });
 
-        // ============================================
-        // ADMIN DASHBOARD (Google Sheets Sync)
-        // ============================================
-        let apiUrl = localStorage.getItem('ciu_api_url') || '';
-        let allRecords = [];
-        
-        // Set API URL if exists
-        if (apiUrl) {
-            document.getElementById('apiUrl').value = apiUrl;
-        }
-        
-        // Connect API
-        document.getElementById('connectApiBtn').addEventListener('click', function() {
-            apiUrl = document.getElementById('apiUrl').value.trim();
-            if (apiUrl) {
-                localStorage.setItem('ciu_api_url', apiUrl);
-                alert('API connected successfully!');
-                loadAdminRecords();
-            } else {
-                alert('Please enter a valid API URL.');
-            }
-        });
-        
-        // Load records from Google Sheets
-        async function loadAdminRecords() {
-            if (!apiUrl) {
-                document.getElementById('adminRecordList').innerHTML = `
-                    <div style="text-align:center; padding:20px; color:var(--gray);">
-                        <i class="fas fa-link"></i> Please connect API first.
-                    </div>
-                `;
-                return;
-            }
-            
-            document.getElementById('adminRecordList').innerHTML = `
-                <div style="text-align:center; padding:20px; color:var(--gray);">
-                    <i class="fas fa-spinner fa-spin"></i> Loading records from Google Sheets...
-                </div>
-            `;
-            
-            try {
-                const response = await fetch(apiUrl);
-                const result = await response.json();
-                
-                if (result.success) {
-                    allRecords = result.data;
-                    renderAdminRecords(allRecords);
-                    updateStats(allRecords);
-                } else {
-                    document.getElementById('adminRecordList').innerHTML = `
-                        <div style="text-align:center; padding:20px; color:#d93025;">
-                            <i class="fas fa-exclamation-circle"></i> Error: ${result.error || 'Failed to load data'}
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                document.getElementById('adminRecordList').innerHTML = `
-                    <div style="text-align:center; padding:20px; color:#d93025;">
-                        <i class="fas fa-exclamation-circle"></i> Failed to connect: ${error.message}
-                    </div>
-                `;
-            }
-        }
-        
-        // Render admin records
-        function renderAdminRecords(records) {
-            if (records.length === 0) {
-                document.getElementById('adminRecordList').innerHTML = `
-                    <div style="text-align:center; padding:20px; color:var(--gray);">
-                        <i class="fas fa-database"></i> No records found. Add your first record!
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = '';
-            records.forEach((record, index) => {
-                html += `
-                    <div class="record-item" data-index="${index}">
-                        <span>
-                            <strong>${record['Student Name'] || 'N/A'}</strong> - 
-                            ${record['Title'] || 'N/A'} 
-                            (Roll: ${record['Roll Number'] || 'N/A'})
-                        </span>
-                        <div class="actions">
-                            <button class="edit-record" data-index="${index}"><i class="fas fa-edit"></i></button>
-                            <button class="delete-record" data-index="${index}"><i class="fas fa-trash"></i></button>
-                        </div>
-                    </div>
-                `;
+        // GALLERY LIGHTBOX
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+            <span class="close-lightbox">&times;</span>
+            <img src="" alt="Gallery Image" />
+        `;
+        document.body.appendChild(lightbox);
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const lightboxImg = lightbox.querySelector('img');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
-            document.getElementById('adminRecordList').innerHTML = html;
-            
-            // Edit button
-            document.querySelectorAll('.edit-record').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const idx = parseInt(this.dataset.index);
-                    editRecord(idx);
-                });
-            });
-            
-            // Delete button
-            document.querySelectorAll('.delete-record').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const idx = parseInt(this.dataset.index);
-                    deleteRecord(idx);
-                });
-            });
-        }
-        
-        // Update stats
-        function updateStats(records) {
-            document.getElementById('totalStudents').textContent = records.length;
-            const verified = records.filter(r => r['Verification Status'] === 'Verified').length;
-            document.getElementById('totalVerified').textContent = verified;
-            document.getElementById('totalUnverified').textContent = records.length - verified;
-        }
-        
-        // Add record
-        document.getElementById('adminAddBtn').addEventListener('click', function() {
-            if (!apiUrl) {
-                alert('Please connect API first.');
-                return;
-            }
-            
-            const record = {};
-            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number', 
-                           'Credential Number', 'Verification ID', 'Roll Number', 'Student ID', 
-                           'Completion Year', 'Description'];
-            
-            fields.forEach(field => {
-                const value = prompt(`Enter ${field}:`);
-                if (value !== null) {
-                    record[field] = value;
-                }
-            });
-            
-            if (Object.keys(record).length > 0) {
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(record)
-                })
-                .then(res => res.json())
-                .then(result => {
-                    if (result.success) {
-                        alert('Record added successfully!');
-                        loadAdminRecords();
-                    } else {
-                        alert('Error: ' + (result.error || 'Failed to add record'));
-                    }
-                })
-                .catch(err => alert('Error: ' + err.message));
-            }
         });
-        
-        // Edit record
-        async function editRecord(index) {
-            const record = allRecords[index];
-            if (!record) return;
-            
-            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number', 
-                           'Credential Number', 'Verification ID', 'Roll Number', 'Student ID', 
-                           'Completion Year', 'Description'];
-            
-            const updated = {};
-            fields.forEach(field => {
-                const value = prompt(`Edit ${field}:`, record[field] || '');
-                if (value !== null) {
-                    updated[field] = value;
-                }
-            });
-            
-            if (Object.keys(updated).length > 0) {
-                fetch(apiUrl, {
-                    method: 'PUT',
-                    body: JSON.stringify(updated)
-                })
-                .then(res => res.json())
-                .then(result => {
-                    if (result.success) {
-                        alert('Record updated successfully!');
-                        loadAdminRecords();
-                    } else {
-                        alert('Error: ' + (result.error || 'Failed to update record'));
-                    }
-                })
-                .catch(err => alert('Error: ' + err.message));
-            }
-        }
-        
-        // Delete record
-        async function deleteRecord(index) {
-            const record = allRecords[index];
-            if (!record) return;
-            
-            if (!confirm(`Delete record for ${record['Student Name'] || 'N/A'}?`)) return;
-            
-            const payload = {
-                'Roll Number': record['Roll Number'] || record['Student ID'] || ''
-            };
-            
-            fetch(apiUrl, {
-                method: 'DELETE',
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(result => {
-                if (result.success) {
-                    alert('Record deleted successfully!');
-                    loadAdminRecords();
-                } else {
-                    alert('Error: ' + (result.error || 'Failed to delete record'));
-                }
-            })
-            .catch(err => alert('Error: ' + err.message));
-        }
-        
-        // Sync button
-        document.getElementById('adminSyncBtn').addEventListener('click', function() {
-            loadAdminRecords();
-            alert('Synced with Google Sheets!');
-        });
-        
-        // Refresh button
-        document.getElementById('adminRefreshBtn').addEventListener('click', function() {
-            loadAdminRecords();
-        });
-        
-        // Search
-        document.getElementById('adminSearch').addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            const filtered = allRecords.filter(record => 
-                (record['Student Name'] || '').toLowerCase().includes(query) ||
-                (record['Roll Number'] || '').toLowerCase().includes(query) ||
-                (record['Title'] || '').toLowerCase().includes(query)
-            );
-            renderAdminRecords(filtered);
-        });
-        
-        // Admin login
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('adminUser').value;
-            const pass = document.getElementById('adminPass').value;
-            if (user === 'admin' && pass === 'Old@123456') {
-                document.getElementById('adminLoginForm').style.display = 'none';
-                document.getElementById('adminPanel').style.display = 'block';
-                if (apiUrl) {
-                    loadAdminRecords();
-                } else {
-                    document.getElementById('adminRecordList').innerHTML = `
-                        <div style="text-align:center; padding:20px; color:var(--gray);">
-                            <i class="fas fa-link"></i> Please connect API using the URL above.
-                        </div>
-                    `;
-                }
-            } else {
-                alert('Invalid username or password.');
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('close-lightbox')) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
 
-        // ============================================
-        // LOAD INITIAL DATA
-        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
         loadPrograms();
         renderFaculty();
     </script>
+
 </body>
 </html>
