@@ -416,20 +416,11 @@
             background: #c9a84c;
             border-radius: 10px;
         }
-        /* API URL Box Hide - Hardcoded */
-        .api-section input {
-            display: none;
-        }
-        .api-section .btn-primary {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-    LOGIN PAGE (No Default Values)
-    ============================================ -->
+    <!-- LOGIN PAGE -->
     <div id="loginPage" class="login-container">
         <h2>🔐 <span class="gold">CIU</span> Admin</h2>
         <p>Enter your credentials to access the admin panel.</p>
@@ -439,12 +430,9 @@
         <p style="margin-top:12px; font-size:12px; color:#6a7b8c;">Contact administrator for credentials.</p>
     </div>
 
-    <!-- ============================================
-    ADMIN PANEL (Hidden until login)
-    ============================================ -->
+    <!-- ADMIN PANEL -->
     <div id="adminPanel" class="hidden">
         <div class="admin-wrapper">
-            <!-- Header -->
             <div class="admin-header">
                 <div class="logo">🏛️ <span class="gold">CIU</span> Admin</div>
                 <div class="user-info">
@@ -453,9 +441,7 @@
                 </div>
             </div>
 
-            <!-- Body -->
             <div class="admin-body">
-                <!-- Sidebar -->
                 <div class="admin-sidebar">
                     <button class="menu-item active" data-tab="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</button>
                     <button class="menu-item" data-tab="students"><i class="fas fa-user-graduate"></i> Students</button>
@@ -468,9 +454,7 @@
                     <button class="menu-item" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
                 </div>
 
-                <!-- Content -->
                 <div class="admin-content">
-
                     <!-- DASHBOARD -->
                     <div id="tab-dashboard" class="tab-content active">
                         <div class="page-title"><i class="fas fa-chart-pie"></i> Dashboard</div>
@@ -481,41 +465,28 @@
                             <div class="stat-card"><div class="number" id="dashTotalResearch">0</div><div class="label">Research Projects</div></div>
                         </div>
                         <div style="background:#f8f9fa; padding:20px; border-radius:12px; text-align:center; color:#6a7b8c;">
-                            <i class="fas fa-info-circle"></i> Welcome to the CIU Admin Panel. Use the sidebar to manage your university data.
+                            <i class="fas fa-info-circle"></i> Welcome to the CIU Admin Panel.
                         </div>
                     </div>
 
                     <!-- STUDENTS -->
                     <div id="tab-students" class="tab-content">
                         <div class="page-title"><i class="fas fa-user-graduate"></i> Student Records</div>
-
-                        <!-- API Section - Hidden because URL is hardcoded -->
                         <div class="api-section">
-                            <span class="status connected" id="apiStatus">✅ API Connected (Hardcoded)</span>
+                            <input type="text" id="apiUrl" placeholder="Google Apps Script API URL" />
+                            <button class="btn btn-primary" id="connectApiBtn"><i class="fas fa-link"></i> Connect</button>
+                            <span class="status" id="apiStatus">⚠️ Not connected</span>
                         </div>
-
                         <div class="search-bar">
                             <input type="text" id="studentSearch" placeholder="Search by name, roll, program..." />
                             <button class="btn btn-primary" id="addStudentBtn"><i class="fas fa-plus"></i> Add</button>
                             <button class="btn btn-navy" id="syncStudentBtn"><i class="fas fa-sync"></i> Sync</button>
                             <button class="btn btn-navy" id="refreshStudentBtn"><i class="fas fa-redo"></i> Refresh</button>
                         </div>
-
                         <div class="records-table-wrap">
                             <table class="records-table" id="studentTable">
-                                <thead>
-                                    <tr>
-                                        <th>Student Name</th>
-                                        <th>Type</th>
-                                        <th>Program</th>
-                                        <th>Roll Number</th>
-                                        <th>Year</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="studentTableBody">
-                                    <tr><td colspan="6" class="empty-state">Loading records...</td></tr>
-                                </tbody>
+                                <thead><tr><th>Student Name</th><th>Type</th><th>Program</th><th>Roll Number</th><th>Year</th><th>Actions</th></tr></thead>
+                                <tbody id="studentTableBody"><tr><td colspan="6" class="empty-state">Connect API to load records.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -530,9 +501,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="programTable">
                                 <thead><tr><th>Title</th><th>Type</th><th>Faculty</th><th>Duration</th><th>Actions</th></tr></thead>
-                                <tbody id="programTableBody">
-                                    <tr><td colspan="5" class="empty-state">No programs added yet.</td></tr>
-                                </tbody>
+                                <tbody id="programTableBody"><tr><td colspan="5" class="empty-state">No programs added yet.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -547,9 +516,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="facultyTable">
                                 <thead><tr><th>Name</th><th>Position</th><th>Department</th><th>Discipline</th><th>Actions</th></tr></thead>
-                                <tbody id="facultyTableBody">
-                                    <tr><td colspan="5" class="empty-state">No faculty members added yet.</td></tr>
-                                </tbody>
+                                <tbody id="facultyTableBody"><tr><td colspan="5" class="empty-state">No faculty added yet.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -564,9 +531,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="researchTable">
                                 <thead><tr><th>Title</th><th>Area</th><th>Researcher</th><th>Status</th><th>Actions</th></tr></thead>
-                                <tbody id="researchTableBody">
-                                    <tr><td colspan="5" class="empty-state">No research projects added yet.</td></tr>
-                                </tbody>
+                                <tbody id="researchTableBody"><tr><td colspan="5" class="empty-state">No research added yet.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -581,9 +546,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="newsTable">
                                 <thead><tr><th>Title</th><th>Date</th><th>Category</th><th>Actions</th></tr></thead>
-                                <tbody id="newsTableBody">
-                                    <tr><td colspan="4" class="empty-state">No news articles added yet.</td></tr>
-                                </tbody>
+                                <tbody id="newsTableBody"><tr><td colspan="4" class="empty-state">No news added yet.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -598,9 +561,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="eventTable">
                                 <thead><tr><th>Title</th><th>Date</th><th>Location</th><th>Actions</th></tr></thead>
-                                <tbody id="eventTableBody">
-                                    <tr><td colspan="4" class="empty-state">No events added yet.</td></tr>
-                                </tbody>
+                                <tbody id="eventTableBody"><tr><td colspan="4" class="empty-state">No events added yet.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -615,9 +576,7 @@
                         <div class="records-table-wrap">
                             <table class="records-table" id="galleryTable">
                                 <thead><tr><th>Image</th><th>Caption</th><th>Actions</th></tr></thead>
-                                <tbody id="galleryTableBody">
-                                    <tr><td colspan="3" class="empty-state">No images in gallery yet.</td></tr>
-                                </tbody>
+                                <tbody id="galleryTableBody"><tr><td colspan="3" class="empty-state">No images in gallery.</td></tr></tbody>
                             </table>
                         </div>
                     </div>
@@ -642,27 +601,22 @@
                         </div>
                     </div>
 
-                </div><!-- /content -->
-            </div><!-- /body -->
-        </div><!-- /wrapper -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         // ============================================
-        // 🔥 HARDLY CODED API URL - WORLDWIDE ACCESS
+        // HARDCODED API URL
         // ============================================
-        // 🔴 YAHAN APNA API URL DAALEIN 🔴
-        const HARD_CODED_API_URL = https://script.google.com/macros/s/AKfycbywQXA4BbHOdGeEZjfsiQv-h5apghPVp0w_iphm4RAHSmOytdDN1AjwHCOdEJhG2YDm/exec;
-        // ⚠️ Is URL ko apne actual API URL se replace karein!
-
-        // ============================================
-        // CONFIGURATION
-        // ============================================
+        const HARD_CODED_API_URL = 'https://script.google.com/macros/s/AKfycbywQX4BbHO.../exec';
         let apiUrl = HARD_CODED_API_URL;
         let allRecords = [];
-        let isLoggedIn = false;
 
-        // DOM Elements
+        // ============================================
+        // DOM ELEMENTS
+        // ============================================
         const loginPage = document.getElementById('loginPage');
         const adminPanel = document.getElementById('adminPanel');
         const loginBtn = document.getElementById('loginBtn');
@@ -671,44 +625,46 @@
         const logoutBtn = document.getElementById('logoutBtn');
 
         // ============================================
-        // LOGIN / LOGOUT
+        // CHECK LOGIN STATUS
         // ============================================
-        function checkLogin() {
-            if (localStorage.getItem('ciu_admin_logged_in') === 'true') {
-                loginPage.classList.add('hidden');
-                adminPanel.classList.remove('hidden');
-                isLoggedIn = true;
-                loadStudentRecords();
-            }
+        if (localStorage.getItem('ciu_admin_logged_in') === 'true') {
+            loginPage.classList.add('hidden');
+            adminPanel.classList.remove('hidden');
+            loadStudentRecords();
         }
 
+        // ============================================
+        // LOGIN
+        // ============================================
         loginBtn.addEventListener('click', function() {
             const user = loginUser.value.trim();
             const pass = loginPass.value.trim();
+
             if (user === 'admin' && pass === 'Old@123456') {
                 localStorage.setItem('ciu_admin_logged_in', 'true');
                 loginPage.classList.add('hidden');
                 adminPanel.classList.remove('hidden');
-                isLoggedIn = true;
                 loadStudentRecords();
             } else {
                 alert('Invalid username or password.');
             }
         });
 
-        logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('ciu_admin_logged_in');
-            loginPage.classList.remove('hidden');
-            adminPanel.classList.add('hidden');
-            isLoggedIn = false;
-        });
-
-        // Enter key for login
+        // Enter key
         loginPass.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') loginBtn.click();
         });
         loginUser.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') loginBtn.click();
+        });
+
+        // ============================================
+        // LOGOUT
+        // ============================================
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('ciu_admin_logged_in');
+            loginPage.classList.remove('hidden');
+            adminPanel.classList.add('hidden');
         });
 
         // ============================================
@@ -728,14 +684,8 @@
         // LOAD STUDENT RECORDS
         // ============================================
         async function loadStudentRecords() {
-            if (!apiUrl) {
-                document.getElementById('studentTableBody').innerHTML =
-                    `<tr><td colspan="6" class="empty-state">API URL not configured.</td></tr>`;
-                return;
-            }
-
-            document.getElementById('studentTableBody').innerHTML =
-                `<tr><td colspan="6" class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading records...</td></tr>`;
+            const tbody = document.getElementById('studentTableBody');
+            tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
 
             try {
                 const response = await fetch(apiUrl);
@@ -746,22 +696,17 @@
                     renderStudentTable(allRecords);
                     updateDashboardStats(allRecords);
                 } else {
-                    document.getElementById('studentTableBody').innerHTML =
-                        `<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error: ${result.error || 'Failed to load data'}</td></tr>`;
+                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error loading data.</td></tr>';
                 }
             } catch (error) {
-                document.getElementById('studentTableBody').innerHTML =
-                    `<tr><td colspan="6" class="empty-state" style="color:#d93025;">Failed to connect: ${error.message}</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Failed to connect: ' + error.message + '</td></tr>';
             }
         }
 
-        // ============================================
-        // RENDER STUDENT TABLE
-        // ============================================
         function renderStudentTable(records) {
             const tbody = document.getElementById('studentTableBody');
             if (records.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="empty-state">No records found. Add your first record!</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="6" class="empty-state">No records found.</td></tr>';
                 return;
             }
 
@@ -800,25 +745,14 @@
             });
         }
 
-        // ============================================
-        // UPDATE DASHBOARD STATS
-        // ============================================
         function updateDashboardStats(records) {
             document.getElementById('dashTotalStudents').textContent = records.length;
-            document.getElementById('dashTotalPrograms').textContent = '12';
-            document.getElementById('dashTotalFaculty').textContent = '45';
-            document.getElementById('dashTotalResearch').textContent = '18';
         }
 
         // ============================================
-        // ADD STUDENT RECORD
+        // ADD STUDENT
         // ============================================
         document.getElementById('addStudentBtn').addEventListener('click', function() {
-            if (!apiUrl) {
-                alert('API not configured.');
-                return;
-            }
-
             const record = {};
             const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number',
                 'Credential Number', 'Verification ID', 'Roll Number', 'Student ID',
@@ -826,32 +760,27 @@
             ];
 
             fields.forEach(field => {
-                const value = prompt(`Enter ${field}:`);
-                if (value !== null) {
-                    record[field] = value;
-                }
+                const value = prompt('Enter ' + field + ':');
+                if (value !== null) record[field] = value;
             });
 
             if (Object.keys(record).length > 0) {
-                fetch(apiUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(record)
-                })
-                .then(res => res.json())
-                .then(result => {
-                    if (result.success) {
-                        alert('✅ Record added successfully!');
-                        loadStudentRecords();
-                    } else {
-                        alert('Error: ' + (result.error || 'Failed to add record'));
-                    }
-                })
-                .catch(err => alert('Error: ' + err.message));
+                fetch(apiUrl, { method: 'POST', body: JSON.stringify(record) })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert('✅ Record added!');
+                            loadStudentRecords();
+                        } else {
+                            alert('Error: ' + (result.error || 'Failed'));
+                        }
+                    })
+                    .catch(err => alert('Error: ' + err.message));
             }
         });
 
         // ============================================
-        // EDIT STUDENT RECORD
+        // EDIT STUDENT
         // ============================================
         async function editStudentRecord(index) {
             const record = allRecords[index];
@@ -864,61 +793,50 @@
 
             const updated = {};
             fields.forEach(field => {
-                const value = prompt(`Edit ${field}:`, record[field] || '');
-                if (value !== null) {
-                    updated[field] = value;
-                }
+                const value = prompt('Edit ' + field + ':', record[field] || '');
+                if (value !== null) updated[field] = value;
             });
 
             if (Object.keys(updated).length > 0) {
-                fetch(apiUrl, {
-                    method: 'PUT',
-                    body: JSON.stringify(updated)
-                })
-                .then(res => res.json())
-                .then(result => {
-                    if (result.success) {
-                        alert('✅ Record updated successfully!');
-                        loadStudentRecords();
-                    } else {
-                        alert('Error: ' + (result.error || 'Failed to update record'));
-                    }
-                })
-                .catch(err => alert('Error: ' + err.message));
+                fetch(apiUrl, { method: 'PUT', body: JSON.stringify(updated) })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert('✅ Record updated!');
+                            loadStudentRecords();
+                        } else {
+                            alert('Error: ' + (result.error || 'Failed'));
+                        }
+                    })
+                    .catch(err => alert('Error: ' + err.message));
             }
         }
 
         // ============================================
-        // DELETE STUDENT RECORD
+        // DELETE STUDENT
         // ============================================
         async function deleteStudentRecord(index) {
             const record = allRecords[index];
             if (!record) return;
+            if (!confirm('Delete record for ' + (record['Student Name'] || 'N/A') + '?')) return;
 
-            if (!confirm(`Delete record for ${record['Student Name'] || 'N/A'}?`)) return;
+            const payload = { 'Roll Number': record['Roll Number'] || record['Student ID'] || '' };
 
-            const payload = {
-                'Roll Number': record['Roll Number'] || record['Student ID'] || ''
-            };
-
-            fetch(apiUrl, {
-                method: 'DELETE',
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(result => {
-                if (result.success) {
-                    alert('✅ Record deleted successfully!');
-                    loadStudentRecords();
-                } else {
-                    alert('Error: ' + (result.error || 'Failed to delete record'));
-                }
-            })
-            .catch(err => alert('Error: ' + err.message));
+            fetch(apiUrl, { method: 'DELETE', body: JSON.stringify(payload) })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('✅ Record deleted!');
+                        loadStudentRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
         }
 
         // ============================================
-        // SEARCH STUDENTS
+        // SEARCH
         // ============================================
         document.getElementById('studentSearch').addEventListener('input', function() {
             const query = this.value.toLowerCase();
@@ -937,20 +855,19 @@
             loadStudentRecords();
             alert('Synced with Google Sheets!');
         });
-
         document.getElementById('refreshStudentBtn').addEventListener('click', function() {
             loadStudentRecords();
         });
 
         // ============================================
-        // PROGRAMS MANAGEMENT (Local Storage)
+        // PROGRAMS (Local Storage)
         // ============================================
         let programs = JSON.parse(localStorage.getItem('ciu_programs') || '[]');
 
         function renderPrograms() {
             const tbody = document.getElementById('programTableBody');
             if (programs.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No programs added yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No programs added.</td></tr>';
                 return;
             }
             let html = '';
@@ -979,7 +896,7 @@
                     const title = prompt('Program Title:', p.title);
                     if (title !== null) {
                         p.title = title;
-                        p.type = prompt('Type (Degree/Diploma/Certificate):', p.type) || p.type;
+                        p.type = prompt('Type:', p.type) || p.type;
                         p.faculty = prompt('Faculty:', p.faculty) || p.faculty;
                         p.duration = prompt('Duration:', p.duration) || p.duration;
                         localStorage.setItem('ciu_programs', JSON.stringify(programs));
@@ -991,7 +908,7 @@
             tbody.querySelectorAll('.delete-program').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete program "${programs[idx].title}"?`)) {
+                    if (confirm('Delete program "' + programs[idx].title + '"?')) {
                         programs.splice(idx, 1);
                         localStorage.setItem('ciu_programs', JSON.stringify(programs));
                         renderPrograms();
@@ -1005,7 +922,7 @@
             if (title) {
                 programs.push({
                     title: title,
-                    type: prompt('Type (Degree/Diploma/Certificate):') || 'Degree',
+                    type: prompt('Type:') || 'Degree',
                     faculty: prompt('Faculty:') || 'CIU',
                     duration: prompt('Duration:') || 'N/A'
                 });
@@ -1015,14 +932,14 @@
         });
 
         // ============================================
-        // FACULTY MANAGEMENT (Local Storage)
+        // FACULTY (Local Storage)
         // ============================================
         let faculty = JSON.parse(localStorage.getItem('ciu_faculty') || '[]');
 
         function renderFaculty() {
             const tbody = document.getElementById('facultyTableBody');
             if (faculty.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No faculty members added yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No faculty added.</td></tr>';
                 return;
             }
             let html = '';
@@ -1063,7 +980,7 @@
             tbody.querySelectorAll('.delete-faculty').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete faculty "${faculty[idx].name}"?`)) {
+                    if (confirm('Delete faculty "' + faculty[idx].name + '"?')) {
                         faculty.splice(idx, 1);
                         localStorage.setItem('ciu_faculty', JSON.stringify(faculty));
                         renderFaculty();
@@ -1087,14 +1004,14 @@
         });
 
         // ============================================
-        // RESEARCH MANAGEMENT (Local Storage)
+        // RESEARCH (Local Storage)
         // ============================================
         let research = JSON.parse(localStorage.getItem('ciu_research') || '[]');
 
         function renderResearch() {
             const tbody = document.getElementById('researchTableBody');
             if (research.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No research projects added yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No research added.</td></tr>';
                 return;
             }
             let html = '';
@@ -1123,9 +1040,9 @@
                     const title = prompt('Title:', r.title);
                     if (title !== null) {
                         r.title = title;
-                        r.area = prompt('Research Area:', r.area) || r.area;
+                        r.area = prompt('Area:', r.area) || r.area;
                         r.researcher = prompt('Researcher:', r.researcher) || r.researcher;
-                        r.status = prompt('Status (Active/Completed/Ongoing):', r.status) || r.status;
+                        r.status = prompt('Status:', r.status) || r.status;
                         localStorage.setItem('ciu_research', JSON.stringify(research));
                         renderResearch();
                     }
@@ -1135,7 +1052,7 @@
             tbody.querySelectorAll('.delete-research').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete research "${research[idx].title}"?`)) {
+                    if (confirm('Delete research "' + research[idx].title + '"?')) {
                         research.splice(idx, 1);
                         localStorage.setItem('ciu_research', JSON.stringify(research));
                         renderResearch();
@@ -1149,9 +1066,9 @@
             if (title) {
                 research.push({
                     title: title,
-                    area: prompt('Research Area:') || 'N/A',
+                    area: prompt('Area:') || 'N/A',
                     researcher: prompt('Researcher:') || 'N/A',
-                    status: prompt('Status (Active/Completed/Ongoing):') || 'Active'
+                    status: prompt('Status:') || 'Active'
                 });
                 localStorage.setItem('ciu_research', JSON.stringify(research));
                 renderResearch();
@@ -1159,14 +1076,14 @@
         });
 
         // ============================================
-        // NEWS MANAGEMENT (Local Storage)
+        // NEWS (Local Storage)
         // ============================================
         let news = JSON.parse(localStorage.getItem('ciu_news') || '[]');
 
         function renderNews() {
             const tbody = document.getElementById('newsTableBody');
             if (news.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="empty-state">No news articles added yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No news added.</td></tr>';
                 return;
             }
             let html = '';
@@ -1205,7 +1122,7 @@
             tbody.querySelectorAll('.delete-news').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete news "${news[idx].title}"?`)) {
+                    if (confirm('Delete news "' + news[idx].title + '"?')) {
                         news.splice(idx, 1);
                         localStorage.setItem('ciu_news', JSON.stringify(news));
                         renderNews();
@@ -1219,7 +1136,7 @@
             if (title) {
                 news.push({
                     title: title,
-                    date: prompt('Date (e.g., Aug 23, 2026):') || new Date().toLocaleDateString(),
+                    date: prompt('Date:') || new Date().toLocaleDateString(),
                     category: prompt('Category:') || 'University'
                 });
                 localStorage.setItem('ciu_news', JSON.stringify(news));
@@ -1228,14 +1145,14 @@
         });
 
         // ============================================
-        // EVENTS MANAGEMENT (Local Storage)
+        // EVENTS (Local Storage)
         // ============================================
         let events = JSON.parse(localStorage.getItem('ciu_events') || '[]');
 
         function renderEvents() {
             const tbody = document.getElementById('eventTableBody');
             if (events.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="empty-state">No events added yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="4" class="empty-state">No events added.</td></tr>';
                 return;
             }
             let html = '';
@@ -1274,7 +1191,7 @@
             tbody.querySelectorAll('.delete-event').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete event "${events[idx].title}"?`)) {
+                    if (confirm('Delete event "' + events[idx].title + '"?')) {
                         events.splice(idx, 1);
                         localStorage.setItem('ciu_events', JSON.stringify(events));
                         renderEvents();
@@ -1297,14 +1214,14 @@
         });
 
         // ============================================
-        // GALLERY MANAGEMENT
+        // GALLERY (Local Storage)
         // ============================================
         let gallery = JSON.parse(localStorage.getItem('ciu_gallery') || '[]');
 
         function renderGallery() {
             const tbody = document.getElementById('galleryTableBody');
             if (gallery.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3" class="empty-state">No images in gallery yet.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="3" class="empty-state">No images in gallery.</td></tr>';
                 return;
             }
             let html = '';
@@ -1326,7 +1243,7 @@
             tbody.querySelectorAll('.delete-gallery').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
-                    if (confirm(`Delete image "${gallery[idx].caption}"?`)) {
+                    if (confirm('Delete image "' + gallery[idx].caption + '"?')) {
                         gallery.splice(idx, 1);
                         localStorage.setItem('ciu_gallery', JSON.stringify(gallery));
                         renderGallery();
@@ -1336,9 +1253,9 @@
         }
 
         document.getElementById('uploadImageBtn').addEventListener('click', function() {
-            const url = prompt('Enter image URL (e.g., https://example.com/image.jpg):');
+            const url = prompt('Enter image URL:');
             if (url) {
-                const caption = prompt('Enter image caption:') || 'Gallery Image';
+                const caption = prompt('Enter caption:') || 'Gallery Image';
                 gallery.push({ url: url, caption: caption });
                 localStorage.setItem('ciu_gallery', JSON.stringify(gallery));
                 renderGallery();
@@ -1361,18 +1278,15 @@
             localStorage.setItem('ciu_admin_email', email);
 
             if (newPass && newPass.length > 0) {
-                alert('Password change feature requires backend implementation.');
+                alert('Password change requires backend implementation.');
             }
 
-            alert('✅ Settings saved successfully!');
+            alert('✅ Settings saved!');
         });
 
         // ============================================
         // INIT
         // ============================================
-        checkLogin();
-
-        // Render all local storage tables
         renderPrograms();
         renderFaculty();
         renderResearch();
@@ -1380,9 +1294,9 @@
         renderEvents();
         renderGallery();
 
-        // Load saved settings
         document.getElementById('settingUniName').value = localStorage.getItem('ciu_uni_name') || 'Candroha International University';
         document.getElementById('settingAdminEmail').value = localStorage.getItem('ciu_admin_email') || 'candrohaeducation@gmail.com';
     </script>
+
 </body>
 </html>
