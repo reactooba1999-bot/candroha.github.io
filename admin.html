@@ -36,6 +36,10 @@
         .btn-primary:hover { background: #a8892e; }
         .btn-navy { background: #0a2540; color: white; }
         .btn-navy:hover { background: #1a3a5c; }
+        .btn-danger { background: #d93025; color: white; }
+        .btn-danger:hover { background: #b71c1c; }
+        .btn-close-form { background: #6a7b8c; color: white; }
+        .btn-close-form:hover { background: #4a5a6c; }
         .records-table { width: 100%; border-collapse: collapse; font-size: 14px; }
         .records-table th { background: #f8f9fa; padding: 10px 12px; text-align: left; color: #0a2540; font-weight: 600; border-bottom: 2px solid #eef2f7; }
         .records-table td { padding: 10px 12px; border-bottom: 1px solid #eef2f7; color: #1a1a2e; }
@@ -66,28 +70,30 @@
         .records-table-wrap::-webkit-scrollbar { width: 6px; }
         .records-table-wrap::-webkit-scrollbar-track { background: #f0f2f5; border-radius: 10px; }
         .records-table-wrap::-webkit-scrollbar-thumb { background: #c9a84c; border-radius: 10px; }
-        /* API Status - Small indicator only */
-        .api-status-indicator {
-            font-size: 13px;
-            padding: 6px 14px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-left: 12px;
-        }
-        .api-status-indicator.connected {
-            background: #e6f4ea;
-            color: #1e7e34;
-        }
-        .api-status-indicator.error {
-            background: #fce8e6;
-            color: #b31412;
-        }
+        .api-status-indicator { font-size: 13px; padding: 6px 14px; border-radius: 30px; display: inline-block; margin-left: 12px; }
+        .api-status-indicator.connected { background: #e6f4ea; color: #1e7e34; }
+        .api-status-indicator.error { background: #fce8e6; color: #b31412; }
+        /* Modal Form */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal-form { background: white; max-width: 600px; width: 100%; border-radius: 16px; padding: 30px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+        .modal-form h3 { color: #0a2540; margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid #eef2f7; padding-bottom: 12px; }
+        .modal-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .modal-form .form-group { margin-bottom: 14px; }
+        .modal-form .form-group label { font-size: 13px; font-weight: 600; color: #0a2540; display: block; margin-bottom: 4px; }
+        .modal-form .form-group input, .modal-form .form-group select, .modal-form .form-group textarea { width: 100%; padding: 10px 14px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-family: inherit; }
+        .modal-form .form-group input:focus, .modal-form .form-group select:focus, .modal-form .form-group textarea:focus { outline: none; border-color: #c9a84c; }
+        .modal-form .form-group textarea { min-height: 60px; resize: vertical; }
+        .modal-form .form-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+        .modal-form .form-actions .btn { padding: 10px 28px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.3s ease; font-size: 14px; }
         @media (max-width: 768px) {
             .admin-body { grid-template-columns: 1fr; }
             .admin-sidebar { display: flex; flex-wrap: wrap; gap: 4px; }
             .admin-sidebar .menu-item { padding: 8px 12px; font-size: 13px; }
             .records-table { font-size: 12px; }
             .records-table th, .records-table td { padding: 6px 8px; }
+            .modal-form .form-row { grid-template-columns: 1fr; }
+            .modal-form { padding: 20px; }
         }
     </style>
 </head>
@@ -150,10 +156,9 @@
                     <!-- STUDENTS -->
                     <div id="tab-students" class="tab-content">
                         <div class="page-title"><i class="fas fa-user-graduate"></i> Student Records</div>
-
                         <div class="search-bar">
                             <input type="text" id="studentSearch" placeholder="Search by name, roll, program..." />
-                            <button class="btn btn-primary" id="addStudentBtn"><i class="fas fa-plus"></i> Add</button>
+                            <button class="btn btn-primary" id="addStudentBtn"><i class="fas fa-plus"></i> Add Student</button>
                             <button class="btn btn-navy" id="syncStudentBtn"><i class="fas fa-sync"></i> Sync</button>
                             <button class="btn btn-navy" id="refreshStudentBtn"><i class="fas fa-redo"></i> Refresh</button>
                         </div>
@@ -280,16 +285,84 @@
         </div>
     </div>
 
+    <!-- ============================================
+    ADD STUDENT MODAL FORM
+    ============================================ -->
+    <div class="modal-overlay" id="studentModal">
+        <div class="modal-form">
+            <h3><i class="fas fa-user-plus"></i> Add New Student</h3>
+            <form id="studentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Student Name *</label>
+                        <input type="text" id="fStudentName" placeholder="Full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Type *</label>
+                        <select id="fType" required>
+                            <option value="Degree">Degree</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="Certificate">Certificate</option>
+                            <option value="Research">Research</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Program Title *</label>
+                    <input type="text" id="fTitle" placeholder="e.g., Bachelor of Computer Science" required />
+                </div>
+                <div class="form-group">
+                    <label>Faculty</label>
+                    <input type="text" id="fFaculty" placeholder="e.g., Faculty of Computing & IT" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Registration Number</label>
+                        <input type="text" id="fRegNumber" placeholder="REG-2024-CS-001" />
+                    </div>
+                    <div class="form-group">
+                        <label>Credential Number</label>
+                        <input type="text" id="fCredNumber" placeholder="CRED-CS-2024-001" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Verification ID</label>
+                        <input type="text" id="fVerificationId" placeholder="VER-2024-AH-001" />
+                    </div>
+                    <div class="form-group">
+                        <label>Roll Number</label>
+                        <input type="text" id="fRollNumber" placeholder="ROLL-CS-2024-01" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" id="fStudentId" placeholder="STU-2024-CS-001" />
+                    </div>
+                    <div class="form-group">
+                        <label>Completion Year</label>
+                        <input type="text" id="fCompletionYear" placeholder="2024" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="fDescription" placeholder="Additional details about the student..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-close-form" id="closeModalBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         // ============================================
-        // 🔥 HARDCODED API URL - WORLDWIDE ACCESS
-        // 🔴 YAHAN APNA API URL DAALEIN 🔴
+        // 🔥 HARDCODED API URL
         // ============================================
-        const HARD_CODED_API_URL = 'https://script.google.com/macros/s/AKfycbywQXA4BbHOdGeEZjfsiQv-h5apghPVp0w_iphm4RAHSmOytdDN1AjwHCOdEJhG2YDm/exec';
+        const HARD_CODED_API_URL = 'https://script.google.com/macros/s/AKfycbywQX4BbHO.../exec';
 
-        // ============================================
-        // CONFIGURATION
-        // ============================================
         let apiUrl = HARD_CODED_API_URL;
         let allRecords = [];
 
@@ -303,6 +376,27 @@
         const loginPass = document.getElementById('loginPass');
         const logoutBtn = document.getElementById('logoutBtn');
         const apiStatusIndicator = document.getElementById('apiStatusIndicator');
+
+        // ============================================
+        // SIDEBAR NAVIGATION - FIXED
+        // ============================================
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active from all menu items
+                document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+
+                // Hide all tab content
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+
+                // Show selected tab
+                const tabId = this.dataset.tab;
+                const targetTab = document.getElementById('tab-' + tabId);
+                if (targetTab) {
+                    targetTab.classList.add('active');
+                }
+            });
+        });
 
         // ============================================
         // CHECK LOGIN STATUS
@@ -334,7 +428,6 @@
             }
         });
 
-        // Enter key
         loginPass.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') loginBtn.click();
         });
@@ -369,7 +462,7 @@
                     apiStatusIndicator.textContent = '✅ API Connected';
                     apiStatusIndicator.className = 'api-status-indicator connected';
                 } else {
-                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error loading data. Please check API.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="6" class="empty-state" style="color:#d93025;">Error loading data.</td></tr>';
                     apiStatusIndicator.textContent = '❌ API Error';
                     apiStatusIndicator.className = 'api-status-indicator error';
                 }
@@ -427,33 +520,64 @@
         }
 
         // ============================================
-        // ADD STUDENT
+        // ADD STUDENT - MODAL FORM
         // ============================================
+        const studentModal = document.getElementById('studentModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
         document.getElementById('addStudentBtn').addEventListener('click', function() {
-            const record = {};
-            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number',
-                'Credential Number', 'Verification ID', 'Roll Number', 'Student ID',
-                'Completion Year', 'Description'
-            ];
+            studentModal.classList.add('active');
+            document.getElementById('studentForm').reset();
+        });
 
-            fields.forEach(field => {
-                const value = prompt('Enter ' + field + ':');
-                if (value !== null) record[field] = value;
-            });
+        closeModalBtn.addEventListener('click', function() {
+            studentModal.classList.remove('active');
+        });
 
-            if (Object.keys(record).length > 0) {
-                fetch(apiUrl, { method: 'POST', body: JSON.stringify(record) })
-                    .then(res => res.json())
-                    .then(result => {
-                        if (result.success) {
-                            alert('✅ Record added successfully!');
-                            loadStudentRecords();
-                        } else {
-                            alert('Error: ' + (result.error || 'Failed to add record'));
-                        }
-                    })
-                    .catch(err => alert('Error: ' + err.message));
+        studentModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
             }
+        });
+
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const record = {
+                'Student Name': document.getElementById('fStudentName').value.trim(),
+                'Type': document.getElementById('fType').value,
+                'Title': document.getElementById('fTitle').value.trim(),
+                'Faculty': document.getElementById('fFaculty').value.trim(),
+                'Registration Number': document.getElementById('fRegNumber').value.trim(),
+                'Credential Number': document.getElementById('fCredNumber').value.trim(),
+                'Verification ID': document.getElementById('fVerificationId').value.trim(),
+                'Roll Number': document.getElementById('fRollNumber').value.trim(),
+                'Student ID': document.getElementById('fStudentId').value.trim(),
+                'Completion Year': document.getElementById('fCompletionYear').value.trim(),
+                'Description': document.getElementById('fDescription').value.trim()
+            };
+
+            // Check required fields
+            if (!record['Student Name'] || !record['Title']) {
+                alert('Please fill in Student Name and Program Title.');
+                return;
+            }
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: JSON.stringify(record)
+            })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    alert('✅ Student added successfully!');
+                    studentModal.classList.remove('active');
+                    loadStudentRecords();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to add student'));
+                }
+            })
+            .catch(err => alert('Error: ' + err.message));
         });
 
         // ============================================
@@ -463,30 +587,68 @@
             const record = allRecords[index];
             if (!record) return;
 
-            const fields = ['Student Name', 'Type', 'Title', 'Faculty', 'Registration Number',
-                'Credential Number', 'Verification ID', 'Roll Number', 'Student ID',
-                'Completion Year', 'Description'
-            ];
+            // Fill modal with existing data
+            document.getElementById('fStudentName').value = record['Student Name'] || '';
+            document.getElementById('fType').value = record['Type'] || 'Degree';
+            document.getElementById('fTitle').value = record['Title'] || '';
+            document.getElementById('fFaculty').value = record['Faculty'] || '';
+            document.getElementById('fRegNumber').value = record['Registration Number'] || '';
+            document.getElementById('fCredNumber').value = record['Credential Number'] || '';
+            document.getElementById('fVerificationId').value = record['Verification ID'] || '';
+            document.getElementById('fRollNumber').value = record['Roll Number'] || '';
+            document.getElementById('fStudentId').value = record['Student ID'] || '';
+            document.getElementById('fCompletionYear').value = record['Completion Year'] || '';
+            document.getElementById('fDescription').value = record['Description'] || '';
 
-            const updated = {};
-            fields.forEach(field => {
-                const value = prompt('Edit ' + field + ':', record[field] || '');
-                if (value !== null) updated[field] = value;
-            });
+            // Change form title
+            document.querySelector('#studentModal h3').innerHTML = '<i class="fas fa-user-edit"></i> Edit Student';
 
-            if (Object.keys(updated).length > 0) {
-                fetch(apiUrl, { method: 'PUT', body: JSON.stringify(updated) })
-                    .then(res => res.json())
-                    .then(result => {
-                        if (result.success) {
-                            alert('✅ Record updated successfully!');
-                            loadStudentRecords();
-                        } else {
-                            alert('Error: ' + (result.error || 'Failed to update record'));
-                        }
-                    })
-                    .catch(err => alert('Error: ' + err.message));
-            }
+            // Show modal
+            studentModal.classList.add('active');
+
+            // Override form submit for edit
+            const form = document.getElementById('studentForm');
+            const oldSubmit = form.onsubmit;
+            form.onsubmit = function(e) {
+                e.preventDefault();
+
+                const updated = {
+                    'Student Name': document.getElementById('fStudentName').value.trim(),
+                    'Type': document.getElementById('fType').value,
+                    'Title': document.getElementById('fTitle').value.trim(),
+                    'Faculty': document.getElementById('fFaculty').value.trim(),
+                    'Registration Number': document.getElementById('fRegNumber').value.trim(),
+                    'Credential Number': document.getElementById('fCredNumber').value.trim(),
+                    'Verification ID': document.getElementById('fVerificationId').value.trim(),
+                    'Roll Number': document.getElementById('fRollNumber').value.trim(),
+                    'Student ID': document.getElementById('fStudentId').value.trim(),
+                    'Completion Year': document.getElementById('fCompletionYear').value.trim(),
+                    'Description': document.getElementById('fDescription').value.trim()
+                };
+
+                if (!updated['Student Name'] || !updated['Title']) {
+                    alert('Please fill in Student Name and Program Title.');
+                    return;
+                }
+
+                fetch(apiUrl, {
+                    method: 'PUT',
+                    body: JSON.stringify(updated)
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert('✅ Student updated successfully!');
+                        studentModal.classList.remove('active');
+                        document.querySelector('#studentModal h3').innerHTML = '<i class="fas fa-user-plus"></i> Add New Student';
+                        form.onsubmit = oldSubmit;
+                        loadStudentRecords();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to update student'));
+                    }
+                })
+                .catch(err => alert('Error: ' + err.message));
+            };
         }
 
         // ============================================
