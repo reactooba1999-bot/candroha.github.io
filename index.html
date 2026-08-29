@@ -49,11 +49,11 @@
             --gray-light: #eef2f7;
             --gray: #6a7b8c;
             --dark: #1a1a2e;
-            --shadow: 0 10px 40px rgba(10, 37, 64, 0.08);
-            --shadow-hover: 0 20px 60px rgba(10, 37, 64, 0.15);
+            --shadow: 0 10px 40px rgba(10,37,64,0.08);
+            --shadow-hover: 0 20px 60px rgba(10,37,64,0.15);
             --radius: 16px;
             --radius-lg: 24px;
-            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition: 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -74,8 +74,7 @@
 
         /* PRELOADER */
         #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--navy);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 9999;
@@ -98,6 +97,17 @@
             font-weight: 600; font-size: 15px; cursor: pointer;
             transition: var(--transition); border: none; text-align: center;
             font-family: var(--font-body);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: ''; position: absolute; top: 50%; left: 50%;
+            width: 0; height: 0; border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: width 0.6s ease, height 0.6s ease, top 0.6s ease, left 0.6s ease;
+        }
+        .btn:hover::after {
+            width: 300px; height: 300px; top: -100px; left: -100px;
         }
         .btn-primary { background: var(--gold); color: var(--navy); }
         .btn-primary:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 35px rgba(201,168,76,0.35); }
@@ -120,7 +130,7 @@
         .header .container { display: flex; align-items: center; justify-content: space-between; }
         .logo img { height: 60px; width: auto; display: block; background: transparent !important; filter: brightness(0) invert(1); transition: var(--transition); }
         .logo img:hover { transform: scale(1.05); }
-        .nav { display: flex; align-items: center; gap: 6px; }
+        .nav { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
         .nav a {
             color: rgba(255,255,255,0.8); padding: 8px 14px; font-size: 14px; font-weight: 500;
             border-radius: 8px; transition: var(--transition); position: relative;
@@ -133,14 +143,31 @@
             transition: var(--transition); transform: translateX(-50%);
         }
         .nav a:hover::after { width: 60%; }
+        /* Programs Dropdown */
+        .nav .dropdown { position: relative; }
+        .nav .dropdown-content {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: rgba(10,37,64,0.95); backdrop-filter: blur(20px);
+            min-width: 280px; padding: 12px 0; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+        .nav .dropdown:hover .dropdown-content { display: block; }
+        .nav .dropdown-content a {
+            display: block; padding: 8px 20px; color: rgba(255,255,255,0.8);
+            font-size: 13px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+        .nav .dropdown-content a:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
+        .nav .dropdown-content a::after { display: none; }
         .nav .verify-btn { background: var(--gold); color: var(--navy); padding: 8px 20px; border-radius: 50px; font-weight: 600; }
         .nav .verify-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
         .nav .verify-btn::after { display: none; }
         .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
         .hamburger span { width: 28px; height: 2px; background: var(--white); border-radius: 3px; transition: var(--transition); }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
         .nav-mobile {
             display: none; flex-direction: column; background: rgba(26,58,92,0.95);
             backdrop-filter: blur(20px); padding: 20px; border-radius: 16px;
@@ -199,7 +226,7 @@
 
         /* QUICK LINKS */
         .quick-links { padding: 60px 0; background: var(--off-white); }
-        .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; }
+        .quick-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 20px; }
         .quick-item {
             background: var(--white); padding: 28px 20px; border-radius: var(--radius);
             text-align: center; box-shadow: var(--shadow); transition: var(--transition);
@@ -228,9 +255,9 @@
         .about-card p { color: var(--gray); font-size: 14px; }
         .about-card .divider { width: 60px; height: 2px; background: var(--gold); margin: 16px auto; }
 
-        /* PROGRAMS - EXTREME GRID */
+        /* PROGRAMS */
         .programs-section { padding: 100px 0; background: var(--off-white); }
-        .program-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
+        .program-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; }
         .program-card {
             background: var(--white); border-radius: var(--radius); padding: 30px 28px;
             box-shadow: var(--shadow); transition: var(--transition);
@@ -278,9 +305,139 @@
         .program-detail .modal ul { list-style: disc; padding-left: 20px; margin: 10px 0; }
         .program-detail .modal ul li { margin-bottom: 6px; color: var(--gray); }
 
+        /* APPLY MODAL - EXTREME PROFESSIONAL */
+        .apply-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 3000;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .apply-modal.active { display: flex; }
+        .apply-modal .modal {
+            background: var(--white); max-width: 700px; width: 100%;
+            border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
+            overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        .apply-modal .modal .close {
+            position: absolute; top: 16px; right: 20px; font-size: 28px;
+            cursor: pointer; color: var(--gray); transition: var(--transition);
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .apply-modal .modal .close:hover { background: var(--off-white); color: var(--dark); transform: rotate(90deg); }
+        .apply-modal .modal .modal-header {
+            text-align: center; margin-bottom: 28px; position: relative;
+        }
+        .apply-modal .modal .modal-header .icon {
+            font-size: 48px; color: var(--gold); margin-bottom: 8px; display: block;
+        }
+        .apply-modal .modal .modal-header h2 {
+            font-family: var(--font-heading); color: var(--navy); font-size: 30px;
+        }
+        .apply-modal .modal .modal-header p {
+            color: var(--gray); font-size: 15px; margin-top: 4px;
+        }
+        .apply-modal .modal .modal-header .progress-bar {
+            width: 100%; height: 4px; background: var(--gray-light); border-radius: 4px;
+            margin-top: 16px; overflow: hidden;
+        }
+        .apply-modal .modal .modal-header .progress-bar .progress {
+            width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: 4px; transition: width 0.6s ease;
+        }
+        .apply-modal .modal .form-group {
+            margin-bottom: 18px; position: relative;
+        }
+        .apply-modal .modal .form-group label {
+            display: block; font-size: 13px; font-weight: 600; color: var(--navy);
+            margin-bottom: 4px; letter-spacing: 0.3px;
+        }
+        .apply-modal .modal .form-group label .required {
+            color: #d93025; margin-left: 2px;
+        }
+        .apply-modal .modal .form-group input,
+        .apply-modal .modal .form-group select,
+        .apply-modal .modal .form-group textarea {
+            width: 100%; padding: 14px 18px;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px; font-size: 15px;
+            font-family: var(--font-body);
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--dark);
+        }
+        .apply-modal .modal .form-group input:focus,
+        .apply-modal .modal .form-group select:focus,
+        .apply-modal .modal .form-group textarea:focus {
+            border-color: var(--gold); outline: none;
+            box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+            transform: translateY(-1px);
+        }
+        .apply-modal .modal .form-group input:hover,
+        .apply-modal .modal .form-group select:hover,
+        .apply-modal .modal .form-group textarea:hover {
+            border-color: var(--gold-light);
+        }
+        .apply-modal .modal .form-group textarea {
+            min-height: 100px; resize: vertical;
+        }
+        .apply-modal .modal .form-row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+        }
+        .apply-modal .modal .form-actions {
+            display: flex; gap: 14px; margin-top: 24px;
+        }
+        .apply-modal .modal .form-actions .btn {
+            flex: 1; padding: 16px; border-radius: 12px;
+            font-size: 16px; font-weight: 600;
+            transition: var(--transition);
+        }
+        .apply-modal .modal .form-actions .btn-secondary {
+            background: var(--gray-light); color: var(--gray);
+        }
+        .apply-modal .modal .form-actions .btn-secondary:hover {
+            background: var(--gray); color: var(--white);
+        }
+        .apply-modal .modal .form-actions .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy);
+        }
+        .apply-modal .modal .form-actions .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201,168,76,0.35);
+        }
+        /* Floating labels effect */
+        .apply-modal .modal .form-group.floating {
+            position: relative;
+        }
+        .apply-modal .modal .form-group.floating input,
+        .apply-modal .modal .form-group.floating select,
+        .apply-modal .modal .form-group.floating textarea {
+            padding-top: 20px;
+        }
+        .apply-modal .modal .form-group.floating label {
+            position: absolute; top: 14px; left: 18px;
+            font-size: 14px; color: var(--gray);
+            transition: var(--transition); pointer-events: none;
+            font-weight: 400;
+        }
+        .apply-modal .modal .form-group.floating input:focus ~ label,
+        .apply-modal .modal .form-group.floating input:not(:placeholder-shown) ~ label,
+        .apply-modal .modal .form-group.floating select:focus ~ label,
+        .apply-modal .modal .form-group.floating select:not(:placeholder-shown) ~ label,
+        .apply-modal .modal .form-group.floating textarea:focus ~ label,
+        .apply-modal .modal .form-group.floating textarea:not(:placeholder-shown) ~ label {
+            top: 4px; left: 14px; font-size: 10px; color: var(--gold); font-weight: 600;
+        }
+        .apply-modal .modal .form-group.floating input:focus,
+        .apply-modal .modal .form-group.floating select:focus,
+        .apply-modal .modal .form-group.floating textarea:focus {
+            border-color: var(--gold);
+        }
+
         /* FACULTIES */
         .faculties-section { padding: 100px 0; }
-        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 24px; }
+        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 24px; }
         .faculty-item {
             background: var(--white); padding: 28px 20px; border-radius: var(--radius);
             text-align: center; transition: var(--transition); border: 1px solid var(--gray-light); cursor: pointer;
@@ -291,7 +448,7 @@
 
         /* RESEARCH */
         .research-section { padding: 100px 0; background: var(--off-white); }
-        .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 24px; }
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 24px; }
         .research-card {
             background: var(--white); padding: 28px; border-radius: var(--radius);
             box-shadow: var(--shadow); transition: var(--transition); border-top: 4px solid var(--gold);
@@ -302,7 +459,7 @@
 
         /* WHY CIU */
         .why-section { padding: 100px 0; background: var(--white); }
-        .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 30px; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(230px,1fr)); gap: 30px; }
         .why-item { text-align: center; padding: 24px; transition: var(--transition); }
         .why-item:hover { transform: translateY(-4px); }
         .why-item i { font-size: 40px; color: var(--gold); margin-bottom: 12px; display: block; }
@@ -350,7 +507,7 @@
             transition: var(--transition);
         }
         .faculty-directory .search-box input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
-        .faculty-grid-dir { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; }
+        .faculty-grid-dir { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 24px; }
         .faculty-card {
             background: var(--white); padding: 28px 24px; border-radius: var(--radius);
             box-shadow: var(--shadow); text-align: center; border-bottom: 3px solid var(--gold);
@@ -366,7 +523,7 @@
 
         /* EVENTS */
         .events-section { padding: 100px 0; background: var(--off-white); }
-        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; }
         .event-card {
             background: var(--white); border-radius: var(--radius); padding: 28px;
             box-shadow: var(--shadow); border-left: 4px solid var(--gold);
@@ -380,7 +537,7 @@
 
         /* ALUMNI */
         .alumni-section { padding: 100px 0; }
-        .alumni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; }
+        .alumni-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 24px; }
         .alumni-card {
             background: var(--white); padding: 28px 24px; border-radius: var(--radius);
             box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--gold);
@@ -425,7 +582,7 @@
 
         /* NEWS */
         .news-section { padding: 100px 0; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; }
         .news-card {
             background: var(--white); border-radius: var(--radius); overflow: hidden;
             box-shadow: var(--shadow); transition: var(--transition);
@@ -438,7 +595,7 @@
 
         /* GALLERY */
         .gallery-section { padding: 100px 0; background: var(--off-white); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; }
         .gallery-item {
             position: relative; border-radius: var(--radius); overflow: hidden;
             box-shadow: var(--shadow); transition: var(--transition); cursor: pointer;
@@ -494,7 +651,7 @@
         }
         .contact-form textarea { min-height: 130px; resize: vertical; }
 
-        /* FOOTER - ONLY GMAIL */
+        /* FOOTER */
         .footer {
             background: var(--navy-dark); color: rgba(255,255,255,0.7);
             padding: 70px 0 30px; border-top: 1px solid rgba(201,168,76,0.1);
@@ -546,30 +703,6 @@
         .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
         .back-to-top:hover { background: var(--gold-dark); transform: translateY(-4px); box-shadow: 0 12px 35px rgba(201,168,76,0.45); }
 
-        /* APPLY NOW MODAL */
-        .apply-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 3000;
-            justify-content: center; align-items: center; padding: 20px;
-        }
-        .apply-modal.active { display: flex; }
-        .apply-modal .modal {
-            background: var(--white); max-width: 700px; width: 100%;
-            border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
-            overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
-        }
-        .apply-modal .modal .close {
-            position: absolute; top: 16px; right: 20px; font-size: 28px;
-            cursor: pointer; color: var(--gray); transition: var(--transition);
-            width: 40px; height: 40px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center;
-        }
-        .apply-modal .modal .close:hover { background: var(--off-white); color: var(--dark); }
-        .apply-modal .modal h2 {
-            font-family: var(--font-heading); color: var(--navy); font-size: 28px; margin-bottom: 8px;
-        }
-        .apply-modal .modal p { color: var(--gray); margin-bottom: 24px; }
-
         /* RESPONSIVE */
         @media (max-width: 992px) {
             .hero .container { grid-template-columns: 1fr; text-align: center; }
@@ -581,6 +714,8 @@
             .admissions-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .hero-content h1 { font-size: 40px; }
+            .apply-modal .modal .form-row { grid-template-columns: 1fr; }
+            .nav .dropdown-content { min-width: 200px; }
         }
         @media (max-width: 768px) {
             .nav { display: none; }
@@ -605,6 +740,8 @@
             .footer-grid { gap: 30px; }
             .admissions-form { padding: 20px; }
             .legal-section .content { padding: 24px; }
+            .apply-modal .modal { padding: 24px; }
+            .apply-modal .modal .form-row { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .hero-stats { grid-template-columns: 1fr; }
@@ -634,7 +771,77 @@
             <nav class="nav" id="nav">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
-                <a href="#programs">Programs</a>
+                <div class="dropdown">
+                    <a href="#programs">Programs <i class="fas fa-chevron-down" style="font-size:10px; margin-left:4px;"></i></a>
+                    <div class="dropdown-content">
+                        <a href="#programs">All Programs</a>
+                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Degrees ──</a>
+                        <a href="#programs">Bachelor of Computer Science</a>
+                        <a href="#programs">Bachelor of Software Engineering</a>
+                        <a href="#programs">Bachelor of Artificial Intelligence</a>
+                        <a href="#programs">Bachelor of Data Science</a>
+                        <a href="#programs">Bachelor of Cybersecurity</a>
+                        <a href="#programs">Bachelor of Information Technology</a>
+                        <a href="#programs">Bachelor of Business Administration</a>
+                        <a href="#programs">Bachelor of Accounting</a>
+                        <a href="#programs">Bachelor of Finance</a>
+                        <a href="#programs">Bachelor of Economics</a>
+                        <a href="#programs">Bachelor of Civil Engineering</a>
+                        <a href="#programs">Bachelor of Electrical Engineering</a>
+                        <a href="#programs">Bachelor of Mechanical Engineering</a>
+                        <a href="#programs">Bachelor of Health Sciences</a>
+                        <a href="#programs">Bachelor of Public Health</a>
+                        <a href="#programs">Bachelor of Nursing</a>
+                        <a href="#programs">Bachelor of Psychology</a>
+                        <a href="#programs">Bachelor of Sociology</a>
+                        <a href="#programs">Bachelor of International Relations</a>
+                        <a href="#programs">Bachelor of Law (LLB)</a>
+                        <a href="#programs">Bachelor of English</a>
+                        <a href="#programs">Bachelor of Journalism</a>
+                        <a href="#programs">Bachelor of Mass Communication</a>
+                        <a href="#programs">Bachelor of Mathematics</a>
+                        <a href="#programs">Bachelor of Physics</a>
+                        <a href="#programs">Bachelor of Chemistry</a>
+                        <a href="#programs">Bachelor of Biology</a>
+                        <a href="#programs">Bachelor of Islamic Studies</a>
+                        <a href="#programs">Bachelor of Fine Arts</a>
+                        <a href="#programs">Bachelor of Graphic Design</a>
+                        <a href="#programs">Bachelor of Hospitality Management</a>
+                        <a href="#programs">Bachelor of Tourism Management</a>
+                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Diplomas ──</a>
+                        <a href="#programs">Diploma in Web Development</a>
+                        <a href="#programs">Diploma in Data Analytics</a>
+                        <a href="#programs">Diploma in Cybersecurity</a>
+                        <a href="#programs">Diploma in Digital Marketing</a>
+                        <a href="#programs">Diploma in Project Management</a>
+                        <a href="#programs">Diploma in Healthcare Management</a>
+                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Certificates ──</a>
+                        <a href="#programs">Certificate in AI Fundamentals</a>
+                        <a href="#programs">Certificate in Python Programming</a>
+                        <a href="#programs">Certificate in Cloud Computing</a>
+                        <a href="#programs">Certificate in Business Analytics</a>
+                        <a href="#programs">Certificate in Digital Literacy</a>
+                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Postgraduate ──</a>
+                        <a href="#programs">Master of Computer Science</a>
+                        <a href="#programs">Master of Artificial Intelligence</a>
+                        <a href="#programs">Master of Data Science</a>
+                        <a href="#programs">Master of Business Administration (MBA)</a>
+                        <a href="#programs">Master of Engineering</a>
+                        <a href="#programs">Master of Public Health</a>
+                        <a href="#programs">Master of Psychology</a>
+                        <a href="#programs">Master of International Relations</a>
+                        <a href="#programs">Master of Islamic Studies</a>
+                        <a href="#programs">Master of Fine Arts</a>
+                        <a href="#programs">PhD in Computer Science</a>
+                        <a href="#programs">PhD in Artificial Intelligence</a>
+                        <a href="#programs">PhD in Data Science</a>
+                        <a href="#programs">PhD in Business Administration</a>
+                        <a href="#programs">PhD in Engineering</a>
+                        <a href="#programs">PhD in Health Sciences</a>
+                        <a href="#programs">PhD in Psychology</a>
+                        <a href="#programs">PhD in Islamic Studies</a>
+                    </div>
+                </div>
                 <a href="#research">Research</a>
                 <a href="#faculties">Faculties</a>
                 <a href="#admissions">Admissions</a>
@@ -691,7 +898,7 @@
             </div>
             <div class="hero-stats" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                 <div class="hero-stat"><div class="number" data-count="12">0</div><div class="label">Academic Faculties</div></div>
-                <div class="hero-stat"><div class="number" data-count="50">0</div><div class="label">Academic Programs</div></div>
+                <div class="hero-stat"><div class="number" data-count="75">0</div><div class="label">Academic Programs</div></div>
                 <div class="hero-stat"><div class="number" data-count="1961">0</div><div class="label">Year Established</div></div>
             </div>
         </div>
@@ -739,7 +946,7 @@
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Our <span class="gold">Academic Programs</span></h2>
-                <p>Explore our diverse range of undergraduate, postgraduate, and diploma programs across multiple faculties.</p>
+                <p>Explore our diverse range of undergraduate, postgraduate, diploma, and certificate programs across multiple faculties.</p>
             </div>
             <div class="program-grid" id="programGrid">
                 <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
@@ -770,135 +977,113 @@
         </div>
     </div>
 
-    <!-- APPLY NOW MODAL -->
+    <!-- APPLY MODAL - EXTREME PROFESSIONAL -->
     <div class="apply-modal" id="applyModal">
         <div class="modal">
             <span class="close" id="closeApplyModal">&times;</span>
-            <h2>📝 Apply Now</h2>
-            <p>Fill in the form below to apply for your chosen program.</p>
-            <form id="applyForm">
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-                    <input type="text" placeholder="First Name" required />
-                    <input type="text" placeholder="Last Name" required />
+            <div class="modal-header">
+                <span class="icon">🎓</span>
+                <h2>Apply Now</h2>
+                <p>Fill in the form below to apply for your chosen program at Candroha International University.</p>
+                <div class="progress-bar">
+                    <div class="progress" id="formProgress"></div>
                 </div>
-                <input type="email" placeholder="Email Address" required />
-                <input type="text" placeholder="Phone Number" />
-                <select id="applyProgramSelect" required>
-                    <option value="">Select Program</option>
-                    <option value="BSc Computer Science">BSc Computer Science</option>
-                    <option value="BSc Software Engineering">BSc Software Engineering</option>
-                    <option value="BSc Artificial Intelligence">BSc Artificial Intelligence</option>
-                    <option value="BSc Data Science">BSc Data Science</option>
-                    <option value="BSc Cybersecurity">BSc Cybersecurity</option>
-                    <option value="BSc Information Technology">BSc Information Technology</option>
-                    <option value="BSc Cloud Computing">BSc Cloud Computing</option>
-                    <option value="BSc Robotics">BSc Robotics</option>
-                    <option value="BSc Digital Technology">BSc Digital Technology</option>
-                    <option value="BSc Machine Learning">BSc Machine Learning</option>
-                    <option value="BSc Network Engineering">BSc Network Engineering</option>
-                    <option value="BSc Information Security">BSc Information Security</option>
-                    <option value="BSc Computer Engineering">BSc Computer Engineering</option>
-                    <option value="BSc Database Systems">BSc Database Systems</option>
-                    <option value="BSc Web Technologies">BSc Web Technologies</option>
-                    <option value="BBA Business Administration">BBA Business Administration</option>
-                    <option value="BBA Accounting">BBA Accounting</option>
-                    <option value="BBA Finance">BBA Finance</option>
-                    <option value="BBA Economics">BBA Economics</option>
-                    <option value="BBA Marketing">BBA Marketing</option>
-                    <option value="BBA Management">BBA Management</option>
-                    <option value="BBA Entrepreneurship">BBA Entrepreneurship</option>
-                    <option value="BBA International Business">BBA International Business</option>
-                    <option value="BBA HR Management">BBA HR Management</option>
-                    <option value="BBA Supply Chain Management">BBA Supply Chain Management</option>
-                    <option value="BBA Banking & Finance">BBA Banking & Finance</option>
-                    <option value="BBA Business Analytics">BBA Business Analytics</option>
-                    <option value="BBA Project Management">BBA Project Management</option>
-                    <option value="BSc Civil Engineering">BSc Civil Engineering</option>
-                    <option value="BSc Electrical Engineering">BSc Electrical Engineering</option>
-                    <option value="BSc Mechanical Engineering">BSc Mechanical Engineering</option>
-                    <option value="BSc Electronics Engineering">BSc Electronics Engineering</option>
-                    <option value="BSc Telecommunications">BSc Telecommunications</option>
-                    <option value="BSc Industrial Engineering">BSc Industrial Engineering</option>
-                    <option value="BSc Environmental Engineering">BSc Environmental Engineering</option>
-                    <option value="BSc Mechatronics">BSc Mechatronics</option>
-                    <option value="BSc Energy Engineering">BSc Energy Engineering</option>
-                    <option value="BSc Construction Management">BSc Construction Management</option>
-                    <option value="BSc Health Sciences">BSc Health Sciences</option>
-                    <option value="BSc Public Health">BSc Public Health</option>
-                    <option value="BSc Nursing">BSc Nursing</option>
-                    <option value="BSc Nutrition">BSc Nutrition</option>
-                    <option value="BSc Medical Laboratory Sciences">BSc Medical Laboratory Sciences</option>
-                    <option value="BSc Healthcare Management">BSc Healthcare Management</option>
-                    <option value="BSc Allied Health Sciences">BSc Allied Health Sciences</option>
-                    <option value="BSc Biomedical Sciences">BSc Biomedical Sciences</option>
-                    <option value="BSc Psychology">BSc Psychology</option>
-                    <option value="BSc Sociology">BSc Sociology</option>
-                    <option value="BSc Political Science">BSc Political Science</option>
-                    <option value="BSc International Relations">BSc International Relations</option>
-                    <option value="BSc Education">BSc Education</option>
-                    <option value="BSc History">BSc History</option>
-                    <option value="BSc Geography">BSc Geography</option>
-                    <option value="BSc Anthropology">BSc Anthropology</option>
-                    <option value="BSc Development Studies">BSc Development Studies</option>
-                    <option value="BSc Social Work">BSc Social Work</option>
-                    <option value="BSc Public Policy">BSc Public Policy</option>
-                    <option value="BA English">BA English</option>
-                    <option value="BA English Literature">BA English Literature</option>
-                    <option value="BA Linguistics">BA Linguistics</option>
-                    <option value="BA Applied Linguistics">BA Applied Linguistics</option>
-                    <option value="BA Translation Studies">BA Translation Studies</option>
-                    <option value="BA Philosophy">BA Philosophy</option>
-                    <option value="BA Cultural Studies">BA Cultural Studies</option>
-                    <option value="BA Modern Languages">BA Modern Languages</option>
-                    <option value="LLB Law">LLB Law</option>
-                    <option value="LLB Legal Studies">LLB Legal Studies</option>
-                    <option value="BSc Public Administration">BSc Public Administration</option>
-                    <option value="BSc Governance">BSc Governance</option>
-                    <option value="BA International Law">BA International Law</option>
-                    <option value="BA Political Governance">BA Political Governance</option>
-                    <option value="BA Journalism">BA Journalism</option>
-                    <option value="BA Mass Communication">BA Mass Communication</option>
-                    <option value="BA Digital Media">BA Digital Media</option>
-                    <option value="BA Media Studies">BA Media Studies</option>
-                    <option value="BA Film Studies">BA Film Studies</option>
-                    <option value="BA Communication Studies">BA Communication Studies</option>
-                    <option value="BA Public Relations">BA Public Relations</option>
-                    <option value="BA Advertising">BA Advertising</option>
-                    <option value="BA Digital Journalism">BA Digital Journalism</option>
-                    <option value="BSc Mathematics">BSc Mathematics</option>
-                    <option value="BSc Physics">BSc Physics</option>
-                    <option value="BSc Chemistry">BSc Chemistry</option>
-                    <option value="BSc Biology">BSc Biology</option>
-                    <option value="BSc Environmental Science">BSc Environmental Science</option>
-                    <option value="BSc Earth Sciences">BSc Earth Sciences</option>
-                    <option value="BSc Statistics">BSc Statistics</option>
-                    <option value="BSc Applied Sciences">BSc Applied Sciences</option>
-                    <option value="BA Islamic Studies">BA Islamic Studies</option>
-                    <option value="BA Quranic Studies">BA Quranic Studies</option>
-                    <option value="BA Hadith Studies">BA Hadith Studies</option>
-                    <option value="BA Islamic History">BA Islamic History</option>
-                    <option value="BA Comparative Religion">BA Comparative Religion</option>
-                    <option value="BA Arabic Studies">BA Arabic Studies</option>
-                    <option value="BA Religious Studies">BA Religious Studies</option>
-                    <option value="BA Islamic Civilization">BA Islamic Civilization</option>
-                    <option value="BFA Fine Arts">BFA Fine Arts</option>
-                    <option value="BFA Graphic Design">BFA Graphic Design</option>
-                    <option value="BFA Fashion Design">BFA Fashion Design</option>
-                    <option value="BFA Interior Design">BFA Interior Design</option>
-                    <option value="BFA Visual Communication">BFA Visual Communication</option>
-                    <option value="BFA Creative Arts">BFA Creative Arts</option>
-                    <option value="BFA Digital Design">BFA Digital Design</option>
-                    <option value="BFA Multimedia Design">BFA Multimedia Design</option>
-                    <option value="BBA Hospitality Management">BBA Hospitality Management</option>
-                    <option value="BBA Tourism Management">BBA Tourism Management</option>
-                    <option value="BBA Hotel Management">BBA Hotel Management</option>
-                    <option value="BBA Travel & Tourism">BBA Travel & Tourism</option>
-                    <option value="BBA Event Management">BBA Event Management</option>
-                    <option value="BBA Culinary Management">BBA Culinary Management</option>
-                </select>
-                <input type="text" placeholder="Academic Session (e.g., 2026-27)" />
-                <textarea placeholder="Statement of Purpose / Additional Information" style="min-height:100px;"></textarea>
-                <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Submit Application</button>
+            </div>
+            <form id="applyForm">
+                <div class="form-row">
+                    <div class="form-group floating">
+                        <input type="text" id="applyFirstName" placeholder=" " required />
+                        <label>First Name</label>
+                    </div>
+                    <div class="form-group floating">
+                        <input type="text" id="applyLastName" placeholder=" " required />
+                        <label>Last Name</label>
+                    </div>
+                </div>
+                <div class="form-group floating">
+                    <input type="email" id="applyEmail" placeholder=" " required />
+                    <label>Email Address <span class="required">*</span></label>
+                </div>
+                <div class="form-group floating">
+                    <input type="tel" id="applyPhone" placeholder=" " />
+                    <label>Phone Number</label>
+                </div>
+                <div class="form-group floating">
+                    <select id="applyProgramSelect" required>
+                        <option value="">Select Program</option>
+                        <option value="BSc Computer Science">BSc Computer Science</option>
+                        <option value="BSc Software Engineering">BSc Software Engineering</option>
+                        <option value="BSc Artificial Intelligence">BSc Artificial Intelligence</option>
+                        <option value="BSc Data Science">BSc Data Science</option>
+                        <option value="BSc Cybersecurity">BSc Cybersecurity</option>
+                        <option value="BSc Information Technology">BSc Information Technology</option>
+                        <option value="BBA Business Administration">BBA Business Administration</option>
+                        <option value="BBA Accounting">BBA Accounting</option>
+                        <option value="BBA Finance">BBA Finance</option>
+                        <option value="BBA Economics">BBA Economics</option>
+                        <option value="BSc Civil Engineering">BSc Civil Engineering</option>
+                        <option value="BSc Electrical Engineering">BSc Electrical Engineering</option>
+                        <option value="BSc Mechanical Engineering">BSc Mechanical Engineering</option>
+                        <option value="BSc Health Sciences">BSc Health Sciences</option>
+                        <option value="BSc Public Health">BSc Public Health</option>
+                        <option value="BSc Nursing">BSc Nursing</option>
+                        <option value="BSc Psychology">BSc Psychology</option>
+                        <option value="BSc Sociology">BSc Sociology</option>
+                        <option value="BSc International Relations">BSc International Relations</option>
+                        <option value="LLB Law">LLB Law</option>
+                        <option value="BA English">BA English</option>
+                        <option value="BA Journalism">BA Journalism</option>
+                        <option value="BA Mass Communication">BA Mass Communication</option>
+                        <option value="BSc Mathematics">BSc Mathematics</option>
+                        <option value="BSc Physics">BSc Physics</option>
+                        <option value="BSc Chemistry">BSc Chemistry</option>
+                        <option value="BSc Biology">BSc Biology</option>
+                        <option value="BA Islamic Studies">BA Islamic Studies</option>
+                        <option value="BFA Fine Arts">BFA Fine Arts</option>
+                        <option value="BFA Graphic Design">BFA Graphic Design</option>
+                        <option value="BBA Hospitality Management">BBA Hospitality Management</option>
+                        <option value="BBA Tourism Management">BBA Tourism Management</option>
+                        <option value="Diploma in Web Development">Diploma in Web Development</option>
+                        <option value="Diploma in Data Analytics">Diploma in Data Analytics</option>
+                        <option value="Diploma in Cybersecurity">Diploma in Cybersecurity</option>
+                        <option value="Diploma in Digital Marketing">Diploma in Digital Marketing</option>
+                        <option value="Diploma in Project Management">Diploma in Project Management</option>
+                        <option value="Certificate in AI Fundamentals">Certificate in AI Fundamentals</option>
+                        <option value="Certificate in Python Programming">Certificate in Python Programming</option>
+                        <option value="Certificate in Cloud Computing">Certificate in Cloud Computing</option>
+                        <option value="Certificate in Business Analytics">Certificate in Business Analytics</option>
+                        <option value="Master of Computer Science">Master of Computer Science</option>
+                        <option value="Master of Artificial Intelligence">Master of Artificial Intelligence</option>
+                        <option value="Master of Data Science">Master of Data Science</option>
+                        <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
+                        <option value="Master of Engineering">Master of Engineering</option>
+                        <option value="Master of Public Health">Master of Public Health</option>
+                        <option value="Master of Psychology">Master of Psychology</option>
+                        <option value="Master of International Relations">Master of International Relations</option>
+                        <option value="Master of Islamic Studies">Master of Islamic Studies</option>
+                        <option value="PhD in Computer Science">PhD in Computer Science</option>
+                        <option value="PhD in Artificial Intelligence">PhD in Artificial Intelligence</option>
+                        <option value="PhD in Data Science">PhD in Data Science</option>
+                        <option value="PhD in Business Administration">PhD in Business Administration</option>
+                        <option value="PhD in Engineering">PhD in Engineering</option>
+                        <option value="PhD in Health Sciences">PhD in Health Sciences</option>
+                        <option value="PhD in Psychology">PhD in Psychology</option>
+                        <option value="PhD in Islamic Studies">PhD in Islamic Studies</option>
+                    </select>
+                    <label>Program</label>
+                </div>
+                <div class="form-group floating">
+                    <input type="text" id="applySession" placeholder=" " />
+                    <label>Academic Session (e.g., 2026-27)</label>
+                </div>
+                <div class="form-group floating">
+                    <textarea id="applyStatement" placeholder=" " style="min-height:100px;"></textarea>
+                    <label>Statement of Purpose / Additional Information</label>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="closeApplyFormBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Application</button>
+                </div>
             </form>
         </div>
     </div>
@@ -1460,10 +1645,11 @@
             if (e.target === this) this.classList.remove('active');
         });
 
-        // APPLY NOW MODAL
+        // ============================================
+        // APPLY MODAL - EXTREME PROFESSIONAL
+        // ============================================
         document.getElementById('applyNowBtn').addEventListener('click', function() {
             document.getElementById('applyModal').classList.add('active');
-            // Auto-select the program in the dropdown
             const programTitle = document.getElementById('detailTitle').textContent;
             const select = document.getElementById('applyProgramSelect');
             for (let i = 0; i < select.options.length; i++) {
@@ -1472,22 +1658,54 @@
                     break;
                 }
             }
+            // Reset progress
+            document.getElementById('formProgress').style.width = '0%';
         });
+
         document.getElementById('closeApplyModal').addEventListener('click', function() {
+            document.getElementById('applyModal').classList.remove('active');
+        });
+        document.getElementById('closeApplyFormBtn').addEventListener('click', function() {
             document.getElementById('applyModal').classList.remove('active');
         });
         document.getElementById('applyModal').addEventListener('click', function(e) {
             if (e.target === this) this.classList.remove('active');
         });
 
-        document.getElementById('applyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('✅ Your application has been submitted successfully! We will review it and get back to you soon.');
-            this.reset();
-            document.getElementById('applyModal').classList.remove('active');
+        // Form progress
+        document.querySelectorAll('#applyForm input, #applyForm select, #applyForm textarea').forEach(function(input) {
+            input.addEventListener('input', function() {
+                const form = document.getElementById('applyForm');
+                const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+                let filled = 0;
+                inputs.forEach(function(inp) {
+                    if (inp.value.trim() !== '') filled++;
+                });
+                const progress = Math.round((filled / inputs.length) * 100);
+                document.getElementById('formProgress').style.width = progress + '%';
+            });
         });
 
+        // Apply form submit - with animation
+        document.getElementById('applyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            btn.disabled = true;
+
+            setTimeout(function() {
+                alert('✅ Your application has been submitted successfully! We will review it and get back to you soon.');
+                document.getElementById('applyForm').reset();
+                document.getElementById('applyModal').classList.remove('active');
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
+                btn.disabled = false;
+                document.getElementById('formProgress').style.width = '0%';
+            }, 1500);
+        });
+
+        // ============================================
         // FACULTY DIRECTORY
+        // ============================================
         const facultyData = [
             { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals and leads the AI research lab.' },
             { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems and startup incubation.' },
@@ -1539,7 +1757,9 @@
             if (e.key === 'Enter') renderFaculty(this.value);
         });
 
+        // ============================================
         // ALUMNI STORIES
+        // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
             btn.addEventListener('click', function() {
                 const story = this.closest('.alumni-card').querySelector('.story');
@@ -1548,7 +1768,9 @@
             });
         });
 
+        // ============================================
         // CREDENTIAL VERIFICATION
+        // ============================================
         const verifyBtn = document.getElementById('verifyBtn');
         const verifyInput = document.getElementById('verifyInput');
         const verifyResult = document.getElementById('verifyResult');
@@ -1669,21 +1891,27 @@
 
         verifyInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') verifyBtn.click(); });
 
+        // ============================================
         // CONTACT FORM
+        // ============================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for contacting Candroha International University. We will get back to you soon.');
             this.reset();
         });
 
+        // ============================================
         // ADMISSIONS FORM
+        // ============================================
         document.getElementById('admissionsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Your application has been submitted successfully! We will review it and get back to you.');
             this.reset();
         });
 
+        // ============================================
         // GALLERY LIGHTBOX
+        // ============================================
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
         lightbox.innerHTML = `<span class="close-lightbox">&times;</span><img src="" alt="Gallery Image" />`;
@@ -1714,7 +1942,9 @@
             }
         });
 
+        // ============================================
         // LOAD DATA
+        // ============================================
         loadPrograms();
         renderFaculty();
     </script>
