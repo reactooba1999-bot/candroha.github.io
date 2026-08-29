@@ -4,18 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="xaS1sbSE58YzeHrqv2CH9-px-LbkBMnX6lacGVdnjB4" />
 
     <title>Candroha International University</title>
     <meta name="description" content="Candroha International University - Academic Excellence, Research, Innovation, and Global Learning." />
 
-    <!-- Google / Search Engine Meta Tags -->
     <meta itemprop="name" content="Candroha International University">
     <meta itemprop="description" content="Candroha International University - Academic Excellence, Research, Innovation, and Global Learning.">
     <meta itemprop="image" content="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
 
-    <!-- Facebook / Open Graph Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://candroha.foo.ng/">
     <meta property="og:title" content="Candroha International University">
@@ -23,31 +20,23 @@
     <meta property="og:image" content="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
     <meta property="og:site_name" content="Candroha International University">
 
-    <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Candroha International University">
     <meta name="twitter:description" content="Academic Excellence, Research, Innovation, and Global Learning.">
     <meta name="twitter:image" content="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
 
-    <!-- Favicon -->
     <link rel="icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
 
-    <!-- Google Fonts - Advanced Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- AOS - Scroll Animations -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* ============================================
-                   ROOT VARIABLES
-                   ============================================ */
         :root {
             --navy: #0a2540;
             --navy-light: #1a3a5c;
@@ -69,59 +58,8 @@
             --font-body: 'Inter', sans-serif;
         }
 
-        /* ============================================
-                   PRELOADER
-                   ============================================ */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--navy);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-        #preloader.hide {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader-ring {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(201, 168, 76, 0.1);
-            border-top: 3px solid var(--gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        .loader-text {
-            color: var(--gold);
-            font-family: var(--font-heading);
-            font-size: 18px;
-            margin-top: 20px;
-            letter-spacing: 4px;
-            font-weight: 600;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* ============================================
-                   RESET & BASE
-                   ============================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: var(--font-body);
             background: var(--white);
@@ -129,1608 +67,565 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        ul {
-            list-style: none;
-        }
-        img {
-            max-width: 100%;
-            display: block;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* ============================================
-                   BUTTONS - GLASSMORPHISM
-                   ============================================ */
-        .btn {
-            display: inline-block;
-            padding: 14px 36px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            font-family: var(--font-body);
-        }
-        .btn-primary {
-            background: var(--gold);
-            color: var(--navy);
-        }
-        .btn-primary:hover {
-            background: var(--gold-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(201, 168, 76, 0.35);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid var(--white);
-        }
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--navy);
-            transform: translateY(-3px);
-        }
-        .btn-navy {
-            background: var(--navy);
-            color: var(--white);
-        }
-        .btn-navy:hover {
-            background: var(--navy-light);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(10, 37, 64, 0.3);
-        }
-        .btn-small {
-            font-size: 13px;
-            padding: 8px 22px;
-            border-radius: 50px;
-            background: var(--navy);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: var(--font-body);
-            font-weight: 500;
-        }
-        .btn-small:hover {
-            background: var(--gold);
-            color: var(--navy);
-            transform: translateY(-2px);
-        }
-
-        /* ============================================
-                   HEADER - GLASSMORPHISM
-                   ============================================ */
-        .header {
+        /* PRELOADER */
+        #preloader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 16px 0;
-            transition: var(--transition);
-            background: rgba(10, 37, 64, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--navy);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        .header.scrolled {
-            padding: 10px 0;
-            background: rgba(10, 37, 64, 0.95);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        #preloader.hide { opacity: 0; visibility: hidden; }
+        .loader-ring {
+            width: 60px; height: 60px;
+            border: 3px solid rgba(201,168,76,0.1);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
-        .header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo img {
-            height: 60px;
-            width: auto;
-            display: block;
-            background: transparent !important;
-            filter: brightness(0) invert(1);
-            transition: var(--transition);
-        }
-        .logo img:hover {
-            transform: scale(1.05);
-        }
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .nav a {
-            color: rgba(255, 255, 255, 0.8);
-            padding: 8px 14px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: var(--transition);
-            position: relative;
+        .loader-text { color: var(--gold); font-family: var(--font-heading); font-size: 18px; margin-top: 20px; letter-spacing: 4px; font-weight: 600; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block; padding: 14px 36px; border-radius: 50px;
+            font-weight: 600; font-size: 15px; cursor: pointer;
+            transition: var(--transition); border: none; text-align: center;
             font-family: var(--font-body);
         }
-        .nav a:hover {
-            color: var(--white);
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: var(--transition);
-            transform: translateX(-50%);
-        }
-        .nav a:hover::after {
-            width: 60%;
-        }
-        .nav .verify-btn {
-            background: var(--gold);
-            color: var(--navy);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-        }
-        .nav .verify-btn:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-        }
-        .nav .verify-btn::after {
-            display: none;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-        }
-        .hamburger span {
-            width: 28px;
-            height: 2px;
-            background: var(--white);
-            border-radius: 3px;
-            transition: var(--transition);
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-        .nav-mobile {
-            display: none;
-            flex-direction: column;
-            background: rgba(26, 58, 92, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 12px;
-            gap: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .nav-mobile.open {
-            display: flex;
-        }
-        .nav-mobile a {
-            color: var(--white);
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        .nav-mobile a:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-        .nav-mobile .verify-btn-mobile {
-            background: var(--gold);
-            color: var(--navy);
-            font-weight: 600;
-            text-align: center;
-        }
+        .btn-primary { background: var(--gold); color: var(--navy); }
+        .btn-primary:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 35px rgba(201,168,76,0.35); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid var(--white); }
+        .btn-outline:hover { background: var(--white); color: var(--navy); transform: translateY(-3px); }
+        .btn-navy { background: var(--navy); color: var(--white); }
+        .btn-navy:hover { background: var(--navy-light); transform: translateY(-3px); box-shadow: 0 15px 35px rgba(10,37,64,0.3); }
+        .btn-small { font-size: 13px; padding: 8px 22px; border-radius: 50px; background: var(--navy); color: var(--white); border: none; cursor: pointer; transition: var(--transition); font-family: var(--font-body); font-weight: 500; }
+        .btn-small:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); }
 
-        /* ============================================
-                   HERO - PARALLAX + ANIMATED TEXT
-                   ============================================ */
+        /* HEADER */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            padding: 16px 0; transition: var(--transition);
+            background: rgba(10,37,64,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .header.scrolled { padding: 10px 0; background: rgba(10,37,64,0.95); box-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+        .header .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo img { height: 60px; width: auto; display: block; background: transparent !important; filter: brightness(0) invert(1); transition: var(--transition); }
+        .logo img:hover { transform: scale(1.05); }
+        .nav { display: flex; align-items: center; gap: 6px; }
+        .nav a {
+            color: rgba(255,255,255,0.8); padding: 8px 14px; font-size: 14px; font-weight: 500;
+            border-radius: 8px; transition: var(--transition); position: relative;
+            font-family: var(--font-body);
+        }
+        .nav a:hover { color: var(--white); background: rgba(255,255,255,0.08); }
+        .nav a::after {
+            content: ''; position: absolute; bottom: 2px; left: 50%;
+            width: 0; height: 2px; background: var(--gold);
+            transition: var(--transition); transform: translateX(-50%);
+        }
+        .nav a:hover::after { width: 60%; }
+        .nav .verify-btn { background: var(--gold); color: var(--navy); padding: 8px 20px; border-radius: 50px; font-weight: 600; }
+        .nav .verify-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .nav .verify-btn::after { display: none; }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .hamburger span { width: 28px; height: 2px; background: var(--white); border-radius: 3px; transition: var(--transition); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .nav-mobile {
+            display: none; flex-direction: column; background: rgba(26,58,92,0.95);
+            backdrop-filter: blur(20px); padding: 20px; border-radius: 16px;
+            margin-top: 12px; gap: 4px; border: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a { color: var(--white); padding: 10px 16px; border-radius: 8px; font-size: 15px; font-weight: 500; transition: var(--transition); }
+        .nav-mobile a:hover { background: rgba(255,255,255,0.08); }
+        .nav-mobile .verify-btn-mobile { background: var(--gold); color: var(--navy); font-weight: 600; text-align: center; }
+
+        /* HERO */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: var(--navy);
-            padding-top: 80px;
+            min-height: 100vh; display: flex; align-items: center; position: relative;
+            overflow: hidden; background: var(--navy); padding-top: 80px;
         }
         .hero-video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.25;
-            z-index: 1;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.25; z-index: 1;
         }
         .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0.4) 100%);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(10,37,64,0.85) 0%, rgba(10,37,64,0.4) 100%);
             z-index: 2;
         }
-        .hero .container {
-            position: relative;
-            z-index: 3;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+        .hero .container { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .hero-content h1 {
-            font-family: var(--font-heading);
-            font-size: 56px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: var(--white);
+            font-family: var(--font-heading); font-size: 56px; font-weight: 700;
+            line-height: 1.1; margin-bottom: 20px; color: var(--white);
         }
-        .hero-content h1 .gold {
-            color: var(--gold);
-        }
-        .hero-content .animated-text {
-            display: inline-block;
-            position: relative;
-        }
+        .hero-content h1 .gold { color: var(--gold); }
+        .hero-content .animated-text { display: inline-block; position: relative; }
         .hero-content .animated-text::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 4px;
+            content: ''; position: absolute; bottom: 4px; left: 0;
+            width: 100%; height: 4px; background: var(--gold); border-radius: 4px;
         }
         .hero-content p {
-            font-size: 18px;
-            opacity: 0.85;
-            max-width: 500px;
-            margin-bottom: 32px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px; opacity: 0.85; max-width: 500px;
+            margin-bottom: 32px; line-height: 1.8; color: rgba(255,255,255,0.9);
         }
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 14px; }
+        .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
         .hero-stat {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(10px);
-            padding: 28px 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: var(--transition);
+            background: rgba(255,255,255,0.06); backdrop-filter: blur(10px);
+            padding: 28px 20px; border-radius: var(--radius); text-align: center;
+            border: 1px solid rgba(255,255,255,0.08); transition: var(--transition);
         }
-        .hero-stat:hover {
-            transform: translateY(-6px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .hero-stat .number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gold);
-            font-family: var(--font-heading);
-        }
-        .hero-stat .label {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 4px;
-            color: rgba(255, 255, 255, 0.8);
-        }
+        .hero-stat:hover { transform: translateY(-6px); background: rgba(255,255,255,0.1); }
+        .hero-stat .number { font-size: 36px; font-weight: 700; color: var(--gold); font-family: var(--font-heading); }
+        .hero-stat .label { font-size: 14px; opacity: 0.7; margin-top: 4px; color: rgba(255,255,255,0.8); }
 
-        /* ============================================
-                   SECTION TITLES
-                   ============================================ */
-        .section-title {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-title h2 {
-            font-family: var(--font-heading);
-            font-size: 40px;
-            font-weight: 700;
-            color: var(--navy);
-            margin-bottom: 8px;
-        }
-        .section-title h2 .gold {
-            color: var(--gold);
-        }
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 17px;
-            font-weight: 300;
-        }
+        /* SECTION TITLES */
+        .section-title { text-align: center; margin-bottom: 48px; }
+        .section-title h2 { font-family: var(--font-heading); font-size: 40px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+        .section-title h2 .gold { color: var(--gold); }
+        .section-title p { color: var(--gray); max-width: 600px; margin: 0 auto; font-size: 17px; font-weight: 300; }
 
-        /* ============================================
-                   QUICK LINKS - GLASS CARDS
-                   ============================================ */
-        .quick-links {
-            padding: 60px 0;
-            background: var(--off-white);
-            position: relative;
-            z-index: 1;
-        }
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
+        /* QUICK LINKS */
+        .quick-links { padding: 60px 0; background: var(--off-white); }
+        .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 20px; }
         .quick-item {
-            background: var(--white);
-            padding: 28px 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-bottom: 3px solid transparent;
-            cursor: pointer;
+            background: var(--white); padding: 28px 20px; border-radius: var(--radius);
+            text-align: center; box-shadow: var(--shadow); transition: var(--transition);
+            border-bottom: 3px solid transparent; cursor: pointer;
         }
-        .quick-item:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-            border-bottom-color: var(--gold);
-        }
-        .quick-item i {
-            font-size: 36px;
-            color: var(--gold);
-            margin-bottom: 12px;
-            display: block;
-        }
-        .quick-item h4 {
-            font-size: 16px;
-            color: var(--navy);
-            font-weight: 600;
-        }
+        .quick-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-bottom-color: var(--gold); }
+        .quick-item i { font-size: 36px; color: var(--gold); margin-bottom: 12px; display: block; }
+        .quick-item h4 { font-size: 16px; color: var(--navy); font-weight: 600; }
 
-        /* ============================================
-                   ABOUT - WITH DECORATIVE ELEMENTS
-                   ============================================ */
-        .about-intro {
-            padding: 100px 0;
-            position: relative;
-        }
-        .about-intro .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        .about-intro .text h2 {
-            font-family: var(--font-heading);
-            font-size: 40px;
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-        .about-intro .text h2 .gold {
-            color: var(--gold);
-        }
-        .about-intro .text p {
-            color: var(--gray);
-            font-size: 16px;
-            line-height: 1.9;
-            margin-bottom: 16px;
-        }
-        .about-intro .text .btn {
-            margin-top: 8px;
-        }
+        /* ABOUT */
+        .about-intro { padding: 100px 0; position: relative; }
+        .about-intro .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-intro .text h2 { font-family: var(--font-heading); font-size: 40px; color: var(--navy); margin-bottom: 16px; }
+        .about-intro .text h2 .gold { color: var(--gold); }
+        .about-intro .text p { color: var(--gray); font-size: 16px; line-height: 1.9; margin-bottom: 16px; }
         .about-card {
-            background: var(--off-white);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            text-align: center;
-            border: 1px solid var(--gray-light);
-            position: relative;
-            overflow: hidden;
+            background: var(--off-white); border-radius: var(--radius-lg); padding: 40px;
+            text-align: center; border: 1px solid var(--gray-light); position: relative; overflow: hidden;
         }
         .about-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--gold-dark));
         }
-        .about-card .icon {
-            font-size: 56px;
-            margin-bottom: 12px;
-        }
-        .about-card h3 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            font-size: 24px;
-        }
-        .about-card p {
-            color: var(--gray);
-            font-size: 14px;
-        }
-        .about-card .divider {
-            width: 60px;
-            height: 2px;
-            background: var(--gold);
-            margin: 16px auto;
-        }
+        .about-card .icon { font-size: 56px; margin-bottom: 12px; }
+        .about-card h3 { font-family: var(--font-heading); color: var(--navy); font-size: 24px; }
+        .about-card p { color: var(--gray); font-size: 14px; }
+        .about-card .divider { width: 60px; height: 2px; background: var(--gold); margin: 16px auto; }
 
-        /* ============================================
-                   PROGRAMS - MASONRY
-                   ============================================ */
-        .programs-section {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-        .program-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
+        /* PROGRAMS - EXTREME GRID */
+        .programs-section { padding: 100px 0; background: var(--off-white); }
+        .program-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
         .program-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px 28px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-left: 4px solid var(--gold);
-            position: relative;
-            overflow: hidden;
+            background: var(--white); border-radius: var(--radius); padding: 30px 28px;
+            box-shadow: var(--shadow); transition: var(--transition);
+            border-left: 4px solid var(--gold); position: relative; overflow: hidden;
         }
         .program-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(201, 168, 76, 0.03), transparent);
-            pointer-events: none;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(201,168,76,0.03), transparent); pointer-events: none;
         }
-        .program-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-        .program-card .level {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-        .program-card h3 {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            color: var(--navy);
-            margin: 6px 0 4px;
-        }
-        .program-card .faculty {
-            font-size: 14px;
-            color: var(--gray);
-            font-weight: 400;
-        }
-        .program-card p {
-            font-size: 14px;
-            color: var(--gray);
-            margin: 10px 0 14px;
-            line-height: 1.7;
-        }
-        .program-card .btn-small {
-            background: var(--navy);
-            color: var(--white);
-        }
-        .program-card .btn-small:hover {
-            background: var(--gold);
-            color: var(--navy);
-        }
+        .program-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+        .program-card .level { font-size: 12px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+        .program-card h3 { font-family: var(--font-heading); font-size: 20px; color: var(--navy); margin: 6px 0 4px; }
+        .program-card .faculty { font-size: 14px; color: var(--gray); font-weight: 400; }
+        .program-card p { font-size: 14px; color: var(--gray); margin: 10px 0 14px; line-height: 1.7; }
 
-        /* ============================================
-                   PROGRAM DETAIL - MODAL
-                   ============================================ */
+        /* PROGRAM MODAL */
         .program-detail {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 2000;
+            justify-content: center; align-items: center; padding: 20px;
         }
-        .program-detail.active {
-            display: flex;
-        }
+        .program-detail.active { display: flex; }
         .program-detail .modal {
-            background: var(--white);
-            max-width: 800px;
-            width: 100%;
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: modalIn 0.4s ease;
+            background: var(--white); max-width: 800px; width: 100%;
+            border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
+            overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
         }
         @keyframes modalIn {
-            from {
-                transform: scale(0.95) translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
+            from { transform: scale(0.95) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
         }
         .program-detail .modal .close {
-            position: absolute;
-            top: 16px;
-            right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--gray);
-            transition: var(--transition);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 16px; right: 20px; font-size: 28px;
+            cursor: pointer; color: var(--gray); transition: var(--transition);
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
         }
-        .program-detail .modal .close:hover {
-            background: var(--off-white);
-            color: var(--dark);
-        }
-        .program-detail .modal h2 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+        .program-detail .modal .close:hover { background: var(--off-white); color: var(--dark); }
+        .program-detail .modal h2 { font-family: var(--font-heading); color: var(--navy); font-size: 28px; margin-bottom: 10px; }
         .program-detail .modal .meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 16px 0;
-            padding: 16px;
-            background: var(--off-white);
-            border-radius: var(--radius);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            margin: 16px 0; padding: 16px; background: var(--off-white); border-radius: var(--radius);
         }
-        .program-detail .modal .meta strong {
-            color: var(--navy);
-            font-weight: 600;
-        }
-        .program-detail .modal ul {
-            list-style: disc;
-            padding-left: 20px;
-            margin: 10px 0;
-        }
-        .program-detail .modal ul li {
-            margin-bottom: 6px;
-            color: var(--gray);
-        }
-        .program-detail .modal .btn-primary {
-            margin-top: 16px;
-        }
+        .program-detail .modal .meta strong { color: var(--navy); font-weight: 600; }
+        .program-detail .modal ul { list-style: disc; padding-left: 20px; margin: 10px 0; }
+        .program-detail .modal ul li { margin-bottom: 6px; color: var(--gray); }
 
-        /* ============================================
-                   FACULTIES - GLASS CARDS
-                   ============================================ */
-        .faculties-section {
-            padding: 100px 0;
-        }
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 24px;
-        }
+        /* FACULTIES */
+        .faculties-section { padding: 100px 0; }
+        .faculty-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 24px; }
         .faculty-item {
-            background: var(--white);
-            padding: 28px 20px;
-            border-radius: var(--radius);
-            text-align: center;
-            transition: var(--transition);
-            border: 1px solid var(--gray-light);
-            cursor: pointer;
+            background: var(--white); padding: 28px 20px; border-radius: var(--radius);
+            text-align: center; transition: var(--transition); border: 1px solid var(--gray-light); cursor: pointer;
         }
-        .faculty-item:hover {
-            border-color: var(--gold);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .faculty-item i {
-            font-size: 40px;
-            color: var(--gold);
-            margin-bottom: 12px;
-            display: block;
-        }
-        .faculty-item h4 {
-            font-family: var(--font-heading);
-            font-size: 17px;
-            color: var(--navy);
-        }
+        .faculty-item:hover { border-color: var(--gold); transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .faculty-item i { font-size: 40px; color: var(--gold); margin-bottom: 12px; display: block; }
+        .faculty-item h4 { font-family: var(--font-heading); font-size: 17px; color: var(--navy); }
 
-        /* ============================================
-                   RESEARCH
-                   ============================================ */
-        .research-section {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-        .research-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
-        }
+        /* RESEARCH */
+        .research-section { padding: 100px 0; background: var(--off-white); }
+        .research-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 24px; }
         .research-card {
-            background: var(--white);
-            padding: 28px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-top: 4px solid var(--gold);
+            background: var(--white); padding: 28px; border-radius: var(--radius);
+            box-shadow: var(--shadow); transition: var(--transition); border-top: 4px solid var(--gold);
         }
-        .research-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .research-card h4 {
-            font-family: var(--font-heading);
-            font-size: 19px;
-            color: var(--navy);
-            margin-bottom: 6px;
-        }
-        .research-card p {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
+        .research-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .research-card h4 { font-family: var(--font-heading); font-size: 19px; color: var(--navy); margin-bottom: 6px; }
+        .research-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
 
-        /* ============================================
-                   WHY CIU - ANIMATED COUNTERS
-                   ============================================ */
-        .why-section {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 30px;
-        }
-        .why-item {
-            text-align: center;
-            padding: 24px;
-            transition: var(--transition);
-        }
-        .why-item:hover {
-            transform: translateY(-4px);
-        }
-        .why-item i {
-            font-size: 40px;
-            color: var(--gold);
-            margin-bottom: 12px;
-            display: block;
-        }
-        .why-item h4 {
-            font-family: var(--font-heading);
-            font-size: 19px;
-            color: var(--navy);
-        }
-        .why-item p {
-            font-size: 14px;
-            color: var(--gray);
-            margin-top: 4px;
-        }
+        /* WHY CIU */
+        .why-section { padding: 100px 0; background: var(--white); }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 30px; }
+        .why-item { text-align: center; padding: 24px; transition: var(--transition); }
+        .why-item:hover { transform: translateY(-4px); }
+        .why-item i { font-size: 40px; color: var(--gold); margin-bottom: 12px; display: block; }
+        .why-item h4 { font-family: var(--font-heading); font-size: 19px; color: var(--navy); }
+        .why-item p { font-size: 14px; color: var(--gray); margin-top: 4px; }
 
-        /* ============================================
-                   ADMISSIONS
-                   ============================================ */
-        .admissions-section {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-        .admissions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-        .admissions-grid .steps {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        /* ADMISSIONS */
+        .admissions-section { padding: 100px 0; background: var(--off-white); }
+        .admissions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .admissions-grid .steps { display: flex; flex-direction: column; gap: 16px; }
         .admissions-grid .step {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            background: var(--white);
-            padding: 18px 22px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            display: flex; gap: 16px; align-items: flex-start;
+            background: var(--white); padding: 18px 22px; border-radius: var(--radius);
+            box-shadow: var(--shadow); transition: var(--transition);
         }
-        .admissions-grid .step:hover {
-            transform: translateX(6px);
-            box-shadow: var(--shadow-hover);
-        }
+        .admissions-grid .step:hover { transform: translateX(6px); box-shadow: var(--shadow-hover); }
         .admissions-grid .step .num {
-            background: var(--gold);
-            color: var(--navy);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            flex-shrink: 0;
-            font-size: 14px;
+            background: var(--gold); color: var(--navy); width: 36px; height: 36px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; flex-shrink: 0; font-size: 14px;
         }
-        .admissions-grid .step h4 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            font-size: 17px;
-        }
-        .admissions-grid .step p {
-            color: var(--gray);
-            font-size: 14px;
-        }
+        .admissions-grid .step h4 { font-family: var(--font-heading); color: var(--navy); font-size: 17px; }
+        .admissions-grid .step p { color: var(--gray); font-size: 14px; }
         .admissions-form {
-            background: var(--white);
-            padding: 32px;
-            border-radius: var(--radius-lg);
+            background: var(--white); padding: 32px; border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
         }
-        .admissions-form h3 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            margin-bottom: 20px;
-            font-size: 24px;
+        .admissions-form h3 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 20px; font-size: 24px; }
+        .admissions-form input, .admissions-form select, .admissions-form textarea {
+            width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light);
+            border-radius: 10px; font-size: 15px; margin-bottom: 14px;
+            font-family: var(--font-body); transition: var(--transition);
         }
-        .admissions-form input,
-        .admissions-form select,
-        .admissions-form textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid var(--gray-light);
-            border-radius: 10px;
-            font-size: 15px;
-            margin-bottom: 14px;
-            font-family: var(--font-body);
-            transition: var(--transition);
+        .admissions-form input:focus, .admissions-form select:focus, .admissions-form textarea:focus {
+            border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
         }
-        .admissions-form input:focus,
-        .admissions-form select:focus,
-        .admissions-form textarea:focus {
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
-        }
-        .admissions-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
+        .admissions-form textarea { min-height: 100px; resize: vertical; }
 
-        /* ============================================
-                   FACULTY DIRECTORY
-                   ============================================ */
-        .faculty-directory {
-            padding: 100px 0;
-        }
-        .faculty-directory .search-box {
-            display: flex;
-            gap: 12px;
-            max-width: 500px;
-            margin: 0 auto 40px;
-        }
+        /* FACULTY DIRECTORY */
+        .faculty-directory { padding: 100px 0; }
+        .faculty-directory .search-box { display: flex; gap: 12px; max-width: 500px; margin: 0 auto 40px; }
         .faculty-directory .search-box input {
-            flex: 1;
-            padding: 12px 20px;
-            border: 1px solid var(--gray-light);
-            border-radius: 50px;
-            font-size: 15px;
-            font-family: var(--font-body);
+            flex: 1; padding: 12px 20px; border: 1px solid var(--gray-light);
+            border-radius: 50px; font-size: 15px; font-family: var(--font-body);
             transition: var(--transition);
         }
-        .faculty-directory .search-box input:focus {
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
-        }
-        .faculty-directory .search-box .btn {
-            padding: 12px 28px;
-        }
-        .faculty-grid-dir {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
-        }
+        .faculty-directory .search-box input:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+        .faculty-grid-dir { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; }
         .faculty-card {
-            background: var(--white);
-            padding: 28px 24px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            border-bottom: 3px solid var(--gold);
+            background: var(--white); padding: 28px 24px; border-radius: var(--radius);
+            box-shadow: var(--shadow); text-align: center; border-bottom: 3px solid var(--gold);
             transition: var(--transition);
         }
-        .faculty-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .faculty-card .avatar {
-            font-size: 52px;
-            color: var(--gold);
-            margin-bottom: 8px;
-        }
-        .faculty-card h4 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            font-size: 18px;
-        }
-        .faculty-card .position {
-            font-size: 14px;
-            color: var(--gold);
-            font-weight: 500;
-        }
-        .faculty-card .dept {
-            font-size: 14px;
-            color: var(--gray);
-        }
-        .faculty-card .bio {
-            font-size: 14px;
-            color: var(--gray);
-            margin-top: 10px;
-            display: none;
-            line-height: 1.7;
-        }
-        .faculty-card .bio.show {
-            display: block;
-        }
+        .faculty-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .faculty-card .avatar { font-size: 52px; color: var(--gold); margin-bottom: 8px; }
+        .faculty-card h4 { font-family: var(--font-heading); color: var(--navy); font-size: 18px; }
+        .faculty-card .position { font-size: 14px; color: var(--gold); font-weight: 500; }
+        .faculty-card .dept { font-size: 14px; color: var(--gray); }
+        .faculty-card .bio { font-size: 14px; color: var(--gray); margin-top: 10px; display: none; line-height: 1.7; }
+        .faculty-card .bio.show { display: block; }
 
-        /* ============================================
-                   EVENTS
-                   ============================================ */
-        .events-section {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
+        /* EVENTS */
+        .events-section { padding: 100px 0; background: var(--off-white); }
+        .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
         .event-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 28px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--gold);
+            background: var(--white); border-radius: var(--radius); padding: 28px;
+            box-shadow: var(--shadow); border-left: 4px solid var(--gold);
             transition: var(--transition);
         }
-        .event-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-        }
-        .event-card .date {
-            font-size: 14px;
-            color: var(--gold);
-            font-weight: 600;
-        }
-        .event-card h4 {
-            font-family: var(--font-heading);
-            font-size: 19px;
-            color: var(--navy);
-            margin: 6px 0;
-        }
-        .event-card p {
-            font-size: 14px;
-            color: var(--gray);
-        }
-        .event-card .location {
-            font-size: 13px;
-            color: var(--gray);
-            margin-top: 10px;
-        }
+        .event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+        .event-card .date { font-size: 14px; color: var(--gold); font-weight: 600; }
+        .event-card h4 { font-family: var(--font-heading); font-size: 19px; color: var(--navy); margin: 6px 0; }
+        .event-card p { font-size: 14px; color: var(--gray); }
+        .event-card .location { font-size: 13px; color: var(--gray); margin-top: 10px; }
 
-        /* ============================================
-                   ALUMNI
-                   ============================================ */
-        .alumni-section {
-            padding: 100px 0;
-        }
-        .alumni-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 24px;
-        }
+        /* ALUMNI */
+        .alumni-section { padding: 100px 0; }
+        .alumni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 24px; }
         .alumni-card {
-            background: var(--white);
-            padding: 28px 24px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            border-top: 4px solid var(--gold);
+            background: var(--white); padding: 28px 24px; border-radius: var(--radius);
+            box-shadow: var(--shadow); text-align: center; border-top: 4px solid var(--gold);
             transition: var(--transition);
         }
-        .alumni-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
+        .alumni-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
         .alumni-card .avatar img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 10px;
-            border: 3px solid var(--gold);
+            width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+            margin: 0 auto 10px; border: 3px solid var(--gold);
         }
-        .alumni-card h4 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            font-size: 18px;
-        }
-        .alumni-card .year {
-            font-size: 14px;
-            color: var(--gold);
-            font-weight: 500;
-        }
-        .alumni-card .program {
-            font-size: 14px;
-            color: var(--gray);
-        }
-        .alumni-card .story {
-            font-size: 14px;
-            color: var(--gray);
-            margin-top: 10px;
-            display: none;
-            line-height: 1.7;
-        }
-        .alumni-card .story.show {
-            display: block;
-        }
+        .alumni-card h4 { font-family: var(--font-heading); color: var(--navy); font-size: 18px; }
+        .alumni-card .year { font-size: 14px; color: var(--gold); font-weight: 500; }
+        .alumni-card .program { font-size: 14px; color: var(--gray); }
+        .alumni-card .story { font-size: 14px; color: var(--gray); margin-top: 10px; display: none; line-height: 1.7; }
+        .alumni-card .story.show { display: block; }
 
-        /* ============================================
-                   CREDENTIAL VERIFICATION
-                   ============================================ */
+        /* VERIFICATION */
         .verify-preview {
-            padding: 100px 0;
-            background: var(--navy);
-            color: var(--white);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 100px 0; background: var(--navy); color: var(--white);
+            text-align: center; position: relative; overflow: hidden;
         }
         .verify-preview::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
             border-radius: 50%;
         }
-        .verify-preview .container {
-            position: relative;
-            z-index: 2;
-        }
-        .verify-preview h2 {
-            font-family: var(--font-heading);
-            font-size: 40px;
-        }
-        .verify-preview h2 .gold {
-            color: var(--gold);
-        }
-        .verify-preview p {
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 10px auto 30px;
-            font-size: 17px;
-        }
-        .verify-box {
-            max-width: 550px;
-            margin: 0 auto;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+        .verify-preview .container { position: relative; z-index: 2; }
+        .verify-preview h2 { font-family: var(--font-heading); font-size: 40px; }
+        .verify-preview h2 .gold { color: var(--gold); }
+        .verify-preview p { opacity: 0.8; max-width: 600px; margin: 10px auto 30px; font-size: 17px; }
+        .verify-box { max-width: 550px; margin: 0 auto; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
         .verify-box input {
-            flex: 1;
-            min-width: 220px;
-            padding: 16px 24px;
-            border-radius: 50px;
-            border: none;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            outline: none;
-            font-family: var(--font-body);
+            flex: 1; min-width: 220px; padding: 16px 24px; border-radius: 50px;
+            border: none; font-size: 16px; background: rgba(255,255,255,0.1);
+            color: var(--white); outline: none; font-family: var(--font-body);
             transition: var(--transition);
         }
-        .verify-box input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .verify-box input:focus {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .verify-box .btn-primary {
-            padding: 16px 40px;
-        }
+        .verify-box input::placeholder { color: rgba(255,255,255,0.5); }
+        .verify-box input:focus { background: rgba(255,255,255,0.15); }
+        .verify-box .btn-primary { padding: 16px 40px; }
 
-        /* ============================================
-                   NEWS
-                   ============================================ */
-        .news-section {
-            padding: 100px 0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
+        /* NEWS */
+        .news-section { padding: 100px 0; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
         .news-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
+            background: var(--white); border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition);
         }
-        .news-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-hover);
-        }
-        .news-card .body {
-            padding: 24px;
-        }
-        .news-card .body .date {
-            font-size: 13px;
-            color: var(--gold);
-            font-weight: 600;
-        }
-        .news-card .body h4 {
-            font-family: var(--font-heading);
-            font-size: 19px;
-            color: var(--navy);
-            margin: 6px 0;
-        }
-        .news-card .body p {
-            font-size: 14px;
-            color: var(--gray);
-        }
+        .news-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+        .news-card .body { padding: 24px; }
+        .news-card .body .date { font-size: 13px; color: var(--gold); font-weight: 600; }
+        .news-card .body h4 { font-family: var(--font-heading); font-size: 19px; color: var(--navy); margin: 6px 0; }
+        .news-card .body p { font-size: 14px; color: var(--gray); }
 
-        /* ============================================
-                   GALLERY
-                   ============================================ */
-        .gallery-section {
-            padding: 100px 0;
-            background: var(--off-white);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
+        /* GALLERY */
+        .gallery-section { padding: 100px 0; background: var(--off-white); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; }
         .gallery-item {
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
+            position: relative; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow); transition: var(--transition); cursor: pointer;
         }
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: var(--shadow-hover);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: var(--transition);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.06);
-        }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow-hover); }
+        .gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; transition: var(--transition); }
+        .gallery-item:hover img { transform: scale(1.06); }
         .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(10, 37, 64, 0.85));
-            color: var(--white);
-            padding: 50px 20px 20px;
-            font-size: 15px;
-            font-weight: 500;
-            text-align: center;
-            opacity: 0;
-            transition: var(--transition);
+            position: absolute; bottom: 0; left: 0; right: 0;
+            background: linear-gradient(transparent, rgba(10,37,64,0.85));
+            color: var(--white); padding: 50px 20px 20px; font-size: 15px;
+            font-weight: 500; text-align: center; opacity: 0; transition: var(--transition);
             font-family: var(--font-body);
         }
-        .gallery-item:hover .gallery-caption {
-            opacity: 1;
-        }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
 
         .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            cursor: pointer;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92); z-index: 3000; justify-content: center;
+            align-items: center; padding: 20px; cursor: pointer;
         }
-        .lightbox.active {
-            display: flex;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
         .lightbox .close-lightbox {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 44px;
-            color: var(--white);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 300;
+            position: absolute; top: 20px; right: 30px; font-size: 44px;
+            color: var(--white); cursor: pointer; transition: var(--transition); font-weight: 300;
         }
-        .lightbox .close-lightbox:hover {
-            color: var(--gold);
-            transform: rotate(90deg);
-        }
+        .lightbox .close-lightbox:hover { color: var(--gold); transform: rotate(90deg); }
 
-        /* ============================================
-                   CONTACT
-                   ============================================ */
-        .contact-section {
-            padding: 100px 0;
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-        .contact-info h3 {
-            font-family: var(--font-heading);
-            font-size: 30px;
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-        .contact-info p {
-            color: var(--gray);
-            margin-bottom: 24px;
-        }
+        /* CONTACT */
+        .contact-section { padding: 100px 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h3 { font-family: var(--font-heading); font-size: 30px; color: var(--navy); margin-bottom: 16px; }
+        .contact-info p { color: var(--gray); margin-bottom: 24px; }
         .contact-info .detail {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
+            display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
         }
         .contact-info .detail i {
-            width: 44px;
-            height: 44px;
-            background: var(--off-white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-size: 18px;
-            transition: var(--transition);
+            width: 44px; height: 44px; background: var(--off-white); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: var(--gold);
+            font-size: 18px; transition: var(--transition);
         }
-        .contact-info .detail:hover i {
-            background: var(--gold);
-            color: var(--white);
+        .contact-info .detail:hover i { background: var(--gold); color: var(--white); }
+        .contact-info .detail strong { color: var(--navy); display: block; font-weight: 600; }
+        .contact-info .detail span { color: var(--gray); font-size: 14px; }
+        .contact-form input, .contact-form textarea {
+            width: 100%; padding: 14px 18px; border: 1px solid var(--gray-light);
+            border-radius: 10px; font-size: 15px; margin-bottom: 14px;
+            font-family: var(--font-body); transition: var(--transition);
         }
-        .contact-info .detail strong {
-            color: var(--navy);
-            display: block;
-            font-weight: 600;
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
         }
-        .contact-info .detail span {
-            color: var(--gray);
-            font-size: 14px;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid var(--gray-light);
-            border-radius: 10px;
-            font-size: 15px;
-            margin-bottom: 14px;
-            font-family: var(--font-body);
-            transition: var(--transition);
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
-        }
-        .contact-form textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
+        .contact-form textarea { min-height: 130px; resize: vertical; }
 
-        /* ============================================
-                   FOOTER - DARK PREMIUM
-                   ============================================ */
+        /* FOOTER - ONLY GMAIL */
         .footer {
-            background: var(--navy-dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 70px 0 30px;
-            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            background: var(--navy-dark); color: rgba(255,255,255,0.7);
+            padding: 70px 0 30px; border-top: 1px solid rgba(201,168,76,0.1);
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-        .footer h4 {
-            color: var(--white);
-            font-family: var(--font-heading);
-            font-size: 18px;
-            margin-bottom: 18px;
-            position: relative;
-        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+        .footer h4 { color: var(--white); font-family: var(--font-heading); font-size: 18px; margin-bottom: 18px; position: relative; }
         .footer h4::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--gold);
+            content: ''; position: absolute; bottom: -6px; left: 0;
+            width: 30px; height: 2px; background: var(--gold);
         }
-        .footer a {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 10px;
-            transition: var(--transition);
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .footer a:hover {
-            color: var(--gold);
-            padding-left: 4px;
-        }
+        .footer a { display: block; font-size: 14px; margin-bottom: 10px; transition: var(--transition); color: rgba(255,255,255,0.6); }
+        .footer a:hover { color: var(--gold); padding-left: 4px; }
         .footer .brand .logo-text {
-            font-family: var(--font-heading);
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--white);
+            font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--white);
         }
-        .footer .brand .logo-text .gold {
-            color: var(--gold);
-        }
-        .footer .brand p {
-            font-size: 14px;
-            margin-top: 10px;
-            max-width: 300px;
-            line-height: 1.8;
-        }
-        .footer .brand .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        .footer .brand .social-links a {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: var(--transition);
-            margin: 0;
-        }
-        .footer .brand .social-links a:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-3px);
-        }
+        .footer .brand .logo-text .gold { color: var(--gold); }
+        .footer .brand p { font-size: 14px; margin-top: 10px; max-width: 300px; line-height: 1.8; }
         .footer .admin-login-link {
-            color: rgba(255, 255, 255, 0.08);
-            font-size: 11px;
-            text-decoration: none;
-            transition: var(--transition);
-            display: block;
-            margin-top: 12px;
-            letter-spacing: 0.5px;
+            color: rgba(255,255,255,0.08); font-size: 11px; text-decoration: none;
+            transition: var(--transition); display: block; margin-top: 12px; letter-spacing: 0.5px;
         }
-        .footer .admin-login-link:hover {
-            color: var(--gold);
-        }
+        .footer .admin-login-link:hover { color: var(--gold); }
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 20px;
-            text-align: center;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px;
+            text-align: center; font-size: 13px; color: rgba(255,255,255,0.4);
         }
 
-        /* ============================================
-                   LEGAL
-                   ============================================ */
-        .legal-section {
-            padding: 80px 0;
-            background: var(--off-white);
-        }
+        /* LEGAL */
+        .legal-section { padding: 80px 0; background: var(--off-white); }
         .legal-section .content {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            padding: 50px;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
+            max-width: 800px; margin: 0 auto; background: var(--white);
+            padding: 50px; border-radius: var(--radius-lg); box-shadow: var(--shadow);
         }
-        .legal-section .content h2 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            margin-bottom: 16px;
-        }
-        .legal-section .content h3 {
-            font-family: var(--font-heading);
-            color: var(--navy);
-            margin-top: 28px;
-            margin-bottom: 8px;
-        }
-        .legal-section .content p {
-            color: var(--gray);
-            line-height: 1.9;
-            margin-bottom: 12px;
-        }
-        .legal-section .content ul {
-            list-style: disc;
-            padding-left: 20px;
-            margin-bottom: 12px;
-        }
-        .legal-section .content ul li {
-            color: var(--gray);
-            margin-bottom: 6px;
-        }
+        .legal-section .content h2 { font-family: var(--font-heading); color: var(--navy); margin-bottom: 16px; }
+        .legal-section .content h3 { font-family: var(--font-heading); color: var(--navy); margin-top: 28px; margin-bottom: 8px; }
+        .legal-section .content p { color: var(--gray); line-height: 1.9; margin-bottom: 12px; }
+        .legal-section .content ul { list-style: disc; padding-left: 20px; margin-bottom: 12px; }
+        .legal-section .content ul li { color: var(--gray); margin-bottom: 6px; }
 
-        /* ============================================
-                   BACK TO TOP
-                   ============================================ */
+        /* BACK TO TOP */
         .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 48px;
-            height: 48px;
-            background: var(--gold);
-            color: var(--navy);
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35);
-            z-index: 500;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; bottom: 30px; right: 30px; width: 48px; height: 48px;
+            background: var(--gold); color: var(--navy); border: none; border-radius: 50%;
+            font-size: 20px; cursor: pointer; transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(201,168,76,0.35); z-index: 500;
+            opacity: 0; visibility: hidden; transform: translateY(20px);
+            display: flex; align-items: center; justify-content: center;
         }
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .back-to-top:hover {
-            background: var(--gold-dark);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 35px rgba(201, 168, 76, 0.45);
-        }
+        .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+        .back-to-top:hover { background: var(--gold-dark); transform: translateY(-4px); box-shadow: 0 12px 35px rgba(201,168,76,0.45); }
 
-        /* ============================================
-                   RESPONSIVE
-                   ============================================ */
+        /* APPLY NOW MODAL */
+        .apply-modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 3000;
+            justify-content: center; align-items: center; padding: 20px;
+        }
+        .apply-modal.active { display: flex; }
+        .apply-modal .modal {
+            background: var(--white); max-width: 700px; width: 100%;
+            border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
+            overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
+        }
+        .apply-modal .modal .close {
+            position: absolute; top: 16px; right: 20px; font-size: 28px;
+            cursor: pointer; color: var(--gray); transition: var(--transition);
+            width: 40px; height: 40px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .apply-modal .modal .close:hover { background: var(--off-white); color: var(--dark); }
+        .apply-modal .modal h2 {
+            font-family: var(--font-heading); color: var(--navy); font-size: 28px; margin-bottom: 8px;
+        }
+        .apply-modal .modal p { color: var(--gray); margin-bottom: 24px; }
+
+        /* RESPONSIVE */
         @media (max-width: 992px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-content p {
-                margin: 0 auto 32px;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-stats {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .about-intro .grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .admissions-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .hero-content h1 {
-                font-size: 40px;
-            }
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 32px; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { grid-template-columns: repeat(3,1fr); }
+            .about-intro .grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .admissions-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .hero-content h1 { font-size: 40px; }
         }
-
         @media (max-width: 768px) {
-            .nav {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hero-content h1 {
-                font-size: 32px;
-            }
-            .hero-stats {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 12px;
-            }
-            .hero-stat .number {
-                font-size: 24px;
-            }
-            .hero-stat {
-                padding: 16px 12px;
-            }
-            .section-title h2 {
-                font-size: 28px;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .verify-box {
-                flex-direction: column;
-                align-items: center;
-            }
-            .verify-box input {
-                width: 100%;
-            }
-            .logo img {
-                height: 45px;
-            }
-            .program-detail .modal {
-                padding: 20px;
-            }
-            .program-detail .modal .meta {
-                grid-template-columns: 1fr;
-            }
-            .faculty-directory .search-box {
-                flex-direction: column;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .program-grid {
-                grid-template-columns: 1fr;
-            }
-            .faculty-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .about-card {
-                padding: 24px;
-            }
-            .back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-            }
+            .nav { display: none; }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 32px; }
+            .hero-stats { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+            .hero-stat .number { font-size: 24px; }
+            .hero-stat { padding: 16px 12px; }
+            .section-title h2 { font-size: 28px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .verify-box { flex-direction: column; align-items: center; }
+            .verify-box input { width: 100%; }
+            .logo img { height: 45px; }
+            .program-detail .modal { padding: 20px; }
+            .program-detail .modal .meta { grid-template-columns: 1fr; }
+            .faculty-directory .search-box { flex-direction: column; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .program-grid { grid-template-columns: 1fr; }
+            .faculty-grid { grid-template-columns: 1fr 1fr; }
+            .about-card { padding: 24px; }
+            .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 16px; }
+            .footer-grid { gap: 30px; }
+            .admissions-form { padding: 20px; }
+            .legal-section .content { padding: 24px; }
         }
-
         @media (max-width: 480px) {
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-            .program-grid {
-                grid-template-columns: 1fr;
-            }
-            .faculty-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .logo img {
-                height: 38px;
-            }
-            .hero-content h1 {
-                font-size: 26px;
-            }
-            .container {
-                padding: 0 16px;
-            }
-            .footer-grid {
-                gap: 30px;
-            }
-            .admissions-form {
-                padding: 20px;
-            }
-            .legal-section .content {
-                padding: 24px;
-            }
+            .hero-stats { grid-template-columns: 1fr; }
+            .program-grid { grid-template-columns: 1fr; }
+            .faculty-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .logo img { height: 38px; }
+            .hero-content h1 { font-size: 26px; }
+            .container { padding: 0 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================
-    PRELOADER
-    ============================================ -->
+    <!-- PRELOADER -->
     <div id="preloader">
         <div class="loader-ring"></div>
         <div class="loader-text">CIU</div>
     </div>
 
-    <!-- ============================================
-    HEADER
-    ============================================ -->
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="container">
             <div class="logo">
@@ -1774,9 +669,7 @@
         </div>
     </header>
 
-    <!-- ============================================
-    HERO
-    ============================================ -->
+    <!-- HERO -->
     <section class="hero" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline>
             <source src="https://reactooba1999-bot.github.io/candroha.github.io/drone.mp4" type="video/mp4">
@@ -1797,59 +690,28 @@
                 </div>
             </div>
             <div class="hero-stats" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="hero-stat">
-                    <div class="number" data-count="12">0</div>
-                    <div class="label">Academic Faculties</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" data-count="50">0</div>
-                    <div class="label">Academic Programs</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number" data-count="1961">0</div>
-                    <div class="label">Year Established</div>
-                </div>
+                <div class="hero-stat"><div class="number" data-count="12">0</div><div class="label">Academic Faculties</div></div>
+                <div class="hero-stat"><div class="number" data-count="50">0</div><div class="label">Academic Programs</div></div>
+                <div class="hero-stat"><div class="number" data-count="1961">0</div><div class="label">Year Established</div></div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    QUICK LINKS
-    ============================================ -->
+    <!-- QUICK LINKS -->
     <section class="quick-links">
         <div class="container">
             <div class="quick-grid">
-                <a href="#programs" class="quick-item" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h4>Programs & Degrees</h4>
-                </a>
-                <a href="#research" class="quick-item" data-aos="fade-up" data-aos-delay="150">
-                    <i class="fas fa-flask"></i>
-                    <h4>Research</h4>
-                </a>
-                <a href="#verify" class="quick-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-check-circle"></i>
-                    <h4>Verify Credential</h4>
-                </a>
-                <a href="#admissions" class="quick-item" data-aos="fade-up" data-aos-delay="250">
-                    <i class="fas fa-file-alt"></i>
-                    <h4>Admissions</h4>
-                </a>
-                <a href="#faculties" class="quick-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-users"></i>
-                    <h4>Faculties</h4>
-                </a>
-                <a href="#contact" class="quick-item" data-aos="fade-up" data-aos-delay="350">
-                    <i class="fas fa-envelope"></i>
-                    <h4>Contact Us</h4>
-                </a>
+                <a href="#programs" class="quick-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-graduation-cap"></i><h4>Programs & Degrees</h4></a>
+                <a href="#research" class="quick-item" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-flask"></i><h4>Research</h4></a>
+                <a href="#verify" class="quick-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-check-circle"></i><h4>Verify Credential</h4></a>
+                <a href="#admissions" class="quick-item" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-file-alt"></i><h4>Admissions</h4></a>
+                <a href="#faculties" class="quick-item" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-users"></i><h4>Faculties</h4></a>
+                <a href="#contact" class="quick-item" data-aos="fade-up" data-aos-delay="350"><i class="fas fa-envelope"></i><h4>Contact Us</h4></a>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-    ABOUT
-    ============================================ -->
+    <!-- ABOUT -->
     <section class="about-intro" id="about">
         <div class="container">
             <div class="grid">
@@ -1872,9 +734,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    PROGRAMS
-    ============================================ -->
+    <!-- PROGRAMS -->
     <section class="programs-section" id="programs">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -1890,9 +750,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    PROGRAM DETAIL (MODAL)
-    ============================================ -->
+    <!-- PROGRAM DETAIL MODAL -->
     <div class="program-detail" id="programDetail">
         <div class="modal">
             <span class="close" id="closeDetail">&times;</span>
@@ -1905,23 +763,147 @@
             </div>
             <p id="detailDescription">Description goes here.</p>
             <h3>Curriculum</h3>
-            <ul id="detailCurriculum">
-                <li>Core Module 1</li>
-                <li>Core Module 2</li>
-                <li>Elective Module 1</li>
-            </ul>
+            <ul id="detailCurriculum"><li>Core Module 1</li><li>Core Module 2</li><li>Elective Module 1</li></ul>
             <h3>Career Pathways</h3>
-            <ul id="detailCareer">
-                <li>Career Option 1</li>
-                <li>Career Option 2</li>
-            </ul>
+            <ul id="detailCareer"><li>Career Option 1</li><li>Career Option 2</li></ul>
             <button class="btn btn-primary" id="applyNowBtn">Apply Now</button>
         </div>
     </div>
 
-    <!-- ============================================
-    FACULTIES
-    ============================================ -->
+    <!-- APPLY NOW MODAL -->
+    <div class="apply-modal" id="applyModal">
+        <div class="modal">
+            <span class="close" id="closeApplyModal">&times;</span>
+            <h2>📝 Apply Now</h2>
+            <p>Fill in the form below to apply for your chosen program.</p>
+            <form id="applyForm">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+                    <input type="text" placeholder="First Name" required />
+                    <input type="text" placeholder="Last Name" required />
+                </div>
+                <input type="email" placeholder="Email Address" required />
+                <input type="text" placeholder="Phone Number" />
+                <select id="applyProgramSelect" required>
+                    <option value="">Select Program</option>
+                    <option value="BSc Computer Science">BSc Computer Science</option>
+                    <option value="BSc Software Engineering">BSc Software Engineering</option>
+                    <option value="BSc Artificial Intelligence">BSc Artificial Intelligence</option>
+                    <option value="BSc Data Science">BSc Data Science</option>
+                    <option value="BSc Cybersecurity">BSc Cybersecurity</option>
+                    <option value="BSc Information Technology">BSc Information Technology</option>
+                    <option value="BSc Cloud Computing">BSc Cloud Computing</option>
+                    <option value="BSc Robotics">BSc Robotics</option>
+                    <option value="BSc Digital Technology">BSc Digital Technology</option>
+                    <option value="BSc Machine Learning">BSc Machine Learning</option>
+                    <option value="BSc Network Engineering">BSc Network Engineering</option>
+                    <option value="BSc Information Security">BSc Information Security</option>
+                    <option value="BSc Computer Engineering">BSc Computer Engineering</option>
+                    <option value="BSc Database Systems">BSc Database Systems</option>
+                    <option value="BSc Web Technologies">BSc Web Technologies</option>
+                    <option value="BBA Business Administration">BBA Business Administration</option>
+                    <option value="BBA Accounting">BBA Accounting</option>
+                    <option value="BBA Finance">BBA Finance</option>
+                    <option value="BBA Economics">BBA Economics</option>
+                    <option value="BBA Marketing">BBA Marketing</option>
+                    <option value="BBA Management">BBA Management</option>
+                    <option value="BBA Entrepreneurship">BBA Entrepreneurship</option>
+                    <option value="BBA International Business">BBA International Business</option>
+                    <option value="BBA HR Management">BBA HR Management</option>
+                    <option value="BBA Supply Chain Management">BBA Supply Chain Management</option>
+                    <option value="BBA Banking & Finance">BBA Banking & Finance</option>
+                    <option value="BBA Business Analytics">BBA Business Analytics</option>
+                    <option value="BBA Project Management">BBA Project Management</option>
+                    <option value="BSc Civil Engineering">BSc Civil Engineering</option>
+                    <option value="BSc Electrical Engineering">BSc Electrical Engineering</option>
+                    <option value="BSc Mechanical Engineering">BSc Mechanical Engineering</option>
+                    <option value="BSc Electronics Engineering">BSc Electronics Engineering</option>
+                    <option value="BSc Telecommunications">BSc Telecommunications</option>
+                    <option value="BSc Industrial Engineering">BSc Industrial Engineering</option>
+                    <option value="BSc Environmental Engineering">BSc Environmental Engineering</option>
+                    <option value="BSc Mechatronics">BSc Mechatronics</option>
+                    <option value="BSc Energy Engineering">BSc Energy Engineering</option>
+                    <option value="BSc Construction Management">BSc Construction Management</option>
+                    <option value="BSc Health Sciences">BSc Health Sciences</option>
+                    <option value="BSc Public Health">BSc Public Health</option>
+                    <option value="BSc Nursing">BSc Nursing</option>
+                    <option value="BSc Nutrition">BSc Nutrition</option>
+                    <option value="BSc Medical Laboratory Sciences">BSc Medical Laboratory Sciences</option>
+                    <option value="BSc Healthcare Management">BSc Healthcare Management</option>
+                    <option value="BSc Allied Health Sciences">BSc Allied Health Sciences</option>
+                    <option value="BSc Biomedical Sciences">BSc Biomedical Sciences</option>
+                    <option value="BSc Psychology">BSc Psychology</option>
+                    <option value="BSc Sociology">BSc Sociology</option>
+                    <option value="BSc Political Science">BSc Political Science</option>
+                    <option value="BSc International Relations">BSc International Relations</option>
+                    <option value="BSc Education">BSc Education</option>
+                    <option value="BSc History">BSc History</option>
+                    <option value="BSc Geography">BSc Geography</option>
+                    <option value="BSc Anthropology">BSc Anthropology</option>
+                    <option value="BSc Development Studies">BSc Development Studies</option>
+                    <option value="BSc Social Work">BSc Social Work</option>
+                    <option value="BSc Public Policy">BSc Public Policy</option>
+                    <option value="BA English">BA English</option>
+                    <option value="BA English Literature">BA English Literature</option>
+                    <option value="BA Linguistics">BA Linguistics</option>
+                    <option value="BA Applied Linguistics">BA Applied Linguistics</option>
+                    <option value="BA Translation Studies">BA Translation Studies</option>
+                    <option value="BA Philosophy">BA Philosophy</option>
+                    <option value="BA Cultural Studies">BA Cultural Studies</option>
+                    <option value="BA Modern Languages">BA Modern Languages</option>
+                    <option value="LLB Law">LLB Law</option>
+                    <option value="LLB Legal Studies">LLB Legal Studies</option>
+                    <option value="BSc Public Administration">BSc Public Administration</option>
+                    <option value="BSc Governance">BSc Governance</option>
+                    <option value="BA International Law">BA International Law</option>
+                    <option value="BA Political Governance">BA Political Governance</option>
+                    <option value="BA Journalism">BA Journalism</option>
+                    <option value="BA Mass Communication">BA Mass Communication</option>
+                    <option value="BA Digital Media">BA Digital Media</option>
+                    <option value="BA Media Studies">BA Media Studies</option>
+                    <option value="BA Film Studies">BA Film Studies</option>
+                    <option value="BA Communication Studies">BA Communication Studies</option>
+                    <option value="BA Public Relations">BA Public Relations</option>
+                    <option value="BA Advertising">BA Advertising</option>
+                    <option value="BA Digital Journalism">BA Digital Journalism</option>
+                    <option value="BSc Mathematics">BSc Mathematics</option>
+                    <option value="BSc Physics">BSc Physics</option>
+                    <option value="BSc Chemistry">BSc Chemistry</option>
+                    <option value="BSc Biology">BSc Biology</option>
+                    <option value="BSc Environmental Science">BSc Environmental Science</option>
+                    <option value="BSc Earth Sciences">BSc Earth Sciences</option>
+                    <option value="BSc Statistics">BSc Statistics</option>
+                    <option value="BSc Applied Sciences">BSc Applied Sciences</option>
+                    <option value="BA Islamic Studies">BA Islamic Studies</option>
+                    <option value="BA Quranic Studies">BA Quranic Studies</option>
+                    <option value="BA Hadith Studies">BA Hadith Studies</option>
+                    <option value="BA Islamic History">BA Islamic History</option>
+                    <option value="BA Comparative Religion">BA Comparative Religion</option>
+                    <option value="BA Arabic Studies">BA Arabic Studies</option>
+                    <option value="BA Religious Studies">BA Religious Studies</option>
+                    <option value="BA Islamic Civilization">BA Islamic Civilization</option>
+                    <option value="BFA Fine Arts">BFA Fine Arts</option>
+                    <option value="BFA Graphic Design">BFA Graphic Design</option>
+                    <option value="BFA Fashion Design">BFA Fashion Design</option>
+                    <option value="BFA Interior Design">BFA Interior Design</option>
+                    <option value="BFA Visual Communication">BFA Visual Communication</option>
+                    <option value="BFA Creative Arts">BFA Creative Arts</option>
+                    <option value="BFA Digital Design">BFA Digital Design</option>
+                    <option value="BFA Multimedia Design">BFA Multimedia Design</option>
+                    <option value="BBA Hospitality Management">BBA Hospitality Management</option>
+                    <option value="BBA Tourism Management">BBA Tourism Management</option>
+                    <option value="BBA Hotel Management">BBA Hotel Management</option>
+                    <option value="BBA Travel & Tourism">BBA Travel & Tourism</option>
+                    <option value="BBA Event Management">BBA Event Management</option>
+                    <option value="BBA Culinary Management">BBA Culinary Management</option>
+                </select>
+                <input type="text" placeholder="Academic Session (e.g., 2026-27)" />
+                <textarea placeholder="Statement of Purpose / Additional Information" style="min-height:100px;"></textarea>
+                <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FACULTIES -->
     <section class="faculties-section" id="faculties">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -1945,9 +927,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    RESEARCH
-    ============================================ -->
+    <!-- RESEARCH -->
     <section class="research-section" id="research">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -1965,9 +945,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    WHY CIU
-    ============================================ -->
+    <!-- WHY CIU -->
     <section class="why-section">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -1985,9 +963,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ADMISSIONS
-    ============================================ -->
+    <!-- ADMISSIONS -->
     <section class="admissions-section" id="admissions">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -2014,11 +990,28 @@
                         <input type="text" placeholder="Phone Number" />
                         <select required>
                             <option value="">Select Program</option>
-                            <option>Bachelor of Computer Science</option>
-                            <option>Master of Artificial Intelligence</option>
-                            <option>Bachelor of Business Administration</option>
-                            <option>Master of Data Science</option>
-                            <option>Professional Web Development Diploma</option>
+                            <option>BSc Computer Science</option>
+                            <option>BSc Software Engineering</option>
+                            <option>BSc Artificial Intelligence</option>
+                            <option>BSc Data Science</option>
+                            <option>BSc Cybersecurity</option>
+                            <option>BBA Business Administration</option>
+                            <option>BBA Accounting</option>
+                            <option>BSc Civil Engineering</option>
+                            <option>BSc Electrical Engineering</option>
+                            <option>BSc Mechanical Engineering</option>
+                            <option>BSc Health Sciences</option>
+                            <option>BSc Public Health</option>
+                            <option>LLB Law</option>
+                            <option>BA English</option>
+                            <option>BSc Psychology</option>
+                            <option>BSc International Relations</option>
+                            <option>BA Journalism</option>
+                            <option>BSc Mathematics</option>
+                            <option>BSc Physics</option>
+                            <option>BA Islamic Studies</option>
+                            <option>BFA Fine Arts</option>
+                            <option>BBA Hospitality Management</option>
                         </select>
                         <input type="text" placeholder="Academic Session (e.g., 2026-27)" />
                         <textarea placeholder="Additional Information / Statement of Purpose"></textarea>
@@ -2029,9 +1022,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    FACULTY DIRECTORY
-    ============================================ -->
+    <!-- FACULTY DIRECTORY -->
     <section class="faculty-directory" id="faculty-directory">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -2051,16 +1042,14 @@
         </div>
     </section>
 
-    <!-- ============================================
-    EVENTS
-    ============================================ -->
+    <!-- EVENTS -->
     <section class="events-section" id="events">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>University <span class="gold">Events</span></h2>
                 <p>Stay connected with our academic and community events.</p>
             </div>
-            <div class="events-grid" id="eventsGrid">
+            <div class="events-grid">
                 <div class="event-card" data-aos="fade-up" data-aos-delay="50">
                     <div class="date">September 15, 2026</div>
                     <h4>International Research Conference 2026</h4>
@@ -2083,9 +1072,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    GALLERY
-    ============================================ -->
+    <!-- GALLERY -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -2121,16 +1108,14 @@
         </div>
     </section>
 
-    <!-- ============================================
-    ALUMNI
-    ============================================ -->
+    <!-- ALUMNI -->
     <section class="alumni-section" id="alumni">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>CIU <span class="gold">Alumni</span></h2>
                 <p>Our alumni are making a difference around the world.</p>
             </div>
-            <div class="alumni-grid" id="alumniGrid">
+            <div class="alumni-grid">
                 <div class="alumni-card" data-aos="fade-up" data-aos-delay="50">
                     <div class="avatar"><img src="images/alumni/Elena Rodriguez.jfif" alt="Dr. Elena Rodriguez" /></div>
                     <h4>Dr. Elena Rodriguez</h4>
@@ -2175,9 +1160,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    CREDENTIAL VERIFICATION
-    ============================================ -->
+    <!-- VERIFICATION -->
     <section class="verify-preview" id="verify">
         <div class="container">
             <div class="section-title" style="color:var(--white);">
@@ -2192,9 +1175,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    NEWS
-    ============================================ -->
+    <!-- NEWS -->
     <section class="news-section" id="news">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -2227,9 +1208,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    CONTACT
-    ============================================ -->
+    <!-- CONTACT -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
@@ -2256,9 +1235,7 @@
         </div>
     </section>
 
-    <!-- ============================================
-    LEGAL
-    ============================================ -->
+    <!-- LEGAL -->
     <section class="legal-section" id="privacy">
         <div class="container">
             <div class="content" data-aos="fade-up" data-aos-duration="600">
@@ -2297,22 +1274,13 @@
         </div>
     </section>
 
-    <!-- ============================================
-    FOOTER
-    ============================================ -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="brand">
                     <div class="logo-text">🏛️ <span class="gold">CIU</span></div>
                     <p>Candroha International University — committed to academic excellence, research, innovation, and global learning since 1961.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
                     <a href="admin.html" target="_blank" class="admin-login-link"><i class="fas fa-lock"></i> Login</a>
                 </div>
                 <div>
@@ -2332,12 +1300,6 @@
                     <a href="#alumni">Alumni</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <div>
-                    <h4>Legal</h4>
-                    <a href="#privacy">Privacy Policy</a>
-                    <a href="#privacy">Terms & Conditions</a>
-                    <a href="#privacy">Cookie Policy</a>
-                </div>
             </div>
             <div class="footer-bottom">
                 <p>© 2026 Candroha International University. All rights reserved.</p>
@@ -2345,59 +1307,33 @@
         </div>
     </footer>
 
-    <!-- ============================================
-    BACK TO TOP
-    ============================================ -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- ============================================
-    SCRIPTS
-    ============================================ -->
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // ============================================
-        // AOS - Scroll Animations
-        // ============================================
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50,
-            easing: 'ease-out-cubic'
-        });
+        // AOS
+        AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
 
-        // ============================================
-        // PRELOADER
-        // ============================================
+        // Preloader
         window.addEventListener('load', function() {
             document.getElementById('preloader').classList.add('hide');
         });
 
-        // ============================================
-        // HEADER SCROLL
-        // ============================================
+        // Header scroll
         const header = document.getElementById('header');
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // ============================================
-        // MOBILE NAV
-        // ============================================
+        // Mobile nav
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('navMobile');
-
         hamburger.addEventListener('click', function() {
             this.classList.toggle('active');
             navMobile.classList.toggle('open');
         });
-
-        // Close mobile nav on link click
         navMobile.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
@@ -2405,55 +1341,33 @@
             });
         });
 
-        // ============================================
-        // BACK TO TOP
-        // ============================================
+        // Back to top
         const backToTop = document.getElementById('backToTop');
-
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            backToTop.classList.toggle('visible', window.scrollY > 300);
         });
-
         backToTop.addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // ============================================
-        // ANIMATED COUNTERS
-        // ============================================
+        // Animated counters
         function animateCounters() {
-            const counters = document.querySelectorAll('[data-count]');
-            counters.forEach(function(counter) {
+            document.querySelectorAll('[data-count]').forEach(function(counter) {
                 const target = parseInt(counter.getAttribute('data-count'));
-                const duration = 2000;
-                const step = Math.max(1, Math.floor(target / 60));
                 let current = 0;
-
+                const step = Math.max(1, Math.floor(target / 60));
                 const updateCounter = function() {
                     current += step;
-                    if (current >= target) {
-                        counter.textContent = target;
-                        return;
-                    }
+                    if (current >= target) { counter.textContent = target; return; }
                     counter.textContent = current;
                     requestAnimationFrame(updateCounter);
                 };
-
                 const observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        updateCounter();
-                        observer.disconnect();
-                    }
+                    if (entries[0].isIntersecting) { updateCounter(); observer.disconnect(); }
                 }, { threshold: 0.5 });
-
                 observer.observe(counter);
             });
         }
-
         animateCounters();
 
         // ============================================
@@ -2461,9 +1375,6 @@
         // ============================================
         const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
 
-        // ============================================
-        // PARSE CSV
-        // ============================================
         function parseCSV(csvText) {
             const lines = csvText.split('\n').filter(line => line.trim() !== '');
             if (lines.length === 0) return [];
@@ -2473,18 +1384,13 @@
                 const values = lines[i].split(',').map(v => v.trim());
                 if (values.length === headers.length) {
                     const entry = {};
-                    headers.forEach((h, idx) => {
-                        entry[h] = values[idx] || '';
-                    });
+                    headers.forEach((h, idx) => { entry[h] = values[idx] || ''; });
                     result.push(entry);
                 }
             }
             return result;
         }
 
-        // ============================================
-        // LOAD PROGRAMS
-        // ============================================
         async function loadPrograms() {
             const grid = document.getElementById('programGrid');
             try {
@@ -2492,38 +1398,30 @@
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
-
                 const programs = data.filter(item =>
                     item.Type && (item.Type.toLowerCase().includes('degree') ||
                         item.Type.toLowerCase().includes('diploma') ||
                         item.Type.toLowerCase().includes('certificate'))
                 );
-
                 if (programs.length === 0) {
-                    grid.innerHTML = `
-                            <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                                <i class="fas fa-database" style="font-size:32px;"></i>
-                                <p style="margin-top:12px;">No programs found in the database.</p>
-                                <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
-                            </div>
-                        `;
+                    grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
+                            <i class="fas fa-database" style="font-size:32px;"></i>
+                            <p style="margin-top:12px;">No programs found in the database.</p>
+                            <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
+                        </div>`;
                     return;
                 }
-
                 let html = '';
                 programs.forEach((item, index) => {
-                    html += `
-                            <div class="program-card" data-index="${index}" data-aos="fade-up" data-aos-delay="${index * 50}">
-                                <div class="level">${item.Type || 'Program'}</div>
-                                <h3>${item.Title || 'Untitled'}</h3>
-                                <div class="faculty">${item.Faculty || 'CIU'}</div>
-                                <p>${item.Description || 'No description available.'}</p>
-                                <button class="btn-small view-program" data-index="${index}">View Program →</button>
-                            </div>
-                        `;
+                    html += `<div class="program-card" data-index="${index}" data-aos="fade-up" data-aos-delay="${index * 50}">
+                            <div class="level">${item.Type || 'Program'}</div>
+                            <h3>${item.Title || 'Untitled'}</h3>
+                            <div class="faculty">${item.Faculty || 'CIU'}</div>
+                            <p>${item.Description || 'No description available.'}</p>
+                            <button class="btn-small view-program" data-index="${index}">View Program →</button>
+                        </div>`;
                 });
                 grid.innerHTML = html;
-
                 document.querySelectorAll('.view-program').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const idx = parseInt(this.dataset.index);
@@ -2531,23 +1429,16 @@
                         showProgramDetail(program);
                     });
                 });
-
                 window._programsData = programs;
-
             } catch (error) {
                 console.error('Error loading programs:', error);
-                grid.innerHTML = `
-                        <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                            <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
-                            <p style="margin-top:12px;">Unable to load programs. Please check your Google Sheet link.</p>
-                        </div>
-                    `;
+                grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
+                        <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
+                        <p style="margin-top:12px;">Unable to load programs. Please check your Google Sheet link.</p>
+                    </div>`;
             }
         }
 
-        // ============================================
-        // PROGRAM DETAIL
-        // ============================================
         function showProgramDetail(program) {
             document.getElementById('detailTitle').textContent = program.Title || 'Program Name';
             document.getElementById('detailLevel').textContent = program.Type || 'N/A';
@@ -2555,32 +1446,48 @@
             document.getElementById('detailDuration').textContent = program.Duration || 'N/A';
             document.getElementById('detailMode').textContent = program.Mode || 'On-Campus';
             document.getElementById('detailDescription').textContent = program.Description || 'No description available.';
-
             const curriculum = program.Curriculum ? program.Curriculum.split(',').map(c => c.trim()) : ['Core Module 1', 'Core Module 2', 'Elective Module 1'];
             const career = program.Career ? program.Career.split(',').map(c => c.trim()) : ['Career Option 1', 'Career Option 2'];
-
-            const currList = document.getElementById('detailCurriculum');
-            currList.innerHTML = curriculum.map(c => `<li>${c}</li>`).join('');
-
-            const careerList = document.getElementById('detailCareer');
-            careerList.innerHTML = career.map(c => `<li>${c}</li>`).join('');
-
+            document.getElementById('detailCurriculum').innerHTML = curriculum.map(c => `<li>${c}</li>`).join('');
+            document.getElementById('detailCareer').innerHTML = career.map(c => `<li>${c}</li>`).join('');
             document.getElementById('programDetail').classList.add('active');
         }
 
         document.getElementById('closeDetail').addEventListener('click', () => {
             document.getElementById('programDetail').classList.remove('active');
         });
-
         document.getElementById('programDetail').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-            }
+            if (e.target === this) this.classList.remove('active');
         });
 
-        // ============================================
+        // APPLY NOW MODAL
+        document.getElementById('applyNowBtn').addEventListener('click', function() {
+            document.getElementById('applyModal').classList.add('active');
+            // Auto-select the program in the dropdown
+            const programTitle = document.getElementById('detailTitle').textContent;
+            const select = document.getElementById('applyProgramSelect');
+            for (let i = 0; i < select.options.length; i++) {
+                if (select.options[i].text === programTitle) {
+                    select.value = programTitle;
+                    break;
+                }
+            }
+        });
+        document.getElementById('closeApplyModal').addEventListener('click', function() {
+            document.getElementById('applyModal').classList.remove('active');
+        });
+        document.getElementById('applyModal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        document.getElementById('applyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Your application has been submitted successfully! We will review it and get back to you soon.');
+            this.reset();
+            document.getElementById('applyModal').classList.remove('active');
+        });
+
         // FACULTY DIRECTORY
-        // ============================================
         const facultyData = [
             { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals and leads the AI research lab.' },
             { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems and startup incubation.' },
@@ -2596,32 +1503,25 @@
                 f.dept.toLowerCase().includes(filter.toLowerCase()) ||
                 f.discipline.toLowerCase().includes(filter.toLowerCase())
             );
-
             if (filtered.length === 0) {
-                grid.innerHTML = `
-                        <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                            <i class="fas fa-search" style="font-size:32px;"></i>
-                            <p style="margin-top:12px;">No faculty members found matching your search.</p>
-                        </div>
-                    `;
+                grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
+                        <i class="fas fa-search" style="font-size:32px;"></i>
+                        <p style="margin-top:12px;">No faculty members found matching your search.</p>
+                    </div>`;
                 return;
             }
-
             let html = '';
             filtered.forEach((f, idx) => {
-                html += `
-                        <div class="faculty-card" data-aos="fade-up" data-aos-delay="${idx * 50}">
-                            <div class="avatar">👨‍🏫</div>
-                            <h4>${f.name}</h4>
-                            <div class="position">${f.position}</div>
-                            <div class="dept">${f.dept} · ${f.discipline}</div>
-                            <div class="bio" id="bio-${idx}">${f.bio}</div>
-                            <button class="btn-small show-bio" data-index="${idx}">Show Bio</button>
-                        </div>
-                    `;
+                html += `<div class="faculty-card" data-aos="fade-up" data-aos-delay="${idx * 50}">
+                        <div class="avatar">👨‍🏫</div>
+                        <h4>${f.name}</h4>
+                        <div class="position">${f.position}</div>
+                        <div class="dept">${f.dept} · ${f.discipline}</div>
+                        <div class="bio" id="bio-${idx}">${f.bio}</div>
+                        <button class="btn-small show-bio" data-index="${idx}">Show Bio</button>
+                    </div>`;
             });
             grid.innerHTML = html;
-
             document.querySelectorAll('.show-bio').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
@@ -2633,19 +1533,13 @@
         }
 
         document.getElementById('facultySearchBtn').addEventListener('click', function() {
-            const query = document.getElementById('facultySearch').value;
-            renderFaculty(query);
+            renderFaculty(document.getElementById('facultySearch').value);
         });
-
         document.getElementById('facultySearch').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                renderFaculty(this.value);
-            }
+            if (e.key === 'Enter') renderFaculty(this.value);
         });
 
-        // ============================================
         // ALUMNI STORIES
-        // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
             btn.addEventListener('click', function() {
                 const story = this.closest('.alumni-card').querySelector('.story');
@@ -2654,9 +1548,7 @@
             });
         });
 
-        // ============================================
         // CREDENTIAL VERIFICATION
-        // ============================================
         const verifyBtn = document.getElementById('verifyBtn');
         const verifyInput = document.getElementById('verifyInput');
         const verifyResult = document.getElementById('verifyResult');
@@ -2664,26 +1556,17 @@
         verifyBtn.addEventListener('click', async () => {
             const query = verifyInput.value.trim();
             if (!query) {
-                verifyResult.innerHTML = `
-                        <div style="background:#fef3e0; padding:20px; border-radius:12px; color:#8a6d3b;">
-                            <i class="fas fa-exclamation-triangle"></i> Please enter a Roll Number, Registration Number, or Verification ID.
-                        </div>
-                    `;
+                verifyResult.innerHTML = `<div style="background:#fef3e0; padding:20px; border-radius:12px; color:#8a6d3b;">
+                        <i class="fas fa-exclamation-triangle"></i> Please enter a Roll Number, Registration Number, or Verification ID.
+                    </div>`;
                 return;
             }
-
-            verifyResult.innerHTML = `
-                    <div style="color:var(--white);">
-                        <i class="fas fa-spinner fa-spin"></i> Verifying credential...
-                    </div>
-                `;
-
+            verifyResult.innerHTML = `<div style="color:var(--white);"><i class="fas fa-spinner fa-spin"></i> Verifying credential...</div>`;
             try {
                 const response = await fetch(CSV_URL);
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
-
                 const found = data.find(item =>
                     (item['Roll Number'] && item['Roll Number'].toLowerCase() === query.toLowerCase()) ||
                     (item['Registration Number'] && item['Registration Number'].toLowerCase() === query.toLowerCase()) ||
@@ -2691,49 +1574,33 @@
                     (item['Student ID'] && item['Student ID'].toLowerCase() === query.toLowerCase()) ||
                     (item['Credential Number'] && item['Credential Number'].toLowerCase() === query.toLowerCase())
                 );
-
                 if (found) {
                     verifyResult.innerHTML = `
         <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); 
-                    border-radius: 20px; 
-                    padding: 0; 
-                    overflow: hidden;
-                    box-shadow: 0 20px 60px rgba(10, 37, 64, 0.15);
-                    border: 1px solid rgba(201, 168, 76, 0.2);
-                    max-width: 750px;
-                    margin: 0 auto;
-                    text-align: left;">
-            
+                    border-radius: 20px; padding: 0; overflow: hidden;
+                    box-shadow: 0 20px 60px rgba(10,37,64,0.15);
+                    border: 1px solid rgba(201,168,76,0.2);
+                    max-width: 750px; margin: 0 auto; text-align: left;">
             <div style="background: linear-gradient(135deg, #c9a84c, #a8892e);
-                        padding: 24px 32px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;">
+                        padding: 24px 32px; display: flex; align-items: center; justify-content: space-between;">
                 <div style="display: flex; align-items: center; gap: 14px;">
                     <span style="font-size: 36px;">✅</span>
                     <div>
-                        <div style="color: #0a2540; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">
-                            CREDENTIAL VERIFIED
-                        </div>
-                        <div style="color: rgba(10, 37, 64, 0.7); font-size: 13px; font-weight: 500;">
-                            Official Academic Record
-                        </div>
+                        <div style="color: #0a2540; font-size: 20px; font-weight: 700; letter-spacing: 0.5px;">CREDENTIAL VERIFIED</div>
+                        <div style="color: rgba(10,37,64,0.7); font-size: 13px; font-weight: 500;">Official Academic Record</div>
                     </div>
                 </div>
-                <div style="background: rgba(10, 37, 64, 0.15);
-                            padding: 6px 16px;
-                            border-radius: 50px;
-                            font-size: 12px;
-                            font-weight: 600;
-                            color: #0a2540;
-                            letter-spacing: 0.5px;">
+                <div style="background: rgba(10,37,64,0.15); padding: 6px 16px; border-radius: 50px;
+                            font-size: 12px; font-weight: 600; color: #0a2540; letter-spacing: 0.5px;">
                     <i class="fas fa-shield-alt"></i> SECURE VERIFICATION
                 </div>
             </div>
-            
             <div style="padding: 28px 32px 20px;">
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #eef2f7; padding-bottom: 16px;">
-                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0a2540, #1a3a5c); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+                            border-bottom: 2px solid #eef2f7; padding-bottom: 16px;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0a2540, #1a3a5c);
+                                border-radius: 50%; display: flex; align-items: center; justify-content: center;
+                                color: white; font-size: 20px; font-weight: 700;">
                         ${found['Student Name'] ? found['Student Name'].charAt(0) : 'S'}
                     </div>
                     <div>
@@ -2741,110 +1608,85 @@
                         <div style="font-size: 24px; font-weight: 700; color: #0a2540; line-height: 1.2;">${found['Student Name'] || 'N/A'}</div>
                     </div>
                 </div>
-                
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 20px;">
-                    <div>
-                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Credential Type</div>
+                    <div><div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Credential Type</div>
                         <div style="font-size: 16px; font-weight: 600; color: #0a2540; margin-top: 2px;">
                             <span style="background: #e8f0fe; padding: 2px 12px; border-radius: 30px; font-size: 13px;">${found['Type'] || 'N/A'}</span>
                         </div>
                     </div>
-                    <div>
-                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Program</div>
+                    <div><div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Program</div>
                         <div style="font-size: 16px; font-weight: 600; color: #0a2540; margin-top: 2px;">${found['Title'] || 'N/A'}</div>
                     </div>
-                    <div>
-                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Faculty</div>
+                    <div><div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Faculty</div>
                         <div style="font-size: 14px; color: #1a3a5c; margin-top: 2px;">${found['Faculty'] || 'N/A'}</div>
                     </div>
-                    <div>
-                        <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Completion Year</div>
+                    <div><div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Completion Year</div>
                         <div style="font-size: 16px; font-weight: 600; color: #c9a84c; margin-top: 2px;">${found['Completion Year'] || 'N/A'}</div>
                     </div>
                 </div>
-                
                 <div style="background: #f4f7fb; border-radius: 14px; padding: 18px 24px; margin: 8px 0 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Registration Number'] || 'N/A'}</div>
+                        <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Registration Number'] || 'N/A'}</div>
                             <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Registration #</div>
                         </div>
                         <div style="text-align: center; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0;">
                             <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Credential Number'] || 'N/A'}</div>
                             <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Credential #</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Verification ID'] || 'N/A'}</div>
+                        <div style="text-align: center;"><div style="font-size: 13px; font-weight: 600; color: #0a2540;">${found['Verification ID'] || 'N/A'}</div>
                             <div style="font-size: 10px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.3px;">Verification ID</div>
                         </div>
                     </div>
                 </div>
-                
-                <div style="margin-top: 12px; display: flex; align-items: center; gap: 14px; background: #e6f4ea; padding: 12px 20px; border-radius: 12px; border-left: 4px solid #34a853;">
+                <div style="margin-top: 12px; display: flex; align-items: center; gap: 14px;
+                            background: #e6f4ea; padding: 12px 20px; border-radius: 12px; border-left: 4px solid #34a853;">
                     <i class="fas fa-check-circle" style="color: #1e7e34; font-size: 18px;"></i>
                     <span style="font-size: 15px; font-weight: 600; color: #1e7e34;">Status: VERIFIED</span>
                     <span style="flex: 1;"></span>
-                    <span style="font-size: 11px; color: #2e7d32; background: rgba(52, 168, 83, 0.15); padding: 2px 14px; border-radius: 30px; font-weight: 500;">
+                    <span style="font-size: 11px; color: #2e7d32; background: rgba(52,168,83,0.15);
+                                padding: 2px 14px; border-radius: 30px; font-weight: 500;">
                         <i class="fas fa-check"></i> Active
                     </span>
                 </div>
             </div>
-        </div>
-    `;
+        </div>`;
                 } else {
-                    verifyResult.innerHTML = `
-                            <div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
-                                <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
-                                    <span style="font-size:28px;">❌</span>
-                                    <span style="font-size:20px; font-weight:700;">NO MATCHING RECORD FOUND</span>
-                                </div>
-                                <p>The information entered could not be matched with a credential record. Please verify the Roll Number, Registration Number, or Verification ID and try again.</p>
+                    verifyResult.innerHTML = `<div style="background:#fce8e6; padding:28px; border-radius:16px; color:#b31412;">
+                            <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px;">
+                                <span style="font-size:28px;">❌</span>
+                                <span style="font-size:20px; font-weight:700;">NO MATCHING RECORD FOUND</span>
                             </div>
-                        `;
+                            <p>The information entered could not be matched with a credential record. Please verify the Roll Number, Registration Number, or Verification ID and try again.</p>
+                        </div>`;
                 }
             } catch (error) {
                 console.error('Verification error:', error);
-                verifyResult.innerHTML = `
-                        <div style="background:#fce8e6; padding:20px; border-radius:12px; color:#b31412;">
-                            <i class="fas fa-exclamation-circle"></i> Unable to verify at this moment. Please try again later.
-                        </div>
-                    `;
+                verifyResult.innerHTML = `<div style="background:#fce8e6; padding:20px; border-radius:12px; color:#b31412;">
+                        <i class="fas fa-exclamation-circle"></i> Unable to verify at this moment. Please try again later.
+                    </div>`;
             }
         });
 
-        verifyInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                verifyBtn.click();
-            }
-        });
+        verifyInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') verifyBtn.click(); });
 
-        // ============================================
         // CONTACT FORM
-        // ============================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for contacting Candroha International University. We will get back to you soon.');
             this.reset();
         });
 
-        // ============================================
         // ADMISSIONS FORM
-        // ============================================
         document.getElementById('admissionsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Your application has been submitted successfully! We will review it and get back to you.');
             this.reset();
         });
 
-        // ============================================
         // GALLERY LIGHTBOX
-        // ============================================
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <span class="close-lightbox">&times;</span>
-            <img src="" alt="Gallery Image" />
-        `;
+        lightbox.innerHTML = `<span class="close-lightbox">&times;</span><img src="" alt="Gallery Image" />`;
         document.body.appendChild(lightbox);
 
         document.querySelectorAll('.gallery-item').forEach(item => {
@@ -2872,9 +1714,7 @@
             }
         });
 
-        // ============================================
-        // LOAD INITIAL DATA
-        // ============================================
+        // LOAD DATA
         loadPrograms();
         renderFaculty();
     </script>
