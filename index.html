@@ -21,6 +21,7 @@
     <meta property="og:title" content="Candroha International University">
     <meta property="og:description" content="Academic Excellence, Research, Innovation, and Global Learning.">
     <meta property="og:image" content="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
+    <meta property="og:site_name" content="Candroha International University">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -32,24 +33,25 @@
     <link rel="icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" type="image/png">
     <link rel="apple-touch-icon" href="https://reactooba1999-bot.github.io/candroha.github.io/logo.png">
 
-    <!-- Google Site Name Structured Data -->
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Candroha International University",
-  "alternateName": "CIU",
-  "url": "https://candroha.foo.ng"
-}
-</script>
+    <!-- Google Fonts - Advanced Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS - Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
+        /* ============================================
+                   ROOT VARIABLES
+                   ============================================ */
         :root {
             --navy: #0a2540;
             --navy-light: #1a3a5c;
+            --navy-dark: #06152a;
             --gold: #c9a84c;
             --gold-light: #e8d5a3;
             --gold-dark: #a8892e;
@@ -59,12 +61,59 @@
             --gray: #6a7b8c;
             --dark: #1a1a2e;
             --shadow: 0 10px 40px rgba(10, 37, 64, 0.08);
-            --shadow-hover: 0 20px 60px rgba(10, 37, 64, 0.12);
+            --shadow-hover: 0 20px 60px rgba(10, 37, 64, 0.15);
             --radius: 16px;
-            --transition: 0.3s ease;
-            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --radius-lg: 24px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
         }
 
+        /* ============================================
+                   PRELOADER
+                   ============================================ */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .loader-ring {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(201, 168, 76, 0.1);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        .loader-text {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-top: 20px;
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+                   RESET & BASE
+                   ============================================ */
         * {
             margin: 0;
             padding: 0;
@@ -74,10 +123,10 @@
             scroll-behavior: smooth;
         }
         body {
-            font-family: var(--font);
+            font-family: var(--font-body);
             background: var(--white);
             color: var(--dark);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
         a {
@@ -97,9 +146,12 @@
             padding: 0 20px;
         }
 
+        /* ============================================
+                   BUTTONS - GLASSMORPHISM
+                   ============================================ */
         .btn {
             display: inline-block;
-            padding: 12px 32px;
+            padding: 14px 36px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 15px;
@@ -107,6 +159,9 @@
             transition: var(--transition);
             border: none;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            font-family: var(--font-body);
         }
         .btn-primary {
             background: var(--gold);
@@ -114,8 +169,8 @@
         }
         .btn-primary:hover {
             background: var(--gold-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(201, 168, 76, 0.35);
         }
         .btn-outline {
             background: transparent;
@@ -125,6 +180,7 @@
         .btn-outline:hover {
             background: var(--white);
             color: var(--navy);
+            transform: translateY(-3px);
         }
         .btn-navy {
             background: var(--navy);
@@ -132,30 +188,47 @@
         }
         .btn-navy:hover {
             background: var(--navy-light);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(10, 37, 64, 0.3);
         }
         .btn-small {
             font-size: 13px;
-            padding: 6px 18px;
+            padding: 8px 22px;
             border-radius: 50px;
             background: var(--navy);
             color: var(--white);
             border: none;
             cursor: pointer;
             transition: var(--transition);
+            font-family: var(--font-body);
+            font-weight: 500;
         }
         .btn-small:hover {
             background: var(--gold);
             color: var(--navy);
+            transform: translateY(-2px);
         }
 
+        /* ============================================
+                   HEADER - GLASSMORPHISM
+                   ============================================ */
         .header {
-            background: var(--navy);
-            padding: 10px 0;
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+            padding: 16px 0;
+            transition: var(--transition);
+            background: rgba(10, 37, 64, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .header.scrolled {
+            padding: 10px 0;
+            background: rgba(10, 37, 64, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
         .header .container {
             display: flex;
@@ -163,7 +236,7 @@
             justify-content: space-between;
         }
         .logo img {
-            height: 80px;
+            height: 60px;
             width: auto;
             display: block;
             background: transparent !important;
@@ -171,26 +244,40 @@
             transition: var(--transition);
         }
         .logo img:hover {
-            transform: scale(1.03);
-            filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
+            transform: scale(1.05);
         }
         .nav {
             display: flex;
             align-items: center;
             gap: 6px;
-            flex-wrap: wrap;
         }
         .nav a {
-            color: rgba(255, 255, 255, 0.85);
-            padding: 8px 12px;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 8px 14px;
             font-size: 14px;
             font-weight: 500;
             border-radius: 8px;
             transition: var(--transition);
+            position: relative;
+            font-family: var(--font-body);
         }
         .nav a:hover {
-            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        .nav a:hover::after {
+            width: 60%;
         }
         .nav .verify-btn {
             background: var(--gold);
@@ -201,8 +288,11 @@
         }
         .nav .verify-btn:hover {
             background: var(--gold-light);
+            transform: translateY(-2px);
         }
-        /* ===== ADMIN BUTTON REMOVED FROM HEADER ===== */
+        .nav .verify-btn::after {
+            display: none;
+        }
         .hamburger {
             display: none;
             flex-direction: column;
@@ -214,28 +304,44 @@
         }
         .hamburger span {
             width: 28px;
-            height: 3px;
+            height: 2px;
             background: var(--white);
             border-radius: 3px;
             transition: var(--transition);
         }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
         .nav-mobile {
             display: none;
             flex-direction: column;
-            background: var(--navy-light);
+            background: rgba(26, 58, 92, 0.95);
+            backdrop-filter: blur(20px);
             padding: 20px;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-top: 12px;
-            gap: 6px;
+            gap: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-mobile.open {
+            display: flex;
         }
         .nav-mobile a {
             color: var(--white);
             padding: 10px 16px;
             border-radius: 8px;
             font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
         }
         .nav-mobile a:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
         }
         .nav-mobile .verify-btn-mobile {
             background: var(--gold);
@@ -244,15 +350,17 @@
             text-align: center;
         }
 
+        /* ============================================
+                   HERO - PARALLAX + ANIMATED TEXT
+                   ============================================ */
         .hero {
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
-            padding: 80px 0 100px;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--navy);
+            padding-top: 80px;
         }
         .hero-video-bg {
             position: absolute;
@@ -261,33 +369,58 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.3;
+            opacity: 0.25;
             z-index: 1;
-            pointer-events: none;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 37, 64, 0.85) 0%, rgba(10, 37, 64, 0.4) 100%);
+            z-index: 2;
         }
         .hero .container {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
         }
         .hero-content h1 {
-            font-size: 48px;
-            font-weight: 800;
+            font-family: var(--font-heading);
+            font-size: 56px;
+            font-weight: 700;
             line-height: 1.1;
             margin-bottom: 20px;
+            color: var(--white);
         }
         .hero-content h1 .gold {
             color: var(--gold);
         }
+        .hero-content .animated-text {
+            display: inline-block;
+            position: relative;
+        }
+        .hero-content .animated-text::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 4px;
+        }
         .hero-content p {
             font-size: 18px;
-            opacity: 0.9;
+            opacity: 0.85;
             max-width: 500px;
             margin-bottom: 32px;
-            line-height: 1.7;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
         }
         .hero-buttons {
             display: flex;
@@ -302,30 +435,42 @@
         .hero-stat {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(10px);
-            padding: 24px 20px;
+            padding: 28px 20px;
             border-radius: var(--radius);
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+        .hero-stat:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.1);
         }
         .hero-stat .number {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 700;
             color: var(--gold);
+            font-family: var(--font-heading);
         }
         .hero-stat .label {
-            font-size: 13px;
+            font-size: 14px;
             opacity: 0.7;
             margin-top: 4px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
+        /* ============================================
+                   SECTION TITLES
+                   ============================================ */
         .section-title {
             text-align: center;
             margin-bottom: 48px;
         }
         .section-title h2 {
-            font-size: 36px;
+            font-family: var(--font-heading);
+            font-size: 40px;
             font-weight: 700;
             color: var(--navy);
+            margin-bottom: 8px;
         }
         .section-title h2 .gold {
             color: var(--gold);
@@ -333,13 +478,19 @@
         .section-title p {
             color: var(--gray);
             max-width: 600px;
-            margin: 8px auto 0;
+            margin: 0 auto;
             font-size: 17px;
+            font-weight: 300;
         }
 
+        /* ============================================
+                   QUICK LINKS - GLASS CARDS
+                   ============================================ */
         .quick-links {
             padding: 60px 0;
             background: var(--off-white);
+            position: relative;
+            z-index: 1;
         }
         .quick-grid {
             display: grid;
@@ -348,68 +499,134 @@
         }
         .quick-item {
             background: var(--white);
-            padding: 24px 20px;
+            padding: 28px 20px;
             border-radius: var(--radius);
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
             border-bottom: 3px solid transparent;
+            cursor: pointer;
         }
         .quick-item:hover {
-            transform: translateY(-4px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
             border-bottom-color: var(--gold);
         }
         .quick-item i {
-            font-size: 32px;
+            font-size: 36px;
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: block;
         }
         .quick-item h4 {
             font-size: 16px;
             color: var(--navy);
+            font-weight: 600;
         }
 
+        /* ============================================
+                   ABOUT - WITH DECORATIVE ELEMENTS
+                   ============================================ */
         .about-intro {
-            padding: 80px 0;
+            padding: 100px 0;
+            position: relative;
         }
         .about-intro .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
         }
         .about-intro .text h2 {
-            font-size: 34px;
+            font-family: var(--font-heading);
+            font-size: 40px;
             color: var(--navy);
             margin-bottom: 16px;
+        }
+        .about-intro .text h2 .gold {
+            color: var(--gold);
         }
         .about-intro .text p {
             color: var(--gray);
             font-size: 16px;
-            line-height: 1.8;
+            line-height: 1.9;
             margin-bottom: 16px;
         }
+        .about-intro .text .btn {
+            margin-top: 8px;
+        }
+        .about-card {
+            background: var(--off-white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+        }
+        .about-card .icon {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+        .about-card h3 {
+            font-family: var(--font-heading);
+            color: var(--navy);
+            font-size: 24px;
+        }
+        .about-card p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        .about-card .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 16px auto;
+        }
 
+        /* ============================================
+                   PROGRAMS - MASONRY
+                   ============================================ */
         .programs-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--off-white);
         }
         .program-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
         }
         .program-card {
             background: var(--white);
             border-radius: var(--radius);
-            padding: 28px 24px;
+            padding: 30px 28px;
             box-shadow: var(--shadow);
             transition: var(--transition);
             border-left: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.03), transparent);
+            pointer-events: none;
         }
         .program-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-hover);
         }
         .program-card .level {
@@ -417,9 +634,11 @@
             font-weight: 600;
             color: var(--gold);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
         }
         .program-card h3 {
+            font-family: var(--font-heading);
             font-size: 20px;
             color: var(--navy);
             margin: 6px 0 4px;
@@ -427,14 +646,26 @@
         .program-card .faculty {
             font-size: 14px;
             color: var(--gray);
+            font-weight: 400;
         }
         .program-card p {
             font-size: 14px;
             color: var(--gray);
             margin: 10px 0 14px;
-            line-height: 1.6;
+            line-height: 1.7;
+        }
+        .program-card .btn-small {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .program-card .btn-small:hover {
+            background: var(--gold);
+            color: var(--navy);
         }
 
+        /* ============================================
+                   PROGRAM DETAIL - MODAL
+                   ============================================ */
         .program-detail {
             display: none;
             position: fixed;
@@ -443,6 +674,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -455,26 +687,46 @@
             background: var(--white);
             max-width: 800px;
             width: 100%;
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
             padding: 40px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            animation: modalIn 0.4s ease;
+        }
+        @keyframes modalIn {
+            from {
+                transform: scale(0.95) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
         }
         .program-detail .modal .close {
             position: absolute;
-            top: 15px;
+            top: 16px;
             right: 20px;
             font-size: 28px;
             cursor: pointer;
             color: var(--gray);
             transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .program-detail .modal .close:hover {
+            background: var(--off-white);
             color: var(--dark);
         }
         .program-detail .modal h2 {
+            font-family: var(--font-heading);
             color: var(--navy);
+            font-size: 28px;
             margin-bottom: 10px;
         }
         .program-detail .modal .meta {
@@ -488,6 +740,7 @@
         }
         .program-detail .modal .meta strong {
             color: var(--navy);
+            font-weight: 600;
         }
         .program-detail .modal ul {
             list-style: disc;
@@ -498,84 +751,112 @@
             margin-bottom: 6px;
             color: var(--gray);
         }
+        .program-detail .modal .btn-primary {
+            margin-top: 16px;
+        }
 
+        /* ============================================
+                   FACULTIES - GLASS CARDS
+                   ============================================ */
         .faculties-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .faculty-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 24px;
         }
         .faculty-item {
-            background: var(--off-white);
-            padding: 24px 18px;
+            background: var(--white);
+            padding: 28px 20px;
             border-radius: var(--radius);
             text-align: center;
             transition: var(--transition);
-            border: 1px solid transparent;
+            border: 1px solid var(--gray-light);
+            cursor: pointer;
         }
         .faculty-item:hover {
             border-color: var(--gold);
-            background: var(--white);
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
         }
         .faculty-item i {
-            font-size: 36px;
+            font-size: 40px;
             color: var(--gold);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: block;
         }
         .faculty-item h4 {
-            font-size: 16px;
+            font-family: var(--font-heading);
+            font-size: 17px;
             color: var(--navy);
         }
 
+        /* ============================================
+                   RESEARCH
+                   ============================================ */
         .research-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--off-white);
         }
         .research-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 24px;
         }
         .research-card {
             background: var(--white);
-            padding: 24px;
+            padding: 28px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            transition: var(--transition);
             border-top: 4px solid var(--gold);
         }
+        .research-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
         .research-card h4 {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 19px;
             color: var(--navy);
+            margin-bottom: 6px;
         }
         .research-card p {
             font-size: 14px;
             color: var(--gray);
-            margin: 6px 0 0;
+            line-height: 1.7;
         }
 
+        /* ============================================
+                   WHY CIU - ANIMATED COUNTERS
+                   ============================================ */
         .why-section {
-            padding: 80px 0;
-            background: var(--off-white);
+            padding: 100px 0;
+            background: var(--white);
         }
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 30px;
         }
         .why-item {
             text-align: center;
-            padding: 20px;
+            padding: 24px;
+            transition: var(--transition);
+        }
+        .why-item:hover {
+            transform: translateY(-4px);
         }
         .why-item i {
-            font-size: 36px;
+            font-size: 40px;
             color: var(--gold);
             margin-bottom: 12px;
+            display: block;
         }
         .why-item h4 {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 19px;
             color: var(--navy);
         }
         .why-item p {
@@ -584,14 +865,17 @@
             margin-top: 4px;
         }
 
+        /* ============================================
+                   ADMISSIONS
+                   ============================================ */
         .admissions-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--off-white);
         }
         .admissions-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 50px;
         }
         .admissions-grid .steps {
             display: flex;
@@ -603,9 +887,14 @@
             gap: 16px;
             align-items: flex-start;
             background: var(--white);
-            padding: 18px 20px;
+            padding: 18px 22px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .admissions-grid .step:hover {
+            transform: translateX(6px);
+            box-shadow: var(--shadow-hover);
         }
         .admissions-grid .step .num {
             background: var(--gold);
@@ -618,9 +907,12 @@
             justify-content: center;
             font-weight: 700;
             flex-shrink: 0;
+            font-size: 14px;
         }
         .admissions-grid .step h4 {
+            font-family: var(--font-heading);
             color: var(--navy);
+            font-size: 17px;
         }
         .admissions-grid .step p {
             color: var(--gray);
@@ -628,9 +920,15 @@
         }
         .admissions-form {
             background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
+            padding: 32px;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
+        }
+        .admissions-form h3 {
+            font-family: var(--font-heading);
+            color: var(--navy);
+            margin-bottom: 20px;
+            font-size: 24px;
         }
         .admissions-form input,
         .admissions-form select,
@@ -641,7 +939,7 @@
             border-radius: 10px;
             font-size: 15px;
             margin-bottom: 14px;
-            font-family: inherit;
+            font-family: var(--font-body);
             transition: var(--transition);
         }
         .admissions-form input:focus,
@@ -649,44 +947,50 @@
         .admissions-form textarea:focus {
             border-color: var(--gold);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
         }
         .admissions-form textarea {
             min-height: 100px;
             resize: vertical;
         }
 
+        /* ============================================
+                   FACULTY DIRECTORY
+                   ============================================ */
         .faculty-directory {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .faculty-directory .search-box {
             display: flex;
             gap: 12px;
             max-width: 500px;
-            margin: 0 auto 30px;
+            margin: 0 auto 40px;
         }
         .faculty-directory .search-box input {
             flex: 1;
-            padding: 12px 18px;
+            padding: 12px 20px;
             border: 1px solid var(--gray-light);
             border-radius: 50px;
             font-size: 15px;
-            font-family: inherit;
+            font-family: var(--font-body);
             transition: var(--transition);
         }
         .faculty-directory .search-box input:focus {
             border-color: var(--gold);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
+        }
+        .faculty-directory .search-box .btn {
+            padding: 12px 28px;
         }
         .faculty-grid-dir {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 24px;
         }
         .faculty-card {
             background: var(--white);
-            padding: 24px;
+            padding: 28px 24px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             text-align: center;
@@ -694,16 +998,18 @@
             transition: var(--transition);
         }
         .faculty-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
         }
         .faculty-card .avatar {
-            font-size: 48px;
+            font-size: 52px;
             color: var(--gold);
             margin-bottom: 8px;
         }
         .faculty-card h4 {
+            font-family: var(--font-heading);
             color: var(--navy);
+            font-size: 18px;
         }
         .faculty-card .position {
             font-size: 14px;
@@ -717,31 +1023,37 @@
         .faculty-card .bio {
             font-size: 14px;
             color: var(--gray);
-            margin-top: 8px;
+            margin-top: 10px;
             display: none;
+            line-height: 1.7;
         }
         .faculty-card .bio.show {
             display: block;
         }
-        .faculty-card .btn-small {
-            margin-top: 10px;
-        }
 
+        /* ============================================
+                   EVENTS
+                   ============================================ */
         .events-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--off-white);
         }
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
         }
         .event-card {
             background: var(--white);
             border-radius: var(--radius);
-            padding: 24px;
+            padding: 28px;
             box-shadow: var(--shadow);
             border-left: 4px solid var(--gold);
+            transition: var(--transition);
+        }
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
         .event-card .date {
             font-size: 14px;
@@ -749,7 +1061,8 @@
             font-weight: 600;
         }
         .event-card h4 {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 19px;
             color: var(--navy);
             margin: 6px 0;
         }
@@ -760,32 +1073,45 @@
         .event-card .location {
             font-size: 13px;
             color: var(--gray);
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
+        /* ============================================
+                   ALUMNI
+                   ============================================ */
         .alumni-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .alumni-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 24px;
         }
         .alumni-card {
             background: var(--white);
-            padding: 24px;
+            padding: 28px 24px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             text-align: center;
             border-top: 4px solid var(--gold);
+            transition: var(--transition);
         }
-        .alumni-card .avatar {
-            font-size: 48px;
-            color: var(--gold);
-            margin-bottom: 8px;
+        .alumni-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .alumni-card .avatar img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            border: 3px solid var(--gold);
         }
         .alumni-card h4 {
+            font-family: var(--font-heading);
             color: var(--navy);
+            font-size: 18px;
         }
         .alumni-card .year {
             font-size: 14px;
@@ -799,21 +1125,42 @@
         .alumni-card .story {
             font-size: 14px;
             color: var(--gray);
-            margin-top: 8px;
+            margin-top: 10px;
             display: none;
+            line-height: 1.7;
         }
         .alumni-card .story.show {
             display: block;
         }
 
+        /* ============================================
+                   CREDENTIAL VERIFICATION
+                   ============================================ */
         .verify-preview {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--navy);
             color: var(--white);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .verify-preview::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .verify-preview .container {
+            position: relative;
+            z-index: 2;
         }
         .verify-preview h2 {
-            font-size: 36px;
+            font-family: var(--font-heading);
+            font-size: 40px;
         }
         .verify-preview h2 .gold {
             color: var(--gold);
@@ -822,6 +1169,7 @@
             opacity: 0.8;
             max-width: 600px;
             margin: 10px auto 30px;
+            font-size: 17px;
         }
         .verify-box {
             max-width: 550px;
@@ -834,27 +1182,35 @@
         .verify-box input {
             flex: 1;
             min-width: 220px;
-            padding: 14px 20px;
+            padding: 16px 24px;
             border-radius: 50px;
             border: none;
             font-size: 16px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             outline: none;
+            font-family: var(--font-body);
+            transition: var(--transition);
         }
         .verify-box input::placeholder {
             color: rgba(255, 255, 255, 0.5);
         }
+        .verify-box input:focus {
+            background: rgba(255, 255, 255, 0.15);
+        }
         .verify-box .btn-primary {
-            padding: 14px 36px;
+            padding: 16px 40px;
         }
 
+        /* ============================================
+                   NEWS
+                   ============================================ */
         .news-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
         }
         .news-card {
@@ -865,11 +1221,11 @@
             transition: var(--transition);
         }
         .news-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             box-shadow: var(--shadow-hover);
         }
         .news-card .body {
-            padding: 20px;
+            padding: 24px;
         }
         .news-card .body .date {
             font-size: 13px;
@@ -877,7 +1233,8 @@
             font-weight: 600;
         }
         .news-card .body h4 {
-            font-size: 18px;
+            font-family: var(--font-heading);
+            font-size: 19px;
             color: var(--navy);
             margin: 6px 0;
         }
@@ -886,13 +1243,16 @@
             color: var(--gray);
         }
 
+        /* ============================================
+                   GALLERY
+                   ============================================ */
         .gallery-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background: var(--off-white);
         }
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
         }
         .gallery-item {
@@ -909,27 +1269,28 @@
         }
         .gallery-item img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
             display: block;
             transition: var(--transition);
         }
         .gallery-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.06);
         }
         .gallery-caption {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(10, 37, 64, 0.8));
+            background: linear-gradient(transparent, rgba(10, 37, 64, 0.85));
             color: var(--white);
-            padding: 40px 16px 16px;
-            font-size: 14px;
+            padding: 50px 20px 20px;
+            font-size: 15px;
             font-weight: 500;
             text-align: center;
             opacity: 0;
             transition: var(--transition);
+            font-family: var(--font-body);
         }
         .gallery-item:hover .gallery-caption {
             opacity: 1;
@@ -942,7 +1303,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             z-index: 3000;
             justify-content: center;
             align-items: center;
@@ -962,41 +1323,47 @@
             position: absolute;
             top: 20px;
             right: 30px;
-            font-size: 40px;
+            font-size: 44px;
             color: var(--white);
             cursor: pointer;
             transition: var(--transition);
+            font-weight: 300;
         }
         .lightbox .close-lightbox:hover {
             color: var(--gold);
+            transform: rotate(90deg);
         }
 
+        /* ============================================
+                   CONTACT
+                   ============================================ */
         .contact-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
         }
         .contact-info h3 {
-            font-size: 28px;
+            font-family: var(--font-heading);
+            font-size: 30px;
             color: var(--navy);
             margin-bottom: 16px;
         }
         .contact-info p {
             color: var(--gray);
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         .contact-info .detail {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 12px;
+            gap: 16px;
+            margin-bottom: 16px;
         }
         .contact-info .detail i {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: var(--off-white);
             border-radius: 50%;
             display: flex;
@@ -1004,6 +1371,20 @@
             justify-content: center;
             color: var(--gold);
             font-size: 18px;
+            transition: var(--transition);
+        }
+        .contact-info .detail:hover i {
+            background: var(--gold);
+            color: var(--white);
+        }
+        .contact-info .detail strong {
+            color: var(--navy);
+            display: block;
+            font-weight: 600;
+        }
+        .contact-info .detail span {
+            color: var(--gray);
+            font-size: 14px;
         }
         .contact-form input,
         .contact-form textarea {
@@ -1013,47 +1394,65 @@
             border-radius: 10px;
             font-size: 15px;
             margin-bottom: 14px;
-            font-family: inherit;
+            font-family: var(--font-body);
             transition: var(--transition);
         }
         .contact-form input:focus,
         .contact-form textarea:focus {
             border-color: var(--gold);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.12);
         }
         .contact-form textarea {
-            min-height: 120px;
+            min-height: 130px;
             resize: vertical;
         }
 
+        /* ============================================
+                   FOOTER - DARK PREMIUM
+                   ============================================ */
         .footer {
-            background: var(--navy);
+            background: var(--navy-dark);
             color: rgba(255, 255, 255, 0.7);
-            padding: 60px 0 30px;
+            padding: 70px 0 30px;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
         }
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
         .footer h4 {
             color: var(--white);
-            font-size: 16px;
-            margin-bottom: 16px;
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 18px;
+            position: relative;
+        }
+        .footer h4::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
         }
         .footer a {
             display: block;
             font-size: 14px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             transition: var(--transition);
+            color: rgba(255, 255, 255, 0.6);
         }
         .footer a:hover {
             color: var(--gold);
+            padding-left: 4px;
         }
         .footer .brand .logo-text {
-            font-size: 22px;
+            font-family: var(--font-heading);
+            font-size: 24px;
             font-weight: 700;
             color: var(--white);
         }
@@ -1062,29 +1461,55 @@
         }
         .footer .brand p {
             font-size: 14px;
-            margin-top: 8px;
-            max-width: 280px;
+            margin-top: 10px;
+            max-width: 300px;
+            line-height: 1.8;
         }
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 20px;
-            text-align: center;
+        .footer .brand .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .footer .brand .social-links a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 14px;
+            transition: var(--transition);
+            margin: 0;
         }
-        /* ===== ADMIN LOGIN LINK IN FOOTER (HIDDEN IN PLAIN SIGHT) ===== */
+        .footer .brand .social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
         .footer .admin-login-link {
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.08);
             font-size: 11px;
             text-decoration: none;
-            transition: 0.3s ease;
+            transition: var(--transition);
             display: block;
-            margin-top: 8px;
-            letter-spacing: 1px;
+            margin-top: 12px;
+            letter-spacing: 0.5px;
         }
         .footer .admin-login-link:hover {
             color: var(--gold);
         }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
 
+        /* ============================================
+                   LEGAL
+                   ============================================ */
         .legal-section {
             padding: 80px 0;
             background: var(--off-white);
@@ -1093,22 +1518,24 @@
             max-width: 800px;
             margin: 0 auto;
             background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
+            padding: 50px;
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
         }
         .legal-section .content h2 {
+            font-family: var(--font-heading);
             color: var(--navy);
             margin-bottom: 16px;
         }
         .legal-section .content h3 {
+            font-family: var(--font-heading);
             color: var(--navy);
-            margin-top: 24px;
+            margin-top: 28px;
             margin-bottom: 8px;
         }
         .legal-section .content p {
             color: var(--gray);
-            line-height: 1.8;
+            line-height: 1.9;
             margin-bottom: 12px;
         }
         .legal-section .content ul {
@@ -1121,6 +1548,45 @@
             margin-bottom: 6px;
         }
 
+        /* ============================================
+                   BACK TO TOP
+                   ============================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.35);
+            z-index: 500;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            background: var(--gold-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(201, 168, 76, 0.45);
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                   ============================================ */
         @media (max-width: 992px) {
             .hero .container {
                 grid-template-columns: 1fr;
@@ -1131,6 +1597,9 @@
             }
             .hero-buttons {
                 justify-content: center;
+            }
+            .hero-stats {
+                grid-template-columns: repeat(3, 1fr);
             }
             .about-intro .grid {
                 grid-template-columns: 1fr;
@@ -1144,6 +1613,9 @@
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
+            .hero-content h1 {
+                font-size: 40px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1151,9 +1623,6 @@
                 display: none;
             }
             .hamburger {
-                display: flex;
-            }
-            .nav-mobile.open {
                 display: flex;
             }
             .hero-content h1 {
@@ -1165,6 +1634,9 @@
             }
             .hero-stat .number {
                 font-size: 24px;
+            }
+            .hero-stat {
+                padding: 16px 12px;
             }
             .section-title h2 {
                 font-size: 28px;
@@ -1180,7 +1652,7 @@
                 width: 100%;
             }
             .logo img {
-                height: 60px;
+                height: 45px;
             }
             .program-detail .modal {
                 padding: 20px;
@@ -1190,6 +1662,25 @@
             }
             .faculty-directory .search-box {
                 flex-direction: column;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+            .faculty-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-card {
+                padding: 24px;
+            }
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
         }
 
@@ -1201,23 +1692,51 @@
                 grid-template-columns: 1fr;
             }
             .faculty-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
             .logo img {
-                height: 50px;
+                height: 38px;
+            }
+            .hero-content h1 {
+                font-size: 26px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .footer-grid {
+                gap: 30px;
+            }
+            .admissions-form {
+                padding: 20px;
+            }
+            .legal-section .content {
+                padding: 24px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+    <!-- ============================================
+    PRELOADER
+    ============================================ -->
+    <div id="preloader">
+        <div class="loader-ring"></div>
+        <div class="loader-text">CIU</div>
+    </div>
+
+    <!-- ============================================
+    HEADER
+    ============================================ -->
+    <header class="header" id="header">
         <div class="container">
             <div class="logo">
                 <img src="https://reactooba1999-bot.github.io/candroha.github.io/logo.png" alt="Candroha International University Logo" />
             </div>
-            <nav class="nav">
+            <nav class="nav" id="nav">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#programs">Programs</a>
@@ -1255,14 +1774,21 @@
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- ============================================
+    HERO
+    ============================================ -->
     <section class="hero" id="home">
         <video class="hero-video-bg" autoplay muted loop playsinline>
             <source src="https://reactooba1999-bot.github.io/candroha.github.io/drone.mp4" type="video/mp4">
         </video>
+        <div class="hero-overlay"></div>
         <div class="container">
-            <div class="hero-content">
-                <h1>Shaping Knowledge.<br /><span class="gold">Advancing Research.</span><br />Empowering Futures.</h1>
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <h1>
+                    Shaping Knowledge.<br />
+                    <span class="gold animated-text">Advancing Research.</span><br />
+                    Empowering Futures.
+                </h1>
                 <p>Candroha International University is committed to academic excellence, intellectual development, research, innovation, and global knowledge exchange.</p>
                 <div class="hero-buttons">
                     <a href="#programs" class="btn btn-primary">Explore Programs</a>
@@ -1270,67 +1796,103 @@
                     <a href="#research" class="btn btn-outline">Discover Research</a>
                 </div>
             </div>
-            <div class="hero-stats">
-                <div class="hero-stat"><div class="number">12+</div><div class="label">Academic Faculties</div></div>
-                <div class="hero-stat"><div class="number">50+</div><div class="label">Academic Programs</div></div>
-                <div class="hero-stat"><div class="number">1961</div><div class="label">Year Established</div></div>
+            <div class="hero-stats" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="hero-stat">
+                    <div class="number" data-count="12">0</div>
+                    <div class="label">Academic Faculties</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number" data-count="50">0</div>
+                    <div class="label">Academic Programs</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number" data-count="1961">0</div>
+                    <div class="label">Year Established</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- QUICK LINKS -->
+    <!-- ============================================
+    QUICK LINKS
+    ============================================ -->
     <section class="quick-links">
         <div class="container">
             <div class="quick-grid">
-                <a href="#programs" class="quick-item"><i class="fas fa-graduation-cap"></i><h4>Programs & Degrees</h4></a>
-                <a href="#research" class="quick-item"><i class="fas fa-flask"></i><h4>Research</h4></a>
-                <a href="#verify" class="quick-item"><i class="fas fa-check-circle"></i><h4>Verify Credential</h4></a>
-                <a href="#admissions" class="quick-item"><i class="fas fa-file-alt"></i><h4>Admissions</h4></a>
-                <a href="#faculties" class="quick-item"><i class="fas fa-users"></i><h4>Faculties</h4></a>
-                <a href="#contact" class="quick-item"><i class="fas fa-envelope"></i><h4>Contact Us</h4></a>
+                <a href="#programs" class="quick-item" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4>Programs & Degrees</h4>
+                </a>
+                <a href="#research" class="quick-item" data-aos="fade-up" data-aos-delay="150">
+                    <i class="fas fa-flask"></i>
+                    <h4>Research</h4>
+                </a>
+                <a href="#verify" class="quick-item" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Verify Credential</h4>
+                </a>
+                <a href="#admissions" class="quick-item" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fas fa-file-alt"></i>
+                    <h4>Admissions</h4>
+                </a>
+                <a href="#faculties" class="quick-item" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-users"></i>
+                    <h4>Faculties</h4>
+                </a>
+                <a href="#contact" class="quick-item" data-aos="fade-up" data-aos-delay="350">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Contact Us</h4>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ============================================
+    ABOUT
+    ============================================ -->
     <section class="about-intro" id="about">
         <div class="container">
             <div class="grid">
-                <div class="text">
+                <div class="text" data-aos="fade-right" data-aos-duration="800">
                     <h2>About <span class="gold">Candroha</span> International University</h2>
                     <p><strong>Established in 1961</strong>, Candroha International University (CIU) has been a beacon of academic excellence, research, and innovation. Located in the United Kingdom, CIU is dedicated to fostering intellectual growth, interdisciplinary learning, and global knowledge exchange.</p>
                     <p>Our university is committed to preparing future leaders through rigorous academic programs, cutting-edge research, and a vibrant campus community.</p>
                     <a href="#" class="btn btn-navy" style="margin-top:12px;">Learn More About CIU</a>
                 </div>
-                <div style="background:var(--off-white); border-radius:var(--radius); padding:40px; text-align:center; border:1px solid var(--gray-light);">
-                    <div style="font-size:64px; margin-bottom:12px;">🏛️</div>
-                    <h3 style="color:var(--navy);">Candroha International University</h3>
-                    <p style="color:var(--gray);">Est. 1961 · United Kingdom</p>
-                    <hr style="margin:20px 0; border-color:var(--gray-light);" />
-                    <p style="font-size:14px; color:var(--gray);"><strong>Chancellor:</strong> Purison Candroha</p>
-                    <p style="font-size:14px; color:var(--gray);"><strong>Email:</strong> candrohaeducation@gmail.com</p>
+                <div class="about-card" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="icon">🏛️</div>
+                    <h3>Candroha International University</h3>
+                    <div class="divider"></div>
+                    <p>Est. 1961 · United Kingdom</p>
+                    <div class="divider"></div>
+                    <p><strong>Chancellor:</strong> Purison Candroha</p>
+                    <p><strong>Email:</strong> candrohaeducation@gmail.com</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAMS -->
+    <!-- ============================================
+    PROGRAMS
+    ============================================ -->
     <section class="programs-section" id="programs">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Our <span class="gold">Academic Programs</span></h2>
                 <p>Explore our diverse range of undergraduate, postgraduate, and diploma programs across multiple faculties.</p>
             </div>
             <div class="program-grid" id="programGrid">
-                <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
-                    <i class="fas fa-spinner fa-spin" style="font-size:28px;"></i>
-                    <p style="margin-top:10px;">Loading programs from database...</p>
+                <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
+                    <i class="fas fa-spinner fa-spin" style="font-size:32px;"></i>
+                    <p style="margin-top:12px;">Loading programs from database...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAM DETAIL -->
+    <!-- ============================================
+    PROGRAM DETAIL (MODAL)
+    ============================================ -->
     <div class="program-detail" id="programDetail">
         <div class="modal">
             <span class="close" id="closeDetail">&times;</span>
@@ -1353,80 +1915,88 @@
                 <li>Career Option 1</li>
                 <li>Career Option 2</li>
             </ul>
-            <button class="btn btn-primary" style="margin-top:16px;" id="applyNowBtn">Apply Now</button>
+            <button class="btn btn-primary" id="applyNowBtn">Apply Now</button>
         </div>
     </div>
 
-    <!-- FACULTIES -->
+    <!-- ============================================
+    FACULTIES
+    ============================================ -->
     <section class="faculties-section" id="faculties">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Our <span class="gold">Academic Faculties</span></h2>
                 <p>CIU is organized into a number of academic faculties, each dedicated to excellence in teaching and research.</p>
             </div>
             <div class="faculty-grid">
-                <div class="faculty-item"><i class="fas fa-laptop-code"></i><h4>Computing & IT</h4></div>
-                <div class="faculty-item"><i class="fas fa-chart-line"></i><h4>Business & Commerce</h4></div>
-                <div class="faculty-item"><i class="fas fa-microchip"></i><h4>Engineering & Technology</h4></div>
-                <div class="faculty-item"><i class="fas fa-heartbeat"></i><h4>Health Sciences</h4></div>
-                <div class="faculty-item"><i class="fas fa-users"></i><h4>Social Sciences</h4></div>
-                <div class="faculty-item"><i class="fas fa-book-open"></i><h4>Humanities & Languages</h4></div>
-                <div class="faculty-item"><i class="fas fa-gavel"></i><h4>Law & Governance</h4></div>
-                <div class="faculty-item"><i class="fas fa-newspaper"></i><h4>Media & Communication</h4></div>
-                <div class="faculty-item"><i class="fas fa-flask"></i><h4>Natural Sciences</h4></div>
-                <div class="faculty-item"><i class="fas fa-mosque"></i><h4>Islamic & Religious Studies</h4></div>
-                <div class="faculty-item"><i class="fas fa-paint-brush"></i><h4>Arts & Design</h4></div>
-                <div class="faculty-item"><i class="fas fa-umbrella-beach"></i><h4>Hospitality & Tourism</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-laptop-code"></i><h4>Computing & IT</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-chart-line"></i><h4>Business & Commerce</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-microchip"></i><h4>Engineering & Technology</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-heartbeat"></i><h4>Health Sciences</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-users"></i><h4>Social Sciences</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-book-open"></i><h4>Humanities & Languages</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="350"><i class="fas fa-gavel"></i><h4>Law & Governance</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-newspaper"></i><h4>Media & Communication</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="450"><i class="fas fa-flask"></i><h4>Natural Sciences</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-mosque"></i><h4>Islamic & Religious Studies</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="550"><i class="fas fa-paint-brush"></i><h4>Arts & Design</h4></div>
+                <div class="faculty-item" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-umbrella-beach"></i><h4>Hospitality & Tourism</h4></div>
             </div>
         </div>
     </section>
 
-    <!-- RESEARCH -->
+    <!-- ============================================
+    RESEARCH
+    ============================================ -->
     <section class="research-section" id="research">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Research & <span class="gold">Innovation</span></h2>
                 <p>CIU is committed to advancing knowledge through cutting-edge research across multiple disciplines.</p>
             </div>
             <div class="research-grid">
-                <div class="research-card"><h4>Artificial Intelligence</h4><p>Exploring machine learning, neural networks, and intelligent systems.</p></div>
-                <div class="research-card"><h4>Data Science</h4><p>Big data analytics, predictive modeling, and data-driven decision making.</p></div>
-                <div class="research-card"><h4>Cybersecurity</h4><p>Network security, cryptography, and digital privacy.</p></div>
-                <div class="research-card"><h4>Sustainable Development</h4><p>Environmental sustainability, renewable energy, and green technologies.</p></div>
-                <div class="research-card"><h4>Health Sciences</h4><p>Public health, biomedical research, and healthcare innovation.</p></div>
-                <div class="research-card"><h4>Digital Transformation</h4><p>Emerging technologies, digital strategy, and organizational change.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="50"><h4>Artificial Intelligence</h4><p>Exploring machine learning, neural networks, and intelligent systems.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="100"><h4>Data Science</h4><p>Big data analytics, predictive modeling, and data-driven decision making.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="150"><h4>Cybersecurity</h4><p>Network security, cryptography, and digital privacy.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="200"><h4>Sustainable Development</h4><p>Environmental sustainability, renewable energy, and green technologies.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="250"><h4>Health Sciences</h4><p>Public health, biomedical research, and healthcare innovation.</p></div>
+                <div class="research-card" data-aos="fade-up" data-aos-delay="300"><h4>Digital Transformation</h4><p>Emerging technologies, digital strategy, and organizational change.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- WHY CIU -->
+    <!-- ============================================
+    WHY CIU
+    ============================================ -->
     <section class="why-section">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Why Choose <span class="gold">CIU</span>?</h2>
                 <p>Discover what makes Candroha International University a premier institution for higher education.</p>
             </div>
             <div class="why-grid">
-                <div class="why-item"><i class="fas fa-globe"></i><h4>International Outlook</h4><p>Global perspectives and cross-cultural learning.</p></div>
-                <div class="why-item"><i class="fas fa-flask"></i><h4>Research-Oriented</h4><p>Cutting-edge research across all disciplines.</p></div>
-                <div class="why-item"><i class="fas fa-users"></i><h4>Expert Faculty</h4><p>Learn from world-class scholars and researchers.</p></div>
-                <div class="why-item"><i class="fas fa-graduation-cap"></i><h4>Diverse Programs</h4><p>Wide range of degrees, diplomas, and certificates.</p></div>
-                <div class="why-item"><i class="fas fa-laptop"></i><h4>Digital Learning</h4><p>Modern, technology-enhanced education.</p></div>
-                <div class="why-item"><i class="fas fa-handshake"></i><h4>Global Network</h4><p>Connect with alumni and partners worldwide.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="50"><i class="fas fa-globe"></i><h4>International Outlook</h4><p>Global perspectives and cross-cultural learning.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-flask"></i><h4>Research-Oriented</h4><p>Cutting-edge research across all disciplines.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="150"><i class="fas fa-users"></i><h4>Expert Faculty</h4><p>Learn from world-class scholars and researchers.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-graduation-cap"></i><h4>Diverse Programs</h4><p>Wide range of degrees, diplomas, and certificates.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="250"><i class="fas fa-laptop"></i><h4>Digital Learning</h4><p>Modern, technology-enhanced education.</p></div>
+                <div class="why-item" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-handshake"></i><h4>Global Network</h4><p>Connect with alumni and partners worldwide.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ADMISSIONS -->
+    <!-- ============================================
+    ADMISSIONS
+    ============================================ -->
     <section class="admissions-section" id="admissions">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Admissions at <span class="gold">CIU</span></h2>
                 <p>Your journey to academic excellence begins here. Follow the steps below to apply.</p>
             </div>
             <div class="admissions-grid">
-                <div>
-                    <h3 style="color:var(--navy); margin-bottom:20px;">How to Apply</h3>
+                <div data-aos="fade-right" data-aos-duration="800">
+                    <h3 style="font-family:var(--font-heading); color:var(--navy); margin-bottom:20px; font-size:28px;">How to Apply</h3>
                     <div class="steps">
                         <div class="step"><div class="num">1</div><div><h4>Explore Programs</h4><p>Browse our academic programs and find the one that fits your goals.</p></div></div>
                         <div class="step"><div class="num">2</div><div><h4>Review Requirements</h4><p>Check the admission requirements for your chosen program.</p></div></div>
@@ -1436,8 +2006,8 @@
                         <div class="step"><div class="num">6</div><div><h4>Admission Decision</h4><p>You will receive an admission decision via email.</p></div></div>
                     </div>
                 </div>
-                <div>
-                    <h3 style="color:var(--navy); margin-bottom:20px;">Apply Now</h3>
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <h3 style="font-family:var(--font-heading); color:var(--navy); margin-bottom:20px; font-size:28px;">Apply Now</h3>
                     <form class="admissions-form" id="admissionsForm">
                         <input type="text" placeholder="Full Name" required />
                         <input type="email" placeholder="Email Address" required />
@@ -1459,47 +2029,51 @@
         </div>
     </section>
 
-    <!-- FACULTY DIRECTORY -->
+    <!-- ============================================
+    FACULTY DIRECTORY
+    ============================================ -->
     <section class="faculty-directory" id="faculty-directory">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Faculty <span class="gold">Directory</span></h2>
                 <p>Meet our distinguished faculty members and researchers.</p>
             </div>
-            <div class="search-box">
+            <div class="search-box" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                 <input type="text" id="facultySearch" placeholder="Search by name, department, or discipline..." />
                 <button class="btn btn-primary" id="facultySearchBtn"><i class="fas fa-search"></i> Search</button>
             </div>
             <div class="faculty-grid-dir" id="facultyGrid">
-                <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
-                    <i class="fas fa-spinner fa-spin" style="font-size:28px;"></i>
-                    <p style="margin-top:10px;">Loading faculty directory...</p>
+                <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
+                    <i class="fas fa-spinner fa-spin" style="font-size:32px;"></i>
+                    <p style="margin-top:12px;">Loading faculty directory...</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EVENTS -->
+    <!-- ============================================
+    EVENTS
+    ============================================ -->
     <section class="events-section" id="events">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>University <span class="gold">Events</span></h2>
                 <p>Stay connected with our academic and community events.</p>
             </div>
             <div class="events-grid" id="eventsGrid">
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up" data-aos-delay="50">
                     <div class="date">September 15, 2026</div>
                     <h4>International Research Conference 2026</h4>
                     <p>Join us for the annual research conference featuring speakers from around the world.</p>
                     <div class="location"><i class="fas fa-map-marker-alt"></i> CIU Main Campus</div>
                 </div>
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="date">October 5, 2026</div>
                     <h4>AI & Data Science Symposium</h4>
                     <p>Exploring the future of artificial intelligence and data-driven innovation.</p>
                     <div class="location"><i class="fas fa-map-marker-alt"></i> Online / Virtual</div>
                 </div>
-                <div class="event-card">
+                <div class="event-card" data-aos="fade-up" data-aos-delay="150">
                     <div class="date">November 12, 2026</div>
                     <h4>Admissions Open Day</h4>
                     <p>Prospective students are invited to explore our campus and programs.</p>
@@ -1509,35 +2083,37 @@
         </div>
     </section>
 
-    <!-- GALLERY -->
+    <!-- ============================================
+    GALLERY
+    ============================================ -->
     <section class="gallery-section" id="gallery">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>University <span class="gold">Gallery</span></h2>
                 <p>Explore our campus, facilities, and student life through our photo gallery.</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="50">
                     <img src="images/gallery/campus-aerial.jfif" alt="Campus Aerial View" />
                     <div class="gallery-caption">Campus Aerial View</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
                     <img src="images/gallery/library-interior.jfif" alt="Library Interior" />
                     <div class="gallery-caption">Library Interior</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
                     <img src="images/gallery/lecture-hall.jfif" alt="Lecture Hall" />
                     <div class="gallery-caption">Lecture Hall</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
                     <img src="images/gallery/research-lab.jfif" alt="Research Lab" />
                     <div class="gallery-caption">Research Lab</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
                     <img src="images/gallery/student-life.jfif" alt="Student Life" />
                     <div class="gallery-caption">Student Life</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
                     <img src="images/gallery/graduation.jfif" alt="Graduation Ceremony" />
                     <div class="gallery-caption">Graduation Ceremony</div>
                 </div>
@@ -1545,58 +2121,50 @@
         </div>
     </section>
 
-    <!-- ALUMNI -->
+    <!-- ============================================
+    ALUMNI
+    ============================================ -->
     <section class="alumni-section" id="alumni">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>CIU <span class="gold">Alumni</span></h2>
                 <p>Our alumni are making a difference around the world.</p>
             </div>
             <div class="alumni-grid" id="alumniGrid">
-                <div class="alumni-card">
-                    <div class="avatar">
-                        <img src="images/alumni/Elena Rodriguez.jfif" alt="Dr. Elena Rodriguez" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
-                    </div>
+                <div class="alumni-card" data-aos="fade-up" data-aos-delay="50">
+                    <div class="avatar"><img src="images/alumni/Elena Rodriguez.jfif" alt="Dr. Elena Rodriguez" /></div>
                     <h4>Dr. Elena Rodriguez</h4>
                     <div class="year">Class of 2018 · Spain</div>
                     <div class="program">PhD in Artificial Intelligence</div>
                     <p class="story">Dr. Rodriguez is the Head of AI Ethics at the European Commission, leading a team of 50 researchers developing responsible AI guidelines for the EU.</p>
                     <button class="btn-small show-story" data-index="0">Read Story</button>
                 </div>
-                <div class="alumni-card">
-                    <div class="avatar">
-                        <img src="images/alumni/Kenji Tanaka.jfif" alt="Prof. Kenji Tanaka" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
-                    </div>
+                <div class="alumni-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="avatar"><img src="images/alumni/Kenji Tanaka.jfif" alt="Prof. Kenji Tanaka" /></div>
                     <h4>Prof. Kenji Tanaka</h4>
                     <div class="year">Class of 2015 · Japan</div>
                     <div class="program">MSc in Sustainable Engineering</div>
                     <p class="story">Prof. Tanaka is a leading researcher at the University of Tokyo and the recipient of the prestigious Japan Academy Medal.</p>
                     <button class="btn-small show-story" data-index="1">Read Story</button>
                 </div>
-                <div class="alumni-card">
-                    <div class="avatar">
-                        <img src="images/alumni/Amara Okafor.jfif" alt="Dr. Amara Okafor" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
-                    </div>
+                <div class="alumni-card" data-aos="fade-up" data-aos-delay="150">
+                    <div class="avatar"><img src="images/alumni/Amara Okafor.jfif" alt="Dr. Amara Okafor" /></div>
                     <h4>Dr. Amara Okafor</h4>
                     <div class="year">Class of 2017 · Nigeria</div>
                     <div class="program">MBA</div>
                     <p class="story">Dr. Okafor is the founder of a pan-African fintech startup that provides micro-loans to over 200,000 women entrepreneurs.</p>
                     <button class="btn-small show-story" data-index="2">Read Story</button>
                 </div>
-                <div class="alumni-card">
-                    <div class="avatar">
-                        <img src="images/alumni/Liam O'Brien.jfif" alt="Prof. Liam O'Brien" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
-                    </div>
+                <div class="alumni-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="avatar"><img src="images/alumni/Liam O'Brien.jfif" alt="Prof. Liam O'Brien" /></div>
                     <h4>Prof. Liam O'Brien</h4>
                     <div class="year">Class of 2016 · Ireland</div>
                     <div class="program">MA in Literature</div>
                     <p class="story">Prof. O'Brien is a celebrated poet and the current Writer-in-Residence at Trinity College Dublin.</p>
                     <button class="btn-small show-story" data-index="3">Read Story</button>
                 </div>
-                <div class="alumni-card">
-                    <div class="avatar">
-                        <img src="images/alumni/Sofia Chen.jfif" alt="Dr. Sofia Chen" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin:0 auto;" />
-                    </div>
+                <div class="alumni-card" data-aos="fade-up" data-aos-delay="250">
+                    <div class="avatar"><img src="images/alumni/Sofia Chen.jfif" alt="Dr. Sofia Chen" /></div>
                     <h4>Dr. Sofia Chen</h4>
                     <div class="year">Class of 2019 · Singapore</div>
                     <div class="program">PhD in Data Science</div>
@@ -1607,11 +2175,15 @@
         </div>
     </section>
 
-    <!-- CREDENTIAL VERIFICATION -->
+    <!-- ============================================
+    CREDENTIAL VERIFICATION
+    ============================================ -->
     <section class="verify-preview" id="verify">
         <div class="container">
-            <h2>Verify an <span class="gold">Academic Credential</span></h2>
-            <p>Verify academic credential information using an official Roll Number, Registration Number, Credential Number, Student ID, or Verification ID.</p>
+            <div class="section-title" style="color:var(--white);">
+                <h2 style="color:var(--white);">Verify an <span class="gold">Academic Credential</span></h2>
+                <p style="color:rgba(255,255,255,0.7);">Verify academic credential information using an official Roll Number, Registration Number, Credential Number, Student ID, or Verification ID.</p>
+            </div>
             <div class="verify-box">
                 <input type="text" placeholder="Enter Roll / Registration / ID" id="verifyInput" />
                 <button class="btn btn-primary" id="verifyBtn"><i class="fas fa-check-circle"></i> Verify</button>
@@ -1620,29 +2192,31 @@
         </div>
     </section>
 
-    <!-- NEWS -->
+    <!-- ============================================
+    NEWS
+    ============================================ -->
     <section class="news-section" id="news">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>University <span class="gold">News</span></h2>
                 <p>Stay updated with the latest announcements, achievements, and events.</p>
             </div>
             <div class="news-grid">
-                <div class="news-card">
+                <div class="news-card" data-aos="fade-up" data-aos-delay="50">
                     <div class="body">
                         <div class="date">August 23, 2026</div>
                         <h4>CIU Launches New AI Research Center</h4>
                         <p>New center dedicated to advancing artificial intelligence research and applications.</p>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="body">
                         <div class="date">August 15, 2026</div>
                         <h4>Admissions Open for 2026-27 Session</h4>
                         <p>Applications now being accepted for undergraduate and postgraduate programs.</p>
                     </div>
                 </div>
-                <div class="news-card">
+                <div class="news-card" data-aos="fade-up" data-aos-delay="150">
                     <div class="body">
                         <div class="date">August 5, 2026</div>
                         <h4>CIU Ranked Among Top UK Universities</h4>
@@ -1653,23 +2227,25 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ============================================
+    CONTACT
+    ============================================ -->
     <section class="contact-section" id="contact">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Get in <span class="gold">Touch</span></h2>
                 <p>Have questions? Reach out to us — we're here to help.</p>
             </div>
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
                     <h3>Contact Information</h3>
                     <p>For admissions, verification, or general inquiries, please contact us through the following channels.</p>
-                    <div class="detail"><i class="fas fa-envelope"></i><div><strong>Email</strong><br />candrohaeducation@gmail.com</div></div>
-                    <div class="detail"><i class="fas fa-map-marker-alt"></i><div><strong>Location</strong><br />United Kingdom (To be updated)</div></div>
-                    <div class="detail"><i class="fas fa-phone"></i><div><strong>Phone</strong><br />To be updated</div></div>
-                    <div class="detail"><i class="fas fa-clock"></i><div><strong>Office Hours</strong><br />To be updated</div></div>
+                    <div class="detail"><i class="fas fa-envelope"></i><div><strong>Email</strong><br /><span>candrohaeducation@gmail.com</span></div></div>
+                    <div class="detail"><i class="fas fa-map-marker-alt"></i><div><strong>Location</strong><br /><span>United Kingdom (To be updated)</span></div></div>
+                    <div class="detail"><i class="fas fa-phone"></i><div><strong>Phone</strong><br /><span>To be updated</span></div></div>
+                    <div class="detail"><i class="fas fa-clock"></i><div><strong>Office Hours</strong><br /><span>To be updated</span></div></div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
                     <input type="text" placeholder="Full Name" required />
                     <input type="email" placeholder="Email Address" required />
                     <input type="text" placeholder="Subject" />
@@ -1680,10 +2256,12 @@
         </div>
     </section>
 
-    <!-- LEGAL -->
+    <!-- ============================================
+    LEGAL
+    ============================================ -->
     <section class="legal-section" id="privacy">
         <div class="container">
-            <div class="content">
+            <div class="content" data-aos="fade-up" data-aos-duration="600">
                 <h2>Privacy Policy</h2>
                 <p>At Candroha International University, we are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your personal information.</p>
                 <h3>Information We Collect</h3>
@@ -1719,13 +2297,23 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="brand">
                     <div class="logo-text">🏛️ <span class="gold">CIU</span></div>
                     <p>Candroha International University — committed to academic excellence, research, innovation, and global learning since 1961.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <a href="admin.html" target="_blank" class="admin-login-link"><i class="fas fa-lock"></i> Login</a>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -1749,23 +2337,133 @@
                     <a href="#privacy">Privacy Policy</a>
                     <a href="#privacy">Terms & Conditions</a>
                     <a href="#privacy">Cookie Policy</a>
-                    <!-- 🔐 HIDDEN ADMIN LOGIN LINK - SIRF AAP KE LIYE -->
-                    <a href="admin.html" target="_blank" class="admin-login-link"><i class="fas fa-lock"></i> Login</a>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Candroha International University. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
+    <!-- ============================================
+    BACK TO TOP
+    ============================================ -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
+    <!-- ============================================
+    SCRIPTS
+    ============================================ -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // ============================================
+        // AOS - Scroll Animations
+        // ============================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        // ============================================
+        // PRELOADER
+        // ============================================
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').classList.add('hide');
+        });
+
+        // ============================================
+        // HEADER SCROLL
+        // ============================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // MOBILE NAV
+        // ============================================
         const hamburger = document.getElementById('hamburger');
         const navMobile = document.getElementById('navMobile');
-        hamburger.addEventListener('click', () => {
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
             navMobile.classList.toggle('open');
         });
 
+        // Close mobile nav on link click
+        navMobile.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+            });
+        });
+
+        // ============================================
+        // BACK TO TOP
+        // ============================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // ANIMATED COUNTERS
+        // ============================================
+        function animateCounters() {
+            const counters = document.querySelectorAll('[data-count]');
+            counters.forEach(function(counter) {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 2000;
+                const step = Math.max(1, Math.floor(target / 60));
+                let current = 0;
+
+                const updateCounter = function() {
+                    current += step;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        return;
+                    }
+                    counter.textContent = current;
+                    requestAnimationFrame(updateCounter);
+                };
+
+                const observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.5 });
+
+                observer.observe(counter);
+            });
+        }
+
+        animateCounters();
+
+        // ============================================
+        // CONFIGURATION
+        // ============================================
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
+
+        // ============================================
+        // PARSE CSV
+        // ============================================
         function parseCSV(csvText) {
             const lines = csvText.split('\n').filter(line => line.trim() !== '');
             if (lines.length === 0) return [];
@@ -1784,6 +2482,9 @@
             return result;
         }
 
+        // ============================================
+        // LOAD PROGRAMS
+        // ============================================
         async function loadPrograms() {
             const grid = document.getElementById('programGrid');
             try {
@@ -1791,25 +2492,28 @@
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
+
                 const programs = data.filter(item =>
                     item.Type && (item.Type.toLowerCase().includes('degree') ||
                         item.Type.toLowerCase().includes('diploma') ||
                         item.Type.toLowerCase().includes('certificate'))
                 );
+
                 if (programs.length === 0) {
                     grid.innerHTML = `
-                            <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
+                            <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
                                 <i class="fas fa-database" style="font-size:32px;"></i>
-                                <p style="margin-top:10px;">No programs found in the database.</p>
+                                <p style="margin-top:12px;">No programs found in the database.</p>
                                 <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
                             </div>
                         `;
                     return;
                 }
+
                 let html = '';
                 programs.forEach((item, index) => {
                     html += `
-                            <div class="program-card" data-index="${index}">
+                            <div class="program-card" data-index="${index}" data-aos="fade-up" data-aos-delay="${index * 50}">
                                 <div class="level">${item.Type || 'Program'}</div>
                                 <h3>${item.Title || 'Untitled'}</h3>
                                 <div class="faculty">${item.Faculty || 'CIU'}</div>
@@ -1819,6 +2523,7 @@
                         `;
                 });
                 grid.innerHTML = html;
+
                 document.querySelectorAll('.view-program').forEach(btn => {
                     btn.addEventListener('click', function() {
                         const idx = parseInt(this.dataset.index);
@@ -1826,18 +2531,23 @@
                         showProgramDetail(program);
                     });
                 });
+
                 window._programsData = programs;
+
             } catch (error) {
                 console.error('Error loading programs:', error);
                 grid.innerHTML = `
-                        <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
+                        <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
                             <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
-                            <p style="margin-top:10px;">Unable to load programs. Please check your Google Sheet link.</p>
+                            <p style="margin-top:12px;">Unable to load programs. Please check your Google Sheet link.</p>
                         </div>
                     `;
             }
         }
 
+        // ============================================
+        // PROGRAM DETAIL
+        // ============================================
         function showProgramDetail(program) {
             document.getElementById('detailTitle').textContent = program.Title || 'Program Name';
             document.getElementById('detailLevel').textContent = program.Type || 'N/A';
@@ -1845,30 +2555,38 @@
             document.getElementById('detailDuration').textContent = program.Duration || 'N/A';
             document.getElementById('detailMode').textContent = program.Mode || 'On-Campus';
             document.getElementById('detailDescription').textContent = program.Description || 'No description available.';
+
             const curriculum = program.Curriculum ? program.Curriculum.split(',').map(c => c.trim()) : ['Core Module 1', 'Core Module 2', 'Elective Module 1'];
             const career = program.Career ? program.Career.split(',').map(c => c.trim()) : ['Career Option 1', 'Career Option 2'];
+
             const currList = document.getElementById('detailCurriculum');
             currList.innerHTML = curriculum.map(c => `<li>${c}</li>`).join('');
+
             const careerList = document.getElementById('detailCareer');
             careerList.innerHTML = career.map(c => `<li>${c}</li>`).join('');
+
             document.getElementById('programDetail').classList.add('active');
         }
 
         document.getElementById('closeDetail').addEventListener('click', () => {
             document.getElementById('programDetail').classList.remove('active');
         });
+
         document.getElementById('programDetail').addEventListener('click', function(e) {
             if (e.target === this) {
                 this.classList.remove('active');
             }
         });
 
+        // ============================================
+        // FACULTY DIRECTORY
+        // ============================================
         const facultyData = [
-            { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals.' },
-            { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems.' },
-            { name: 'Dr. Omar Farooq', position: 'Assistant Professor', dept: 'Data Science', discipline: 'Big Data Analytics', bio: 'Dr. Farooq specializes in predictive modeling and data visualization.' },
-            { name: 'Prof. Fatima Noor', position: 'Professor', dept: 'Health Sciences', discipline: 'Public Health', bio: 'Prof. Noor has worked with WHO on global health initiatives.' },
-            { name: 'Dr. Ali Raza', position: 'Senior Lecturer', dept: 'Engineering', discipline: 'Renewable Energy', bio: 'Dr. Raza is involved in multiple sustainable energy projects.' },
+            { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals and leads the AI research lab.' },
+            { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems and startup incubation.' },
+            { name: 'Dr. Omar Farooq', position: 'Assistant Professor', dept: 'Data Science', discipline: 'Big Data Analytics', bio: 'Dr. Farooq specializes in predictive modeling and data visualization with 15+ publications.' },
+            { name: 'Prof. Fatima Noor', position: 'Professor', dept: 'Health Sciences', discipline: 'Public Health', bio: 'Prof. Noor has worked with WHO on global health initiatives and leads the public health research center.' },
+            { name: 'Dr. Ali Raza', position: 'Senior Lecturer', dept: 'Engineering', discipline: 'Renewable Energy', bio: 'Dr. Raza is involved in multiple sustainable energy projects and holds 3 patents.' },
         ];
 
         function renderFaculty(filter = '') {
@@ -1878,19 +2596,21 @@
                 f.dept.toLowerCase().includes(filter.toLowerCase()) ||
                 f.discipline.toLowerCase().includes(filter.toLowerCase())
             );
+
             if (filtered.length === 0) {
                 grid.innerHTML = `
-                        <div style="text-align:center; grid-column:1/-1; padding:40px; color:var(--gray);">
+                        <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
                             <i class="fas fa-search" style="font-size:32px;"></i>
-                            <p style="margin-top:10px;">No faculty members found matching your search.</p>
+                            <p style="margin-top:12px;">No faculty members found matching your search.</p>
                         </div>
                     `;
                 return;
             }
+
             let html = '';
             filtered.forEach((f, idx) => {
                 html += `
-                        <div class="faculty-card" data-index="${idx}">
+                        <div class="faculty-card" data-aos="fade-up" data-aos-delay="${idx * 50}">
                             <div class="avatar">👨‍🏫</div>
                             <h4>${f.name}</h4>
                             <div class="position">${f.position}</div>
@@ -1901,6 +2621,7 @@
                     `;
             });
             grid.innerHTML = html;
+
             document.querySelectorAll('.show-bio').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const idx = parseInt(this.dataset.index);
@@ -1915,12 +2636,16 @@
             const query = document.getElementById('facultySearch').value;
             renderFaculty(query);
         });
+
         document.getElementById('facultySearch').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 renderFaculty(this.value);
             }
         });
 
+        // ============================================
+        // ALUMNI STORIES
+        // ============================================
         document.querySelectorAll('.show-story').forEach(btn => {
             btn.addEventListener('click', function() {
                 const story = this.closest('.alumni-card').querySelector('.story');
@@ -1929,6 +2654,9 @@
             });
         });
 
+        // ============================================
+        // CREDENTIAL VERIFICATION
+        // ============================================
         const verifyBtn = document.getElementById('verifyBtn');
         const verifyInput = document.getElementById('verifyInput');
         const verifyResult = document.getElementById('verifyResult');
@@ -1943,16 +2671,19 @@
                     `;
                 return;
             }
+
             verifyResult.innerHTML = `
                     <div style="color:var(--white);">
                         <i class="fas fa-spinner fa-spin"></i> Verifying credential...
                     </div>
                 `;
+
             try {
                 const response = await fetch(CSV_URL);
                 if (!response.ok) throw new Error('Network error');
                 const csvText = await response.text();
                 const data = parseCSV(csvText);
+
                 const found = data.find(item =>
                     (item['Roll Number'] && item['Roll Number'].toLowerCase() === query.toLowerCase()) ||
                     (item['Registration Number'] && item['Registration Number'].toLowerCase() === query.toLowerCase()) ||
@@ -1960,6 +2691,7 @@
                     (item['Student ID'] && item['Student ID'].toLowerCase() === query.toLowerCase()) ||
                     (item['Credential Number'] && item['Credential Number'].toLowerCase() === query.toLowerCase())
                 );
+
                 if (found) {
                     verifyResult.innerHTML = `
         <div style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); 
@@ -1971,6 +2703,7 @@
                     max-width: 750px;
                     margin: 0 auto;
                     text-align: left;">
+            
             <div style="background: linear-gradient(135deg, #c9a84c, #a8892e);
                         padding: 24px 32px;
                         display: flex;
@@ -1997,6 +2730,7 @@
                     <i class="fas fa-shield-alt"></i> SECURE VERIFICATION
                 </div>
             </div>
+            
             <div style="padding: 28px 32px 20px;">
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 2px solid #eef2f7; padding-bottom: 16px;">
                     <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0a2540, #1a3a5c); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 700;">
@@ -2007,6 +2741,7 @@
                         <div style="font-size: 24px; font-weight: 700; color: #0a2540; line-height: 1.2;">${found['Student Name'] || 'N/A'}</div>
                     </div>
                 </div>
+                
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin-bottom: 20px;">
                     <div>
                         <div style="font-size: 11px; color: #6a7b8c; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Credential Type</div>
@@ -2027,6 +2762,7 @@
                         <div style="font-size: 16px; font-weight: 600; color: #c9a84c; margin-top: 2px;">${found['Completion Year'] || 'N/A'}</div>
                     </div>
                 </div>
+                
                 <div style="background: #f4f7fb; border-radius: 14px; padding: 18px 24px; margin: 8px 0 10px;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
                         <div style="text-align: center;">
@@ -2043,6 +2779,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div style="margin-top: 12px; display: flex; align-items: center; gap: 14px; background: #e6f4ea; padding: 12px 20px; border-radius: 12px; border-left: 4px solid #34a853;">
                     <i class="fas fa-check-circle" style="color: #1e7e34; font-size: 18px;"></i>
                     <span style="font-size: 15px; font-weight: 600; color: #1e7e34;">Status: VERIFIED</span>
@@ -2081,19 +2818,27 @@
             }
         });
 
+        // ============================================
+        // CONTACT FORM
+        // ============================================
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for contacting Candroha International University. We will get back to you soon.');
             this.reset();
         });
 
+        // ============================================
+        // ADMISSIONS FORM
+        // ============================================
         document.getElementById('admissionsForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Your application has been submitted successfully! We will review it and get back to you.');
             this.reset();
         });
 
+        // ============================================
         // GALLERY LIGHTBOX
+        // ============================================
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
         lightbox.innerHTML = `
@@ -2127,6 +2872,9 @@
             }
         });
 
+        // ============================================
+        // LOAD INITIAL DATA
+        // ============================================
         loadPrograms();
         renderFaculty();
     </script>
