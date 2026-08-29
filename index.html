@@ -97,8 +97,7 @@
             font-weight: 600; font-size: 15px; cursor: pointer;
             transition: var(--transition); border: none; text-align: center;
             font-family: var(--font-body);
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
         .btn::after {
             content: ''; position: absolute; top: 50%; left: 50%;
@@ -143,23 +142,6 @@
             transition: var(--transition); transform: translateX(-50%);
         }
         .nav a:hover::after { width: 60%; }
-        /* Programs Dropdown */
-        .nav .dropdown { position: relative; }
-        .nav .dropdown-content {
-            display: none; position: absolute; top: 100%; left: 0;
-            background: rgba(10,37,64,0.95); backdrop-filter: blur(20px);
-            min-width: 280px; padding: 12px 0; border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            z-index: 100;
-        }
-        .nav .dropdown:hover .dropdown-content { display: block; }
-        .nav .dropdown-content a {
-            display: block; padding: 8px 20px; color: rgba(255,255,255,0.8);
-            font-size: 13px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.03);
-        }
-        .nav .dropdown-content a:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
-        .nav .dropdown-content a::after { display: none; }
         .nav .verify-btn { background: var(--gold); color: var(--navy); padding: 8px 20px; border-radius: 50px; font-weight: 600; }
         .nav .verify-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
         .nav .verify-btn::after { display: none; }
@@ -255,55 +237,66 @@
         .about-card p { color: var(--gray); font-size: 14px; }
         .about-card .divider { width: 60px; height: 2px; background: var(--gold); margin: 16px auto; }
 
-        /* PROGRAMS */
+        /* PROGRAMS - ALL CATEGORIES */
         .programs-section { padding: 100px 0; background: var(--off-white); }
-        .program-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; }
+        .program-category {
+            margin-bottom: 50px;
+        }
+        .program-category h3 {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            color: var(--navy);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .program-category h3 i {
+            color: var(--gold);
+            font-size: 24px;
+        }
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
         .program-card {
-            background: var(--white); border-radius: var(--radius); padding: 30px 28px;
-            box-shadow: var(--shadow); transition: var(--transition);
-            border-left: 4px solid var(--gold); position: relative; overflow: hidden;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px 22px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--gold);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        .program-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(201,168,76,0.03), transparent); pointer-events: none;
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
         }
-        .program-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-        .program-card .level { font-size: 12px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
-        .program-card h3 { font-family: var(--font-heading); font-size: 20px; color: var(--navy); margin: 6px 0 4px; }
-        .program-card .faculty { font-size: 14px; color: var(--gray); font-weight: 400; }
-        .program-card p { font-size: 14px; color: var(--gray); margin: 10px 0 14px; line-height: 1.7; }
-
-        /* PROGRAM MODAL */
-        .program-detail {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(10px); z-index: 2000;
-            justify-content: center; align-items: center; padding: 20px;
+        .program-card .level {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .program-detail.active { display: flex; }
-        .program-detail .modal {
-            background: var(--white); max-width: 800px; width: 100%;
-            border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
-            overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
+        .program-card h4 {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            color: var(--navy);
+            margin: 4px 0 2px;
         }
-        @keyframes modalIn {
-            from { transform: scale(0.95) translateY(20px); opacity: 0; }
-            to { transform: scale(1) translateY(0); opacity: 1; }
+        .program-card .faculty {
+            font-size: 13px;
+            color: var(--gray);
         }
-        .program-detail .modal .close {
-            position: absolute; top: 16px; right: 20px; font-size: 28px;
-            cursor: pointer; color: var(--gray); transition: var(--transition);
-            width: 40px; height: 40px; border-radius: 50%; display: flex;
-            align-items: center; justify-content: center;
+        .program-card .btn-small {
+            margin-top: 10px;
         }
-        .program-detail .modal .close:hover { background: var(--off-white); color: var(--dark); }
-        .program-detail .modal h2 { font-family: var(--font-heading); color: var(--navy); font-size: 28px; margin-bottom: 10px; }
-        .program-detail .modal .meta {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-            margin: 16px 0; padding: 16px; background: var(--off-white); border-radius: var(--radius);
-        }
-        .program-detail .modal .meta strong { color: var(--navy); font-weight: 600; }
-        .program-detail .modal ul { list-style: disc; padding-left: 20px; margin: 10px 0; }
-        .program-detail .modal ul li { margin-bottom: 6px; color: var(--gray); }
 
         /* APPLY MODAL - EXTREME PROFESSIONAL */
         .apply-modal {
@@ -317,6 +310,10 @@
             border-radius: var(--radius-lg); padding: 40px; max-height: 90vh;
             overflow-y: auto; position: relative; animation: modalIn 0.4s ease;
             box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        @keyframes modalIn {
+            from { transform: scale(0.95) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
         }
         .apply-modal .modal .close {
             position: absolute; top: 16px; right: 20px; font-size: 28px;
@@ -332,7 +329,10 @@
             font-size: 48px; color: var(--gold); margin-bottom: 8px; display: block;
         }
         .apply-modal .modal .modal-header h2 {
-            font-family: var(--font-heading); color: var(--navy); font-size: 30px;
+            font-family: var(--font-heading); color: var(--navy); font-size: 28px;
+        }
+        .apply-modal .modal .modal-header .program-name-display {
+            color: var(--gold); font-weight: 600; font-size: 18px; margin-top: 4px;
         }
         .apply-modal .modal .modal-header p {
             color: var(--gray); font-size: 15px; margin-top: 4px;
@@ -373,11 +373,6 @@
             box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
             transform: translateY(-1px);
         }
-        .apply-modal .modal .form-group input:hover,
-        .apply-modal .modal .form-group select:hover,
-        .apply-modal .modal .form-group textarea:hover {
-            border-color: var(--gold-light);
-        }
         .apply-modal .modal .form-group textarea {
             min-height: 100px; resize: vertical;
         }
@@ -405,34 +400,6 @@
         .apply-modal .modal .form-actions .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(201,168,76,0.35);
-        }
-        /* Floating labels effect */
-        .apply-modal .modal .form-group.floating {
-            position: relative;
-        }
-        .apply-modal .modal .form-group.floating input,
-        .apply-modal .modal .form-group.floating select,
-        .apply-modal .modal .form-group.floating textarea {
-            padding-top: 20px;
-        }
-        .apply-modal .modal .form-group.floating label {
-            position: absolute; top: 14px; left: 18px;
-            font-size: 14px; color: var(--gray);
-            transition: var(--transition); pointer-events: none;
-            font-weight: 400;
-        }
-        .apply-modal .modal .form-group.floating input:focus ~ label,
-        .apply-modal .modal .form-group.floating input:not(:placeholder-shown) ~ label,
-        .apply-modal .modal .form-group.floating select:focus ~ label,
-        .apply-modal .modal .form-group.floating select:not(:placeholder-shown) ~ label,
-        .apply-modal .modal .form-group.floating textarea:focus ~ label,
-        .apply-modal .modal .form-group.floating textarea:not(:placeholder-shown) ~ label {
-            top: 4px; left: 14px; font-size: 10px; color: var(--gold); font-weight: 600;
-        }
-        .apply-modal .modal .form-group.floating input:focus,
-        .apply-modal .modal .form-group.floating select:focus,
-        .apply-modal .modal .form-group.floating textarea:focus {
-            border-color: var(--gold);
         }
 
         /* FACULTIES */
@@ -715,7 +682,7 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .hero-content h1 { font-size: 40px; }
             .apply-modal .modal .form-row { grid-template-columns: 1fr; }
-            .nav .dropdown-content { min-width: 200px; }
+            .program-grid { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 768px) {
             .nav { display: none; }
@@ -729,8 +696,6 @@
             .verify-box { flex-direction: column; align-items: center; }
             .verify-box input { width: 100%; }
             .logo img { height: 45px; }
-            .program-detail .modal { padding: 20px; }
-            .program-detail .modal .meta { grid-template-columns: 1fr; }
             .faculty-directory .search-box { flex-direction: column; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
             .program-grid { grid-template-columns: 1fr; }
@@ -771,77 +736,7 @@
             <nav class="nav" id="nav">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
-                <div class="dropdown">
-                    <a href="#programs">Programs <i class="fas fa-chevron-down" style="font-size:10px; margin-left:4px;"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#programs">All Programs</a>
-                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Degrees ──</a>
-                        <a href="#programs">Bachelor of Computer Science</a>
-                        <a href="#programs">Bachelor of Software Engineering</a>
-                        <a href="#programs">Bachelor of Artificial Intelligence</a>
-                        <a href="#programs">Bachelor of Data Science</a>
-                        <a href="#programs">Bachelor of Cybersecurity</a>
-                        <a href="#programs">Bachelor of Information Technology</a>
-                        <a href="#programs">Bachelor of Business Administration</a>
-                        <a href="#programs">Bachelor of Accounting</a>
-                        <a href="#programs">Bachelor of Finance</a>
-                        <a href="#programs">Bachelor of Economics</a>
-                        <a href="#programs">Bachelor of Civil Engineering</a>
-                        <a href="#programs">Bachelor of Electrical Engineering</a>
-                        <a href="#programs">Bachelor of Mechanical Engineering</a>
-                        <a href="#programs">Bachelor of Health Sciences</a>
-                        <a href="#programs">Bachelor of Public Health</a>
-                        <a href="#programs">Bachelor of Nursing</a>
-                        <a href="#programs">Bachelor of Psychology</a>
-                        <a href="#programs">Bachelor of Sociology</a>
-                        <a href="#programs">Bachelor of International Relations</a>
-                        <a href="#programs">Bachelor of Law (LLB)</a>
-                        <a href="#programs">Bachelor of English</a>
-                        <a href="#programs">Bachelor of Journalism</a>
-                        <a href="#programs">Bachelor of Mass Communication</a>
-                        <a href="#programs">Bachelor of Mathematics</a>
-                        <a href="#programs">Bachelor of Physics</a>
-                        <a href="#programs">Bachelor of Chemistry</a>
-                        <a href="#programs">Bachelor of Biology</a>
-                        <a href="#programs">Bachelor of Islamic Studies</a>
-                        <a href="#programs">Bachelor of Fine Arts</a>
-                        <a href="#programs">Bachelor of Graphic Design</a>
-                        <a href="#programs">Bachelor of Hospitality Management</a>
-                        <a href="#programs">Bachelor of Tourism Management</a>
-                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Diplomas ──</a>
-                        <a href="#programs">Diploma in Web Development</a>
-                        <a href="#programs">Diploma in Data Analytics</a>
-                        <a href="#programs">Diploma in Cybersecurity</a>
-                        <a href="#programs">Diploma in Digital Marketing</a>
-                        <a href="#programs">Diploma in Project Management</a>
-                        <a href="#programs">Diploma in Healthcare Management</a>
-                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Certificates ──</a>
-                        <a href="#programs">Certificate in AI Fundamentals</a>
-                        <a href="#programs">Certificate in Python Programming</a>
-                        <a href="#programs">Certificate in Cloud Computing</a>
-                        <a href="#programs">Certificate in Business Analytics</a>
-                        <a href="#programs">Certificate in Digital Literacy</a>
-                        <a href="#programs" style="font-weight:600; color:var(--gold);">── Postgraduate ──</a>
-                        <a href="#programs">Master of Computer Science</a>
-                        <a href="#programs">Master of Artificial Intelligence</a>
-                        <a href="#programs">Master of Data Science</a>
-                        <a href="#programs">Master of Business Administration (MBA)</a>
-                        <a href="#programs">Master of Engineering</a>
-                        <a href="#programs">Master of Public Health</a>
-                        <a href="#programs">Master of Psychology</a>
-                        <a href="#programs">Master of International Relations</a>
-                        <a href="#programs">Master of Islamic Studies</a>
-                        <a href="#programs">Master of Fine Arts</a>
-                        <a href="#programs">PhD in Computer Science</a>
-                        <a href="#programs">PhD in Artificial Intelligence</a>
-                        <a href="#programs">PhD in Data Science</a>
-                        <a href="#programs">PhD in Business Administration</a>
-                        <a href="#programs">PhD in Engineering</a>
-                        <a href="#programs">PhD in Health Sciences</a>
-                        <a href="#programs">PhD in Psychology</a>
-                        <a href="#programs">PhD in Islamic Studies</a>
-                    </div>
-                </div>
+                <a href="#programs">Programs</a>
                 <a href="#research">Research</a>
                 <a href="#faculties">Faculties</a>
                 <a href="#admissions">Admissions</a>
@@ -897,8 +792,8 @@
                 </div>
             </div>
             <div class="hero-stats" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="hero-stat"><div class="number" data-count="12">0</div><div class="label">Academic Faculties</div></div>
-                <div class="hero-stat"><div class="number" data-count="75">0</div><div class="label">Academic Programs</div></div>
+                <div class="hero-stat"><div class="number" data-count="15">0</div><div class="label">Academic Faculties</div></div>
+                <div class="hero-stat"><div class="number" data-count="200">0</div><div class="label">Academic Programs</div></div>
                 <div class="hero-stat"><div class="number" data-count="1961">0</div><div class="label">Year Established</div></div>
             </div>
         </div>
@@ -941,49 +836,94 @@
         </div>
     </section>
 
-    <!-- PROGRAMS -->
+    <!-- PROGRAMS - ALL CATEGORIES -->
     <section class="programs-section" id="programs">
         <div class="container">
             <div class="section-title" data-aos="fade-up" data-aos-duration="600">
                 <h2>Our <span class="gold">Academic Programs</span></h2>
-                <p>Explore our diverse range of undergraduate, postgraduate, diploma, and certificate programs across multiple faculties.</p>
+                <p>Explore our comprehensive range of Bachelor, Master, PhD, Diploma, Certificate, and Professional programs across all disciplines.</p>
             </div>
-            <div class="program-grid" id="programGrid">
-                <div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                    <i class="fas fa-spinner fa-spin" style="font-size:32px;"></i>
-                    <p style="margin-top:12px;">Loading programs from database...</p>
+
+            <!-- BACHELOR PROGRAMS -->
+            <div class="program-category">
+                <h3><i class="fas fa-graduation-cap"></i> Bachelor Level (ISCED Level 6)</h3>
+                <div class="program-grid" id="bachelorGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- MASTER PROGRAMS -->
+            <div class="program-category">
+                <h3><i class="fas fa-user-graduate"></i> Master Level (ISCED Level 7)</h3>
+                <div class="program-grid" id="masterGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOCTORAL / PhD PROGRAMS -->
+            <div class="program-category">
+                <h3><i class="fas fa-microscope"></i> Doctoral / PhD Level (ISCED Level 8)</h3>
+                <div class="program-grid" id="phdGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIPLOMA PROGRAMS -->
+            <div class="program-category">
+                <h3><i class="fas fa-certificate"></i> Diploma Programs</h3>
+                <div class="program-grid" id="diplomaGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- CERTIFICATE PROGRAMS -->
+            <div class="program-category">
+                <h3><i class="fas fa-award"></i> Certificate & Short Courses</h3>
+                <div class="program-grid" id="certificateGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- ISLAMIC STUDIES -->
+            <div class="program-category">
+                <h3><i class="fas fa-mosque"></i> Islamic & Religious Studies</h3>
+                <div class="program-grid" id="islamicGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROFESSIONAL DEGREES -->
+            <div class="program-category">
+                <h3><i class="fas fa-briefcase"></i> Professional Degrees</h3>
+                <div class="program-grid" id="professionalGrid">
+                    <div style="text-align:center; grid-column:1/-1; padding:30px; color:var(--gray);">
+                        <i class="fas fa-spinner fa-spin"></i> Loading programs...
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PROGRAM DETAIL MODAL -->
-    <div class="program-detail" id="programDetail">
-        <div class="modal">
-            <span class="close" id="closeDetail">&times;</span>
-            <h2 id="detailTitle">Program Name</h2>
-            <div class="meta" id="detailMeta">
-                <div><strong>Level:</strong> <span id="detailLevel">-</span></div>
-                <div><strong>Faculty:</strong> <span id="detailFaculty">-</span></div>
-                <div><strong>Duration:</strong> <span id="detailDuration">-</span></div>
-                <div><strong>Study Mode:</strong> <span id="detailMode">-</span></div>
-            </div>
-            <p id="detailDescription">Description goes here.</p>
-            <h3>Curriculum</h3>
-            <ul id="detailCurriculum"><li>Core Module 1</li><li>Core Module 2</li><li>Elective Module 1</li></ul>
-            <h3>Career Pathways</h3>
-            <ul id="detailCareer"><li>Career Option 1</li><li>Career Option 2</li></ul>
-            <button class="btn btn-primary" id="applyNowBtn">Apply Now</button>
-        </div>
-    </div>
-
-    <!-- APPLY MODAL - EXTREME PROFESSIONAL -->
+    <!-- APPLY MODAL -->
     <div class="apply-modal" id="applyModal">
         <div class="modal">
             <span class="close" id="closeApplyModal">&times;</span>
             <div class="modal-header">
                 <span class="icon">🎓</span>
                 <h2>Apply Now</h2>
+                <div class="program-name-display" id="selectedProgramDisplay">Select a Program</div>
                 <p>Fill in the form below to apply for your chosen program at Candroha International University.</p>
                 <div class="progress-bar">
                     <div class="progress" id="formProgress"></div>
@@ -991,94 +931,36 @@
             </div>
             <form id="applyForm">
                 <div class="form-row">
-                    <div class="form-group floating">
-                        <input type="text" id="applyFirstName" placeholder=" " required />
-                        <label>First Name</label>
+                    <div class="form-group">
+                        <label>First Name <span class="required">*</span></label>
+                        <input type="text" id="applyFirstName" required />
                     </div>
-                    <div class="form-group floating">
-                        <input type="text" id="applyLastName" placeholder=" " required />
-                        <label>Last Name</label>
+                    <div class="form-group">
+                        <label>Last Name <span class="required">*</span></label>
+                        <input type="text" id="applyLastName" required />
                     </div>
                 </div>
-                <div class="form-group floating">
-                    <input type="email" id="applyEmail" placeholder=" " required />
+                <div class="form-group">
                     <label>Email Address <span class="required">*</span></label>
+                    <input type="email" id="applyEmail" required />
                 </div>
-                <div class="form-group floating">
-                    <input type="tel" id="applyPhone" placeholder=" " />
+                <div class="form-group">
                     <label>Phone Number</label>
+                    <input type="tel" id="applyPhone" />
                 </div>
-                <div class="form-group floating">
+                <div class="form-group">
+                    <label>Program <span class="required">*</span></label>
                     <select id="applyProgramSelect" required>
                         <option value="">Select Program</option>
-                        <option value="BSc Computer Science">BSc Computer Science</option>
-                        <option value="BSc Software Engineering">BSc Software Engineering</option>
-                        <option value="BSc Artificial Intelligence">BSc Artificial Intelligence</option>
-                        <option value="BSc Data Science">BSc Data Science</option>
-                        <option value="BSc Cybersecurity">BSc Cybersecurity</option>
-                        <option value="BSc Information Technology">BSc Information Technology</option>
-                        <option value="BBA Business Administration">BBA Business Administration</option>
-                        <option value="BBA Accounting">BBA Accounting</option>
-                        <option value="BBA Finance">BBA Finance</option>
-                        <option value="BBA Economics">BBA Economics</option>
-                        <option value="BSc Civil Engineering">BSc Civil Engineering</option>
-                        <option value="BSc Electrical Engineering">BSc Electrical Engineering</option>
-                        <option value="BSc Mechanical Engineering">BSc Mechanical Engineering</option>
-                        <option value="BSc Health Sciences">BSc Health Sciences</option>
-                        <option value="BSc Public Health">BSc Public Health</option>
-                        <option value="BSc Nursing">BSc Nursing</option>
-                        <option value="BSc Psychology">BSc Psychology</option>
-                        <option value="BSc Sociology">BSc Sociology</option>
-                        <option value="BSc International Relations">BSc International Relations</option>
-                        <option value="LLB Law">LLB Law</option>
-                        <option value="BA English">BA English</option>
-                        <option value="BA Journalism">BA Journalism</option>
-                        <option value="BA Mass Communication">BA Mass Communication</option>
-                        <option value="BSc Mathematics">BSc Mathematics</option>
-                        <option value="BSc Physics">BSc Physics</option>
-                        <option value="BSc Chemistry">BSc Chemistry</option>
-                        <option value="BSc Biology">BSc Biology</option>
-                        <option value="BA Islamic Studies">BA Islamic Studies</option>
-                        <option value="BFA Fine Arts">BFA Fine Arts</option>
-                        <option value="BFA Graphic Design">BFA Graphic Design</option>
-                        <option value="BBA Hospitality Management">BBA Hospitality Management</option>
-                        <option value="BBA Tourism Management">BBA Tourism Management</option>
-                        <option value="Diploma in Web Development">Diploma in Web Development</option>
-                        <option value="Diploma in Data Analytics">Diploma in Data Analytics</option>
-                        <option value="Diploma in Cybersecurity">Diploma in Cybersecurity</option>
-                        <option value="Diploma in Digital Marketing">Diploma in Digital Marketing</option>
-                        <option value="Diploma in Project Management">Diploma in Project Management</option>
-                        <option value="Certificate in AI Fundamentals">Certificate in AI Fundamentals</option>
-                        <option value="Certificate in Python Programming">Certificate in Python Programming</option>
-                        <option value="Certificate in Cloud Computing">Certificate in Cloud Computing</option>
-                        <option value="Certificate in Business Analytics">Certificate in Business Analytics</option>
-                        <option value="Master of Computer Science">Master of Computer Science</option>
-                        <option value="Master of Artificial Intelligence">Master of Artificial Intelligence</option>
-                        <option value="Master of Data Science">Master of Data Science</option>
-                        <option value="Master of Business Administration (MBA)">Master of Business Administration (MBA)</option>
-                        <option value="Master of Engineering">Master of Engineering</option>
-                        <option value="Master of Public Health">Master of Public Health</option>
-                        <option value="Master of Psychology">Master of Psychology</option>
-                        <option value="Master of International Relations">Master of International Relations</option>
-                        <option value="Master of Islamic Studies">Master of Islamic Studies</option>
-                        <option value="PhD in Computer Science">PhD in Computer Science</option>
-                        <option value="PhD in Artificial Intelligence">PhD in Artificial Intelligence</option>
-                        <option value="PhD in Data Science">PhD in Data Science</option>
-                        <option value="PhD in Business Administration">PhD in Business Administration</option>
-                        <option value="PhD in Engineering">PhD in Engineering</option>
-                        <option value="PhD in Health Sciences">PhD in Health Sciences</option>
-                        <option value="PhD in Psychology">PhD in Psychology</option>
-                        <option value="PhD in Islamic Studies">PhD in Islamic Studies</option>
                     </select>
-                    <label>Program</label>
                 </div>
-                <div class="form-group floating">
-                    <input type="text" id="applySession" placeholder=" " />
-                    <label>Academic Session (e.g., 2026-27)</label>
+                <div class="form-group">
+                    <label>Academic Session</label>
+                    <input type="text" id="applySession" placeholder="e.g., 2026-27" />
                 </div>
-                <div class="form-group floating">
-                    <textarea id="applyStatement" placeholder=" " style="min-height:100px;"></textarea>
+                <div class="form-group">
                     <label>Statement of Purpose / Additional Information</label>
+                    <textarea id="applyStatement" placeholder="Tell us why you want to join this program..."></textarea>
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" id="closeApplyFormBtn">Cancel</button>
@@ -1176,27 +1058,14 @@
                         <select required>
                             <option value="">Select Program</option>
                             <option>BSc Computer Science</option>
-                            <option>BSc Software Engineering</option>
                             <option>BSc Artificial Intelligence</option>
                             <option>BSc Data Science</option>
-                            <option>BSc Cybersecurity</option>
                             <option>BBA Business Administration</option>
-                            <option>BBA Accounting</option>
-                            <option>BSc Civil Engineering</option>
-                            <option>BSc Electrical Engineering</option>
-                            <option>BSc Mechanical Engineering</option>
-                            <option>BSc Health Sciences</option>
-                            <option>BSc Public Health</option>
                             <option>LLB Law</option>
                             <option>BA English</option>
                             <option>BSc Psychology</option>
                             <option>BSc International Relations</option>
-                            <option>BA Journalism</option>
-                            <option>BSc Mathematics</option>
-                            <option>BSc Physics</option>
                             <option>BA Islamic Studies</option>
-                            <option>BFA Fine Arts</option>
-                            <option>BBA Hospitality Management</option>
                         </select>
                         <input type="text" placeholder="Academic Session (e.g., 2026-27)" />
                         <textarea placeholder="Additional Information / Statement of Purpose"></textarea>
@@ -1498,170 +1367,277 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // AOS
-        AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
-
-        // Preloader
-        window.addEventListener('load', function() {
-            document.getElementById('preloader').classList.add('hide');
-        });
-
-        // Header scroll
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', function() {
-            header.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile nav
-        const hamburger = document.getElementById('hamburger');
-        const navMobile = document.getElementById('navMobile');
-        hamburger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navMobile.classList.toggle('open');
-        });
-        navMobile.querySelectorAll('a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                navMobile.classList.remove('open');
-            });
-        });
-
-        // Back to top
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', function() {
-            backToTop.classList.toggle('visible', window.scrollY > 300);
-        });
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Animated counters
-        function animateCounters() {
-            document.querySelectorAll('[data-count]').forEach(function(counter) {
-                const target = parseInt(counter.getAttribute('data-count'));
-                let current = 0;
-                const step = Math.max(1, Math.floor(target / 60));
-                const updateCounter = function() {
-                    current += step;
-                    if (current >= target) { counter.textContent = target; return; }
-                    counter.textContent = current;
-                    requestAnimationFrame(updateCounter);
-                };
-                const observer = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) { updateCounter(); observer.disconnect(); }
-                }, { threshold: 0.5 });
-                observer.observe(counter);
-            });
-        }
-        animateCounters();
+        // ============================================
+        // ALL PROGRAMS DATA (From Your File)
+        // ============================================
+        const allPrograms = {
+            bachelor: [
+                'Bachelor of Arts (BA)', 'Bachelor of Science (BSc/BS)', 'Bachelor of Commerce (BCom)',
+                'Bachelor of Business Administration (BBA)', 'Bachelor of Engineering (BE)',
+                'Bachelor of Technology (BTech)', 'Bachelor of Laws (LLB)', 'Bachelor of Education (BEd)',
+                'Bachelor of Fine Arts (BFA)', 'Bachelor of Architecture (BArch)',
+                'Bachelor of Computer Science (BCS)', 'Bachelor of Information Technology (BIT)',
+                'Bachelor of Medicine (MBBS)', 'Bachelor of Dental Surgery (BDS)',
+                'Bachelor of Pharmacy (BPharm)', 'Bachelor of Nursing (BNurs)', 'Bachelor of Social Work (BSW)',
+                'Bachelor of Agriculture (BAgri)', 'Bachelor of Veterinary Science (BVSc)',
+                'Bachelor of Public Health (BPH)', 'Bachelor of Theology (BTh)', 'Bachelor of Divinity (BDiv)',
+                'Bachelor of Islamic Studies', 'Bachelor of Shariah',
+                'Bachelor of Education (Elementary)', 'Bachelor of Education (Secondary)',
+                'Bachelor of Special Education', 'Bachelor of Early Childhood Education'
+            ],
+            master: [
+                'Master of Arts (MA)', 'Master of Science (MSc/MS)', 'Master of Commerce (MCom)',
+                'Master of Business Administration (MBA)', 'Master of Engineering (MEng)',
+                'Master of Technology (MTech)', 'Master of Laws (LLM)', 'Master of Education (MEd)',
+                'Master of Fine Arts (MFA)', 'Master of Architecture (MArch)',
+                'Master of Computer Science (MCS)', 'Master of Information Technology (MIT)',
+                'Master of Public Health (MPH)', 'Master of Social Work (MSW)',
+                'Master of Public Administration (MPA)', 'Master of Public Policy (MPP)',
+                'Master of Social Sciences', 'Master of Philosophy (MPhil)',
+                'Master of Theology (MTh)', 'Master of Divinity (MDiv)',
+                'Master of Islamic Studies', 'Master of Shariah',
+                'Master of Education (Educational Leadership)', 'Master of Curriculum Studies'
+            ],
+            phd: [
+                'Doctor of Philosophy (PhD)', 'Doctor of Education (EdD)',
+                'Doctor of Business Administration (DBA)', 'Doctor of Engineering (DEng/EngD)',
+                'Doctor of Medicine (MD)', 'Doctor of Dental Surgery (DDS)',
+                'Doctor of Pharmacy (PharmD)', 'Doctor of Nursing Practice (DNP)',
+                'Doctor of Public Health (DrPH)', 'Doctor of Psychology (PsyD)',
+                'Doctor of Laws (JSD/SJD)', 'Doctor of Theology (ThD)', 'Doctor of Ministry (DMin)',
+                'Doctor of Islamic Studies', 'Doctor of Shariah', 'Doctor of Science (DSc)',
+                'Doctor of Letters (DLitt)', 'Doctor of Humane Letters (DHL)',
+                'Doctor of Fine Arts (DFA)', 'Doctor of Music (DMA)', 'Doctor of Architecture (DArch)'
+            ],
+            diploma: [
+                'Diploma in Business Administration', 'Diploma in Accounting', 'Diploma in Finance',
+                'Diploma in Marketing', 'Diploma in Human Resource Management',
+                'Diploma in Management', 'Diploma in Entrepreneurship', 'Diploma in Banking',
+                'Diploma in Islamic Banking', 'Diploma in Supply Chain Management',
+                'Diploma in Computer Science', 'Diploma in Information Technology',
+                'Diploma in Software Engineering', 'Diploma in Web Development',
+                'Diploma in Cybersecurity', 'Diploma in Networking',
+                'Diploma in Data Science', 'Diploma in Artificial Intelligence',
+                'Diploma in Graphic Design', 'Diploma in Digital Marketing',
+                'Diploma in Database Management', 'Diploma in Nursing',
+                'Diploma in Medical Laboratory Technology', 'Diploma in Radiology',
+                'Diploma in Pharmacy', 'Diploma in Dental Technology', 'Diploma in Physiotherapy',
+                'Diploma in Medical Imaging', 'Diploma in Public Health', 'Diploma in Nutrition',
+                'Diploma in Health Administration', 'Civil Engineering Diploma',
+                'Mechanical Engineering Diploma', 'Electrical Engineering Diploma',
+                'Electronics Diploma', 'Automotive Diploma', 'Civil Technology',
+                'Mechanical Technology', 'Electrical Technology', 'Electronics Technology',
+                'Telecommunications', 'HVAC', 'Refrigeration', 'Welding', 'Plumbing',
+                'Surveying', 'Construction Technology', 'Diploma in Education',
+                'Diploma in Teaching', 'Diploma in Early Childhood Education',
+                'Diploma in Special Education', 'Diploma in Educational Leadership',
+                'Diploma in Islamic Education', 'Diploma in Arabic Teaching',
+                'Diploma in English Language Teaching', 'Advanced Diploma in Business',
+                'Advanced Diploma in IT', 'Advanced Diploma in Engineering',
+                'Graduate Diploma in Management', 'Postgraduate Diploma in Data Science',
+                'Professional Diploma in Digital Marketing', 'Executive Diploma in Leadership'
+            ],
+            certificate: [
+                'Certificate in English', 'Certificate in Arabic', 'Certificate in Urdu',
+                'Certificate in French', 'Certificate in Computer Applications',
+                'Certificate in MS Office', 'Certificate in Programming',
+                'Certificate in Web Development', 'Certificate in Artificial Intelligence',
+                'Certificate in Machine Learning', 'Certificate in Cybersecurity',
+                'Certificate in Digital Marketing', 'Certificate in Graphic Design',
+                'Certificate in Accounting', 'Certificate in Finance',
+                'Certificate in Human Resource Management', 'Certificate in Project Management',
+                'Certificate in Leadership', 'Certificate in Entrepreneurship',
+                'Certificate in Teaching', 'Certificate in Islamic Studies',
+                'Certificate in Quran Studies', 'Certificate in Arabic Studies',
+                'Certificate in Hadith Studies', 'Certificate in Shariah',
+                'Certificate in Tajweed', 'Certificate in Translation',
+                'Certificate in First Aid', 'Certificate in Healthcare',
+                'Certificate in Food Safety', 'Certificate in Occupational Safety',
+                'Certificate in Data Analytics', 'Certificate in Cloud Computing',
+                'Certificate in Python Programming', 'Certificate in Business Analytics',
+                'Certificate in Digital Literacy', 'Certificate in Public Speaking',
+                'Certificate in Creative Writing', 'Certificate in Journalism',
+                'Certificate in Photography', 'Certificate in Video Editing'
+            ],
+            islamic: [
+                'BS Islamic Studies', 'BA Islamic Studies', 'BS Shariah',
+                'BS Quranic Studies', 'BS Hadith Studies', 'BS Arabic',
+                'BS Islamic Finance', 'BS Islamic Economics', 'BS Islamic Banking',
+                'BS Comparative Religion', 'MA Islamic Studies', 'MSc Islamic Finance',
+                'MA Shariah', 'MA Quranic Studies', 'MA Hadith',
+                'MA Arabic', 'MA Comparative Religion', 'MPhil Islamic Studies',
+                'MPhil Shariah', 'PhD Islamic Studies', 'PhD Shariah',
+                'PhD Quranic Studies', 'PhD Hadith', 'PhD Arabic',
+                'PhD Islamic Finance', 'PhD Islamic Economics', 'PhD Comparative Religion',
+                'Diploma in Islamic Studies', 'Diploma in Shariah',
+                'Diploma in Quran Studies', 'Diploma in Hadith',
+                'Diploma in Arabic', 'Diploma in Islamic Finance',
+                'Diploma in Islamic Banking', 'Diploma in Tajweed',
+                'Diploma in Tafsir', 'Diploma in Dawah',
+                'Diploma in Comparative Religion', 'Certificate in Islamic Studies',
+                'Certificate in Quran Studies', 'Certificate in Arabic'
+            ],
+            professional: [
+                'MD (Doctor of Medicine)', 'DO (Doctor of Osteopathic Medicine)',
+                'MBBS (Bachelor of Medicine, Bachelor of Surgery)',
+                'BDS (Bachelor of Dental Surgery)', 'DDS (Doctor of Dental Surgery)',
+                'DMD (Doctor of Dental Medicine)', 'PharmD (Doctor of Pharmacy)',
+                'DPT (Doctor of Physical Therapy)', 'DNP (Doctor of Nursing Practice)',
+                'EdD (Doctor of Education)', 'PsyD (Doctor of Psychology)',
+                'JD (Juris Doctor)', 'LLB (Bachelor of Laws)', 'LLM (Master of Laws)',
+                'SJD (Doctor of Juridical Science)', 'DBA (Doctor of Business Administration)',
+                'DMin (Doctor of Ministry)', 'ThD (Doctor of Theology)',
+                'DVM (Doctor of Veterinary Medicine)', 'DArch (Doctor of Architecture)',
+                'DEng (Doctor of Engineering)', 'DEd (Doctor of Education)',
+                'DSc (Doctor of Science)', 'DLitt (Doctor of Letters)',
+                'DMA (Doctor of Musical Arts)', 'DFA (Doctor of Fine Arts)'
+            ]
+        };
 
         // ============================================
-        // CONFIGURATION
+        // RENDER ALL PROGRAM CATEGORIES
         // ============================================
-        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
+        function renderPrograms() {
+            const categories = [
+                { id: 'bachelorGrid', data: allPrograms.bachelor, type: 'Bachelor' },
+                { id: 'masterGrid', data: allPrograms.master, type: 'Master' },
+                { id: 'phdGrid', data: allPrograms.phd, type: 'PhD/Doctoral' },
+                { id: 'diplomaGrid', data: allPrograms.diploma, type: 'Diploma' },
+                { id: 'certificateGrid', data: allPrograms.certificate, type: 'Certificate' },
+                { id: 'islamicGrid', data: allPrograms.islamic, type: 'Islamic Studies' },
+                { id: 'professionalGrid', data: allPrograms.professional, type: 'Professional' }
+            ];
 
-        function parseCSV(csvText) {
-            const lines = csvText.split('\n').filter(line => line.trim() !== '');
-            if (lines.length === 0) return [];
-            const headers = lines[0].split(',').map(h => h.trim());
-            const result = [];
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',').map(v => v.trim());
-                if (values.length === headers.length) {
-                    const entry = {};
-                    headers.forEach((h, idx) => { entry[h] = values[idx] || ''; });
-                    result.push(entry);
-                }
-            }
-            return result;
-        }
+            categories.forEach(cat => {
+                const grid = document.getElementById(cat.id);
+                if (!grid) return;
 
-        async function loadPrograms() {
-            const grid = document.getElementById('programGrid');
-            try {
-                const response = await fetch(CSV_URL);
-                if (!response.ok) throw new Error('Network error');
-                const csvText = await response.text();
-                const data = parseCSV(csvText);
-                const programs = data.filter(item =>
-                    item.Type && (item.Type.toLowerCase().includes('degree') ||
-                        item.Type.toLowerCase().includes('diploma') ||
-                        item.Type.toLowerCase().includes('certificate'))
-                );
-                if (programs.length === 0) {
-                    grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                            <i class="fas fa-database" style="font-size:32px;"></i>
-                            <p style="margin-top:12px;">No programs found in the database.</p>
-                            <p style="font-size:14px;">Please add programs to your Google Sheet.</p>
-                        </div>`;
-                    return;
-                }
                 let html = '';
-                programs.forEach((item, index) => {
-                    html += `<div class="program-card" data-index="${index}" data-aos="fade-up" data-aos-delay="${index * 50}">
-                            <div class="level">${item.Type || 'Program'}</div>
-                            <h3>${item.Title || 'Untitled'}</h3>
-                            <div class="faculty">${item.Faculty || 'CIU'}</div>
-                            <p>${item.Description || 'No description available.'}</p>
-                            <button class="btn-small view-program" data-index="${index}">View Program →</button>
-                        </div>`;
+                cat.data.forEach((program, index) => {
+                    const faculty = getFacultyForProgram(program);
+                    html += `
+                        <div class="program-card" data-program="${program}" data-type="${cat.type}" data-aos="fade-up" data-aos-delay="${(index % 10) * 30}">
+                            <div class="level">${cat.type}</div>
+                            <h4>${program}</h4>
+                            <div class="faculty">${faculty}</div>
+                            <button class="btn-small apply-now-btn" data-program="${program}">Apply Now →</button>
+                        </div>
+                    `;
                 });
                 grid.innerHTML = html;
-                document.querySelectorAll('.view-program').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const idx = parseInt(this.dataset.index);
-                        const program = programs[idx];
-                        showProgramDetail(program);
-                    });
+            });
+
+            // Add click handlers for Apply Now buttons
+            document.querySelectorAll('.apply-now-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const program = this.dataset.program;
+                    openApplyModal(program);
                 });
-                window._programsData = programs;
-            } catch (error) {
-                console.error('Error loading programs:', error);
-                grid.innerHTML = `<div style="text-align:center; grid-column:1/-1; padding:60px; color:var(--gray);">
-                        <i class="fas fa-exclamation-circle" style="font-size:32px; color:#d93025;"></i>
-                        <p style="margin-top:12px;">Unable to load programs. Please check your Google Sheet link.</p>
-                    </div>`;
+            });
+
+            // Add click handlers for program cards
+            document.querySelectorAll('.program-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const program = this.dataset.program;
+                    if (program) {
+                        openApplyModal(program);
+                    }
+                });
+            });
+        }
+
+        // ============================================
+        // GET FACULTY FOR PROGRAM
+        // ============================================
+        function getFacultyForProgram(program) {
+            const lower = program.toLowerCase();
+            if (lower.includes('computer') || lower.includes('it') || lower.includes('software') || 
+                lower.includes('data') || lower.includes('cyber') || lower.includes('ai') || 
+                lower.includes('information') || lower.includes('web') || lower.includes('network')) {
+                return 'Faculty of Computing & IT';
             }
+            if (lower.includes('business') || lower.includes('commerce') || lower.includes('accounting') || 
+                lower.includes('finance') || lower.includes('marketing') || lower.includes('management') || 
+                lower.includes('economics') || lower.includes('entrepreneurship') || lower.includes('banking')) {
+                return 'Faculty of Business & Commerce';
+            }
+            if (lower.includes('engineering') || lower.includes('civil') || lower.includes('mechanical') || 
+                lower.includes('electrical') || lower.includes('electronics') || lower.includes('automotive') || 
+                lower.includes('construction') || lower.includes('architect')) {
+                return 'Faculty of Engineering & Technology';
+            }
+            if (lower.includes('health') || lower.includes('nursing') || lower.includes('medical') || 
+                lower.includes('medicine') || lower.includes('pharmacy') || lower.includes('dental') || 
+                lower.includes('physiotherapy') || lower.includes('psychology') || lower.includes('public health')) {
+                return 'Faculty of Health Sciences';
+            }
+            if (lower.includes('islamic') || lower.includes('shariah') || lower.includes('quran') || 
+                lower.includes('hadith') || lower.includes('arabic') || lower.includes('theology') || 
+                lower.includes('divinity') || lower.includes('religion')) {
+                return 'Faculty of Islamic & Religious Studies';
+            }
+            if (lower.includes('arts') || lower.includes('fine') || lower.includes('design') || 
+                lower.includes('graphic') || lower.includes('fashion') || lower.includes('interior') || 
+                lower.includes('visual') || lower.includes('creative')) {
+                return 'Faculty of Arts & Design';
+            }
+            if (lower.includes('law') || lower.includes('legal') || lower.includes('juris')) {
+                return 'Faculty of Law & Governance';
+            }
+            if (lower.includes('education') || lower.includes('teaching')) {
+                return 'Faculty of Education';
+            }
+            if (lower.includes('social') || lower.includes('psychology') || lower.includes('sociology') || 
+                lower.includes('international relations') || lower.includes('political')) {
+                return 'Faculty of Social Sciences';
+            }
+            if (lower.includes('journalism') || lower.includes('media') || lower.includes('communication') || 
+                lower.includes('public relations') || lower.includes('advertising')) {
+                return 'Faculty of Media & Communication';
+            }
+            if (lower.includes('science') || lower.includes('mathematics') || lower.includes('physics') || 
+                lower.includes('chemistry') || lower.includes('biology') || lower.includes('environmental')) {
+                return 'Faculty of Natural Sciences';
+            }
+            return 'CIU';
         }
 
-        function showProgramDetail(program) {
-            document.getElementById('detailTitle').textContent = program.Title || 'Program Name';
-            document.getElementById('detailLevel').textContent = program.Type || 'N/A';
-            document.getElementById('detailFaculty').textContent = program.Faculty || 'CIU';
-            document.getElementById('detailDuration').textContent = program.Duration || 'N/A';
-            document.getElementById('detailMode').textContent = program.Mode || 'On-Campus';
-            document.getElementById('detailDescription').textContent = program.Description || 'No description available.';
-            const curriculum = program.Curriculum ? program.Curriculum.split(',').map(c => c.trim()) : ['Core Module 1', 'Core Module 2', 'Elective Module 1'];
-            const career = program.Career ? program.Career.split(',').map(c => c.trim()) : ['Career Option 1', 'Career Option 2'];
-            document.getElementById('detailCurriculum').innerHTML = curriculum.map(c => `<li>${c}</li>`).join('');
-            document.getElementById('detailCareer').innerHTML = career.map(c => `<li>${c}</li>`).join('');
-            document.getElementById('programDetail').classList.add('active');
-        }
-
-        document.getElementById('closeDetail').addEventListener('click', () => {
-            document.getElementById('programDetail').classList.remove('active');
-        });
-        document.getElementById('programDetail').addEventListener('click', function(e) {
-            if (e.target === this) this.classList.remove('active');
-        });
-
         // ============================================
-        // APPLY MODAL - EXTREME PROFESSIONAL
+        // OPEN APPLY MODAL
         // ============================================
-        document.getElementById('applyNowBtn').addEventListener('click', function() {
-            document.getElementById('applyModal').classList.add('active');
-            const programTitle = document.getElementById('detailTitle').textContent;
+        function openApplyModal(program) {
+            const modal = document.getElementById('applyModal');
+            const display = document.getElementById('selectedProgramDisplay');
             const select = document.getElementById('applyProgramSelect');
+            
+            display.textContent = program;
+            
+            // Set select value
+            let found = false;
             for (let i = 0; i < select.options.length; i++) {
-                if (select.options[i].text === programTitle) {
-                    select.value = programTitle;
+                if (select.options[i].value === program) {
+                    select.value = program;
+                    found = true;
                     break;
                 }
             }
-            // Reset progress
+            if (!found) {
+                // Add the program to dropdown if not exists
+                const option = document.createElement('option');
+                option.value = program;
+                option.textContent = program;
+                select.appendChild(option);
+                select.value = program;
+            }
+            
+            modal.classList.add('active');
             document.getElementById('formProgress').style.width = '0%';
-        });
+        }
 
+        // ============================================
+        // APPLY MODAL CONTROLS
+        // ============================================
         document.getElementById('closeApplyModal').addEventListener('click', function() {
             document.getElementById('applyModal').classList.remove('active');
         });
@@ -1686,7 +1662,7 @@
             });
         });
 
-        // Apply form submit - with animation
+        // Apply form submit
         document.getElementById('applyForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
@@ -1704,14 +1680,83 @@
         });
 
         // ============================================
+        // AOS INIT
+        // ============================================
+        AOS.init({ duration: 800, once: true, offset: 50, easing: 'ease-out-cubic' });
+
+        // ============================================
+        // PRELOADER
+        // ============================================
+        window.addEventListener('load', function() {
+            document.getElementById('preloader').classList.add('hide');
+        });
+
+        // ============================================
+        // HEADER SCROLL
+        // ============================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ============================================
+        // MOBILE NAV
+        // ============================================
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navMobile.classList.toggle('open');
+        });
+        navMobile.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+            });
+        });
+
+        // ============================================
+        // BACK TO TOP
+        // ============================================
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            backToTop.classList.toggle('visible', window.scrollY > 300);
+        });
+        backToTop.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // ANIMATED COUNTERS
+        // ============================================
+        function animateCounters() {
+            document.querySelectorAll('[data-count]').forEach(function(counter) {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const step = Math.max(1, Math.floor(target / 60));
+                const updateCounter = function() {
+                    current += step;
+                    if (current >= target) { counter.textContent = target; return; }
+                    counter.textContent = current;
+                    requestAnimationFrame(updateCounter);
+                };
+                const observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) { updateCounter(); observer.disconnect(); }
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        }
+        animateCounters();
+
+        // ============================================
         // FACULTY DIRECTORY
         // ============================================
         const facultyData = [
             { name: 'Dr. Ahmad Hassan', position: 'Professor', dept: 'Computer Science', discipline: 'AI & Machine Learning', bio: 'Dr. Hassan has published over 50 papers in top-tier journals and leads the AI research lab.' },
-            { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems and startup incubation.' },
-            { name: 'Dr. Omar Farooq', position: 'Assistant Professor', dept: 'Data Science', discipline: 'Big Data Analytics', bio: 'Dr. Farooq specializes in predictive modeling and data visualization with 15+ publications.' },
-            { name: 'Prof. Fatima Noor', position: 'Professor', dept: 'Health Sciences', discipline: 'Public Health', bio: 'Prof. Noor has worked with WHO on global health initiatives and leads the public health research center.' },
-            { name: 'Dr. Ali Raza', position: 'Senior Lecturer', dept: 'Engineering', discipline: 'Renewable Energy', bio: 'Dr. Raza is involved in multiple sustainable energy projects and holds 3 patents.' },
+            { name: 'Prof. Sarah Ahmed', position: 'Associate Professor', dept: 'Business Administration', discipline: 'Entrepreneurship', bio: 'Prof. Ahmed is a leading researcher in entrepreneurial ecosystems.' },
+            { name: 'Dr. Omar Farooq', position: 'Assistant Professor', dept: 'Data Science', discipline: 'Big Data Analytics', bio: 'Dr. Farooq specializes in predictive modeling and data visualization.' },
+            { name: 'Prof. Fatima Noor', position: 'Professor', dept: 'Health Sciences', discipline: 'Public Health', bio: 'Prof. Noor has worked with WHO on global health initiatives.' },
+            { name: 'Dr. Ali Raza', position: 'Senior Lecturer', dept: 'Engineering', discipline: 'Renewable Energy', bio: 'Dr. Raza is involved in multiple sustainable energy projects.' },
         ];
 
         function renderFaculty(filter = '') {
@@ -1943,10 +1988,43 @@
         });
 
         // ============================================
-        // LOAD DATA
+        // LOAD ALL DATA
         // ============================================
-        loadPrograms();
+        renderPrograms();
         renderFaculty();
+
+        // Also load programs from CSV for dynamic updates
+        const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT9MbxSo6my3Nb7tAKhpTc9VAOcXhSz0Ee7orXS2vLYCgU9vvtpK6T13NeJ326FVG903AJTcE32JHJB/pub?gid=0&single=true&output=csv';
+
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim() !== '');
+            if (lines.length === 0) return [];
+            const headers = lines[0].split(',').map(h => h.trim());
+            const result = [];
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim());
+                if (values.length === headers.length) {
+                    const entry = {};
+                    headers.forEach((h, idx) => { entry[h] = values[idx] || ''; });
+                    result.push(entry);
+                }
+            }
+            return result;
+        }
+
+        async function loadCSVPrograms() {
+            try {
+                const response = await fetch(CSV_URL);
+                if (!response.ok) throw new Error('Network error');
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                // You can use this data to update program cards dynamically if needed
+            } catch (error) {
+                console.error('Error loading CSV programs:', error);
+            }
+        }
+
+        loadCSVPrograms();
     </script>
 </body>
 </html>
